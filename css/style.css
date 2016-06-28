@@ -1,0 +1,9 @@
+.card {
+}
+	.card .background {
+	    position: absolute;
+	    background-position: center;
+	    -webkit-filter: blur(2px);
+	            filter: blur(2px); }
+	    .card .background:before {
+	      background: black; }
