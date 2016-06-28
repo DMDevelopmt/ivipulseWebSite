@@ -1,19 +1,17 @@
 //déclaration du module principal l'application
 //le premier paramètre définit le nom du module, le second
 //les dépendances utilisées
-var app = angular.module("ivipulse", [
-	// Dépendances du module
-	'ngRoute'
+var app = angular.module("ivipulse", [ 
+  // Dépendances du module 
+  'ngRoute' 
 ]);
-
 
 app.config(['$routeProvider', function($routeProvider) {
 
 	//système de routage
 	$routeProvider
 	.when('/', {
-		templateUrl: 'partials/home.html',
-		controller: 'main_ctrl'
+		templateUrl: 'partials/home.html'
 	})
 	.when('/login', {
 		templateUrl: 'partials/login.html',
@@ -22,6 +20,5 @@ app.config(['$routeProvider', function($routeProvider) {
 	.otherwise({
 		redirectTo: '/'
 	});
-	
 }]);
 
