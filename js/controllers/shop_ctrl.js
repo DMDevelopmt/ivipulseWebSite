@@ -1,11 +1,15 @@
 
-app.controller('shop_ctrl', function ($scope, shop){
+app.controller('shop_ctrl', function ($scope, shop_facto){
 	$scope.fondCards = {};
-	$scope.metier = ['infermier','yoga'];
+	$scope.selectedIcon = true;
+	$scope.metier = [];
 
-	shop.listFonds
+
+
+	shop_facto.listFonds
 	.then(function(res) {
 		$scope.fondCards = res;
 		console.log("fondCards reçues");
 	 });
 });
+

@@ -6,7 +6,6 @@ padding-top: 10px;
 .hide-bullets {
     list-style:none;
     vertical-align:center;
-
 }
 
 
@@ -48,22 +47,20 @@ padding-top: 10px;
 }
 
 .selectCarte{
-	margin-top: 5px;
-  	text-align: left;
+	text-align: left;
 	font-size: 18px;
 	font-weight: bold;
-	width: 200px;
+	width: 170px;
 	height: 40px;
-
+	color: white;
+	border-radius: 10px;
 }
 
 
 .thumbnail {
-	
     width: 150px;
     height: 80px;
     z-index: 1;
-
 }
 
 .plusOkIcon{
@@ -72,6 +69,8 @@ padding-top: 10px;
 	position: absolute;
     z-index: 2;
     border-radius: 10px;
+    top:30px;
+    left: 120px;
 }
 
 

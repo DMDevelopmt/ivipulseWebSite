@@ -1,7 +1,7 @@
-app.factory('shop', function($http,$q)
+app.factory('shop_facto', function($http,$q)
 {
 
-	var ROOT_URL = 'http://192.168.1.99:8180';
+	var ROOT_URL = 'http://192.168.1.12:8180';
 
 		return{
 				listFonds: $q(function(resolve, reject)
@@ -29,5 +29,6 @@ app.factory('shop', function($http,$q)
 	          				reject("incorrect"); 
 	        		}); 
 				})
+				
 			};
    });

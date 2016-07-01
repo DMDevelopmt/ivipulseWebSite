@@ -1,23 +1,29 @@
  
 <section class ="fondSite" > 
-    <h3 class="personaliserCarte">Faites personnaliser votre carte > </h3> 
-    <div class="bandSelect"> 
-        <select class="selectCarte">  
-            <option value="tous" selected="selected">Toutes metiers</option> 
-            <option value="design">Design</option> 
-            <option value="professionnelles">Professionnelles</option> 
-            <option value="metal">Metal</option> 
-            <option value="bois">Bois</option> 
-            <option value="nature">Nature</option> 
-            <option value="cartoon">Cartoon</option> 
-            <option value="noir et blanc">Noir et blanc</option> 
-            <option value="bleu">Bleu</option> 
-            <option value="marron">Marron</option> 
-            <option value="rouge">Rouge</option> 
-        </select> 
-    </div>   
-    <img class="plusOkIcon" src="img/ok.jpg" alt="ok"> 
-    <img class="plusOkIcon" src="img/plus.jpg" alt="plus"> 
+    <h3 class="personaliserCarte">Faites personnaliser votre carte &nbsp &nbsp<span class = "glyphicon glyphicon-arrow-right" aria-hidden="true"></span> </h3> 
+ 
+        <div class="bandSelect" id="navbar">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a class="selectCarte" data-toggle="dropdown" role="button" aria-expanded="false">Toutes metiers <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a>Design</a></li>
+                        <li><a>Professionnelles</a></li>
+                        <li class="divider"></li>
+                        <li><a >Metal</a></li>
+                        <li><a >Bois</a></li>
+                        <li><a >Nature</a></li>
+                        <li><a >Cartoon</a></li>
+                        <li class="divider"></li>
+                        <li><a >Noir et blanc</a></li>
+                        <li><a >Bleu</a></li>
+                        <li><a >Marron</a></li>
+                        <li><a >Rouge</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    
     <div class ="shop">     
         <div class="col-sm-1" id="slider-thumbs"> 
             <ul class="hide-bullets" ng-repeat = 'fond in fondCards'> 
@@ -25,6 +31,10 @@
                     <a class="thumbnail" id="carousel-selector-{{template}}" 
                     ng-class="{{template}}" > 
                         template : {{template}} 
+                        <div ng-switch = "selectedIcon" ng-click= "selectedIcon = !selectedIcon">
+                            <img  ng-switch-when=true class="plusOkIcon" src="img/plus.jpg" alt="plus">   
+                            <img ng-switch-when=false class="plusOkIcon" src="img/ok.jpg" alt="ok"> 
+                        </div>
                     </a> 
                 </li> 
             </ul> 
