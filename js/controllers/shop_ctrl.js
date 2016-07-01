@@ -6,5 +6,6 @@ app.controller('shop_ctrl', function ($scope, shop){
 	shop.listFonds
 	.then(function(res) {
 		$scope.fondCards = res;
+		console.log("fondCards reçues");
 	 });
 });

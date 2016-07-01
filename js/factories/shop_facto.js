@@ -13,16 +13,15 @@ app.factory('shop', function($http,$q)
 				     };
 
 					$http (req)
-
 					.success (function(res)
 					{
 						if(res)
 						{
-							resolve(res)
+							resolve(res);
 						}
 						else
 						{
-							reject("Problème interne, essayez plus tard")
+							reject("Problème interne, essayez plus tard");
 						}				
 					})
 					.error(function () 
