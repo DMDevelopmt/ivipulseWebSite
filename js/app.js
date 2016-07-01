@@ -24,6 +24,9 @@ app.config(['$routeProvider', function($routeProvider) {
 	.when('/logged', {
 		templateUrl: 'partials/logged.html'
 	})
+	.when('/shop', {
+		templateUrl: 'partials/shop.html'
+	})
 	.otherwise({
 		redirectTo: '/'
 	});
