@@ -88,7 +88,7 @@
 			</div><br>
         </div>
 
-	 	<form action="update()" method="post" class="form well well-sm" role="form">
+	 	<form action="#" method="post" class="form well well-sm" role="form">
 			
 
 			<label>Importer votre avatar</label>
@@ -154,14 +154,14 @@
                 <div class="input-group">
                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                    </span>
-                   <input type="text" class="form-control" ng-model="{{user.email}}" name="email" placeholder="Mail" />
+                   <input type="text" class="form-control"  name="email" placeholder="Mail" />
                 </div>
             </div>
              <div class="form-group">
                 <div class="input-group">
                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                    </span>
-                   <input type="email" class="form-control" name="mail2" ng-model="{{user.email2}}" placeholder="Mail 2" />
+                   <input type="email" class="form-control" name="mail2"  placeholder="Mail 2" />
                 </div>
             </div>
              <div class="form-group"> 
@@ -319,7 +319,7 @@
                     </select>
                 </div>
 	        </div>
-	        <button class="btn btn-sg btn-primary btn-block" type="submit">
+	        <button class="btn btn-sg btn-primary btn-block" type="button" ng-click="update()">
                 Sign up</button>        
 	 	</form>
 	</div>

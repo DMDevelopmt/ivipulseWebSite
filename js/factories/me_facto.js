@@ -169,7 +169,7 @@ app.factory('me', function($q, $http){
         }); 
       }); 
  
-    } 
+    }, 
 /* 
     Cette fonction permet de mettre un jour les attributs d'un utilisateur 
     Elle retourne une promesse contenant le résultat de la requête 
@@ -187,8 +187,7 @@ app.factory('me', function($q, $http){
           }
           return resolve(new_user);
         }).error(reject);
-      };
-    );
+      });
   }
 
 }; 
