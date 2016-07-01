@@ -1,6 +1,5 @@
 .fondSite{
 background-color: #50E3C2;
-padding-top: 10px;
 }
 
 .hide-bullets {
@@ -20,7 +19,7 @@ padding-top: 10px;
 	text-align: center;
 	margin-left: auto;
   	margin-right: auto;
-  	margin-top: 30px;
+  	margin-top: 40px;
   	width: 800px; 
   	height: 500px;
   	padding-top: 10px;
@@ -37,6 +36,7 @@ padding-top: 10px;
 	color: #50E3C2;
 	padding-top: 10px;
 	border-radius: 10px;
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .bandSelect{
@@ -46,16 +46,29 @@ padding-top: 10px;
   	height: 15px;
 }
 
-.selectCarte{
-	text-align: left;
+.selectMetier{
+	text-align: center;
 	font-size: 18px;
 	font-weight: bold;
 	width: 170px;
 	height: 40px;
 	color: white;
 	border-radius: 10px;
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
+.ajouterCarte{
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	width: 220px;
+	height: 40px;
+	color: white;
+	border-radius: 10px;
+	border: 2px;
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	margin-left: 410px;
+}
 
 .thumbnail {
     width: 150px;
@@ -64,13 +77,13 @@ padding-top: 10px;
 }
 
 .plusOkIcon{
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 	position: absolute;
     z-index: 2;
     border-radius: 10px;
-    top:30px;
-    left: 120px;
+    top:40px;
+    left: 130px;
 }
 
 

@@ -28,6 +28,9 @@ app.config(['$routeProvider', function($routeProvider) {
 		templateUrl: 'partials/shop.html',
 		controller: 'shop_ctrl'
 	})
+	.when('/personnaliserCarte',{
+		templateUrl:'partials/personnaliserCarte',
+	})
 	.otherwise({
 		redirectTo: '/'
 	});
