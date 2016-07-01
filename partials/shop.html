@@ -1,0 +1,35 @@
+ 
+<section class ="fondSite" > 
+    <h3 class="personaliserCarte">Faites personnaliser votre carte > </h3> 
+    <div class="bandSelect"> 
+        <select class="selectCarte">  
+            <option value="tous" selected="selected">Toutes metiers</option> 
+            <option value="design">Design</option> 
+            <option value="professionnelles">Professionnelles</option> 
+            <option value="metal">Metal</option> 
+            <option value="bois">Bois</option> 
+            <option value="nature">Nature</option> 
+            <option value="cartoon">Cartoon</option> 
+            <option value="noir et blanc">Noir et blanc</option> 
+            <option value="bleu">Bleu</option> 
+            <option value="marron">Marron</option> 
+            <option value="rouge">Rouge</option> 
+        </select> 
+    </div>   
+    <img class="plusOkIcon" src="img/ok.jpg" alt="ok"> 
+    <img class="plusOkIcon" src="img/plus.jpg" alt="plus"> 
+    <div class ="shop">     
+        <div class="col-sm-1" id="slider-thumbs"> 
+            <ul class="hide-bullets" ng-repeat = 'fond in fondCards'> 
+                <li class="col-sm-3" ng-repeat = 'template in fond'> 
+                    <a class="thumbnail" id="carousel-selector-{{template}}" 
+                    ng-class="{{template}}" > 
+                        template : {{template}} 
+                    </a> 
+                </li> 
+            </ul> 
+        </div>   
+    </div> 
+</section>
+ \ No newline at end of file 
+index on master: b9c03ae route
