@@ -5,6 +5,13 @@
 		qsffdsqfgsgdsgqhgdhdhdhdhdhdhd
 		</p>
 
+<div class="container">
+	<div class="row" id="rowSign">
+	<div class="row col-lg-5" id="cardPerso">
+		<p>
+		qsffdsqfgsgdsgqhgdhdhdhdhdhdhd
+		</p>
+
 	</div>
 	<div class="row form-group col-lg-offset-2 col-lg-5 pre-scrollable" id="sign">
 		 <div class="col-xs-12 col-sm-12 col-md-12 well well-sm">
@@ -87,7 +94,7 @@
 			</div><br>
         </div>
 
-	 	<form action="#" method="post" class="form well well-sm" role="form">
+	 	<form action="update()" method="post" class="form well well-sm" role="form">
 			
 
 			<label>Importer votre avatar</label>
@@ -125,7 +132,7 @@
                 <div class="input-group">
                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
                    </span>
-                   <input type="phone" class="form-control" ng-model="user.phone1" name="phone" placeholder="Tél" />
+                   <input type="phone" class="form-control" ng-model="user.phone" name="phone" placeholder="Tél" />
                 </div>
             </div>
             <div class="form-group">
@@ -153,14 +160,14 @@
                 <div class="input-group">
                    <span class="input-group-addon"><span class="fa fa-at"></span>
                    </span>
-                   <input type="text" class="form-control"  name="email" ng-model="user.email" placeholder="Mail" />
+                   <input type="text" class="form-control" ng-model="{{user.email}}" name="email" placeholder="Mail" />
                 </div>
             </div>
              <div class="form-group">
                 <div class="input-group">
                    <span class="input-group-addon"><span class="fa fa-at"></span>
                    </span>
-                   <input type="email" class="form-control" name="mail2"  ng-model="user.email2" placeholder="Mail 2" />
+                   <input type="email" class="form-control" name="mail2" ng-model="{{user.email2}}" placeholder="Mail 2" />
                 </div>
             </div>
              <div class="form-group"> 
