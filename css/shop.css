@@ -1,0 +1,82 @@
+.fondSite{
+background-color: #50E3C2;
+padding-top: 10px;
+}
+
+.hide-bullets {
+    list-style:none;
+    vertical-align:center;
+
+}
+
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    width: 100%;
+
+}
+
+
+.shop {
+	background-color: white;
+	text-align: center;
+	margin-left: auto;
+  	margin-right: auto;
+  	margin-top: 30px;
+  	width: 800px; 
+  	height: 500px;
+  	padding-top: 10px;
+  	border-radius: 10px;
+}
+
+.personaliserCarte{
+	margin-left: auto;
+  	margin-right: auto;
+	background-color: white;
+	width: 800px;
+	height: 50px;
+	text-align: center;
+	color: #50E3C2;
+	padding-top: 10px;
+	border-radius: 10px;
+}
+
+.bandSelect{
+	margin-left: auto;
+  	margin-right: auto;
+  	width: 800px; 
+  	height: 15px;
+}
+
+.selectCarte{
+	margin-top: 5px;
+  	text-align: left;
+	font-size: 18px;
+	font-weight: bold;
+	width: 200px;
+	height: 40px;
+
+}
+
+
+.thumbnail {
+	
+    width: 150px;
+    height: 80px;
+    z-index: 1;
+
+}
+
+.plusOkIcon{
+	width: 50px;
+	height: 50px;
+	position: absolute;
+    z-index: 2;
+    border-radius: 10px;
+}
+
+
+#slider-thumbs{
+	width: 100%;
+	margin-left: auto;
+  	margin-right: auto;
+}
