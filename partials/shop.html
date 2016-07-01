@@ -1,6 +1,6 @@
  
 <section class ="fondSite" > 
-    <a href="#personnaliserCarte"><h3 class="personaliserCarte" data-toggle="dropdown" role="button">Faites personnaliser votre carte &nbsp &nbsp<span class = "glyphicon glyphicon-arrow-right" aria-hidden="true"></span> </h3> </a>
+    <h3 class="personaliserCarte" data-toggle="dropdown" role="button">Faites personnaliser votre carte &nbsp &nbsp<span class = "glyphicon glyphicon-arrow-right" aria-hidden="true"></span> </h3>
     
         <div class="bandSelect" id="navbar">
             <ul class="nav navbar-nav navbar-left">
@@ -32,9 +32,9 @@
                     <a class="thumbnail" id="carousel-selector-{{template}}" 
                     ng-class="{{template}}" > 
                         template : {{template}} 
-                        <div ng-switch = "selectedIcon" ng-click= "selectedIcon = !selectedIcon; comptCarte()">
-                            <img  ng-switch-when=true class="plusOkIcon" src="img/plus.jpg" alt="plus">   
-                            <img ng-switch-when=false class="plusOkIcon" src="img/ok.jpg" alt="ok"> 
+                        <div ng-switch = "selectedIcon" ng-click= "selectedIcon=!selectedIcon"  >
+                            <img ng-click= "comptCarte()" ng-switch-when="false" class="plusOkIcon" src="img/plus.jpg" alt="plus">   
+                            <img ng-click= "comptCarte()" ng-switch-when="true" class="plusOkIcon" src="img/ok.jpg" alt="ok"> 
                         </div>
                     </a> 
                 </li> 
