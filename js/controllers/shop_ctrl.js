@@ -1,7 +1,7 @@
 
 app.controller('shop_ctrl', function ($scope, shop_facto){
 	$scope.fondCards = {};
-	$scope.selectedIcon = false;
+	$scope.selectedIcon = true;
 	$scope.metier = [];
 
 	shop_facto.listFonds
@@ -12,13 +12,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto){
 
 	$scope.count = 0;
     $scope.comptCarte = function() {
-    	if(!$scope.selectedIcon){
-    		$scope.count++;
-    	}
-    	else{
-    		$scope.count--;
-    	}
-    	console.log($scope.selectedIcon);
+        $scope.count++;
     };
 });
 

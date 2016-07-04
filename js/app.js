@@ -30,6 +30,14 @@ app.config(['$routeProvider', function($routeProvider) {
 		templateUrl: 'partials/shop.html',
 		controller: 'shop_ctrl'
 	})
+<<<<<<< HEAD
+	.when('/home', {
+		templateUrl: 'partials/home.html'
+=======
+	.when('/personnaliserCarte',{
+		templateUrl:'partials/personnaliserCarte',
+>>>>>>> master
+	})
 	.otherwise({
 		redirectTo: '/'
 	});
