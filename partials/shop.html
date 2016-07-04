@@ -118,9 +118,9 @@
                     <a class="thumbnail" id="carousel-selector-{{template}}" 
                     ng-class="{{template}}" > 
                         template : {{template}} 
-                        <div ng-switch = "selectedIcon" ng-click= "selectedIcon=!selectedIcon"  >
-                            <img ng-click= "comptCarte()" ng-switch-when="false" class="plusOkIcon" src="img/plus.jpg" alt="plus">   
-                            <img ng-click= "comptCarte()" ng-switch-when="true" class="plusOkIcon" src="img/ok.jpg" alt="ok"> 
+                        <div ng-switch = "selectedIcon" ng-click= "selectedIcon = !selectedIcon; comptCarte()">
+                            <img  ng-switch-when=true class="plusOkIcon" src="img/plus.jpg" alt="plus">   
+                            <img ng-switch-when=false class="plusOkIcon" src="img/ok.jpg" alt="ok"> 
                         </div>
                     </a> 
                 </li> 

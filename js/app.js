@@ -6,7 +6,7 @@ var app = angular.module("ivipulse", [
   'ngRoute' 
 ]);
 
-var ROOT_URL = 'http://192.168.1.11:8180';
+var ROOT_URL = 'http://192.168.1.21:8180';
 
 app.config(['$routeProvider', function($routeProvider) {
 
@@ -29,6 +29,12 @@ app.config(['$routeProvider', function($routeProvider) {
 	.when('/shop', {
 		templateUrl: 'partials/shop.html',
 		controller: 'shop_ctrl'
+	})
+	.when('/home', {
+		templateUrl: 'partials/home.html'
+	})
+	.when('/personnaliserCarte',{
+		templateUrl:'partials/personnaliserCarte',
 	})
 	.otherwise({
 		redirectTo: '/'
