@@ -1,7 +1,7 @@
 app.factory('me', function($q, $http){ 
   //définition d'url racine du serveur d'application  
   //(a pour vocation de migrer vers le fichier principal) 
-  var ROOT_URL = 'http://192.168.1.99:8180'; 
+  //var ROOT_URL = 'http://192.168.1.11:8180'; 
   //var ROOT_URL = 'http://192.168.0.40:8180'; 
  
   //initialisation de la variable user 
