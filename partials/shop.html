@@ -1,8 +1,10 @@
  
 <section class ="fondSite" > 
-    <button class="personaliserCarte" data-toggle="modal" data-target="#myModal">Faites personnaliser votre carte &nbsp &nbsp<span class = "glyphicon glyphicon-arrow-right" aria-hidden="true"></span> 
-    </button>
+<!-- boutton modal personnliser carte -->
+   <center><button class="personaliserCarte" data-toggle="modal" data-target="#myModal">Faites personnaliser votre carte &nbsp &nbsp<span class = "glyphicon glyphicon-arrow-right" aria-hidden="true"></span> 
+    </button></center> 
 
+<!-- modal Personnaliser carte -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -10,21 +12,82 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <table border="0"> 
+                <tr>
+                    <td>
+                        <p class="p1"><span class="modal-title" id="myModalLabel">
+                            Nous créons votre carte personnalisée aux fonctionnalités premium
+                        </span> </p>
+                        <br>
+                        <p class="p2"><span>
+                          Charte graphique, slogan, logo, design, nos graphistes s'occupent d'intégrer votre identité en suiant à la lettre vos recommandations.  
+                        </span></p>
+                        <p class="p2"><span>
+                            Nous associons aux cartes personnalisée des fonctionalités premium adaptées à votre secteur d'activité.
+                        </span></p>
+                        <br>
+                        <p class="p1"><span>
+                            Qu'attendez-vous pour donner une nouvelle impulsion à vos réseaux!?
+                        </span></p>
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td>
+                     <button class="bouttonContact" ng-show="!contactEmail" ng-click ="contactEmail=!contactEmail" >Contactez-nous</button>
+                    </td>
+                </tr>
+                <tr >
+                    <td>
+                        <input class="textContact" type="text" name="nom" ng-show="contactEmail" placeholder="Votre nom">
+                    
+                         <input class="textContact" type="text" name="prénom" ng-show="contactEmail" placeholder="Votre prénom">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <br>
+                       <input class="textContact" type="text" name="adresse mail" ng-show="contactEmail" placeholder="Votre adresse email">
+                    
+                       <input class="textContact" type="text" name="numero telephone" ng-show="contactEmail" placeholder="Votre numero de telephone">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <br>
+                        <input class="messageContact" type="text" name="message" ng-show="contactEmail" placeholder="Votre message">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <br>
+                        <button class="bouttonContact" ng-show="contactEmail" name="envoyer">Envoyer</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="p1">
+                            Faite votre carte avec un outil graphique.
+                        <br></p>
+                    </td>
+                </tr>
+                
+                 <tr>
+                    <td>
+                     <button class="bouttonContact">Achetez l'outil graphique
+                     </button>
+                    </td>
+                </tr>
+            </table>
           </div>
         </div>
       </div>
     </div>
-
-
-    
+<!-- fin modal Personnaliser carte -->
+ 
         <div class="bandSelect" id="navbar">
             <ul class="nav navbar-nav navbar-left">
                 <li>

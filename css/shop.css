@@ -27,13 +27,18 @@ background-color: #50E3C2;
 }
 
 .personaliserCarte{
-	margin-left: auto;
-  	margin-right: auto;
 	background-color: white;
 	width: 800px;
 	height: 50px;
 	text-align: center;
+	border:1px ;
+	font-family:Arial;
+	padding:10px 20px;
+	font-size:18px; 
+	font-weight: bold;
 	color: #50E3C2;
+	margin-top: 10px;
+	margin-bottom: 20px;
 	padding-top: 10px;
 	border-radius: 10px;
 	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -91,4 +96,59 @@ background-color: #50E3C2;
 	width: 100%;
 	margin-left: auto;
   	margin-right: auto;
+}
+
+table{
+	margin-left: 40px;
+	margin-right: 40px;
+	margin-top: 30px;
+}
+
+.modal-header{
+	background-color: #50E3C2;
+	color: white;
+	width: 600px;
+	height: 700px;
+	border-radius: 10px;
+
+}
+
+.p1{
+	font-size: 18px;
+}
+
+.bouttonContact{
+	background-color:white;
+	border-radius: 10px;
+	border:1px ;
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	color:#50E3C2;
+	font-family:Arial;
+	font-size:18px;
+	padding:10px 20px;
+	float: right;
+}
+
+.modal-header1{
+	background-color: #50E3C2;
+	color: white;
+	width: 600px;
+	height: 400px;
+	border-radius: 10px;
+
+}
+
+.textContact{
+	width: 243px;
+	height: 35px;
+	color: #50E3C2;
+
+}
+
+.messageContact{
+	width: 490px;
+	height: 100px;
+	color: #50E3C2;
+	vertical-align: top;
+    text-align: left;
 }
