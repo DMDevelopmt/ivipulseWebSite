@@ -1,4 +1,4 @@
- 
+
 <section class ="fondSite" > 
 
 <!-- boutton modal personnliser carte -->
@@ -38,7 +38,6 @@
                      <button class="bouttonContact" ng-show="!textContact" ng-click ="textContact=!textContact" >Contactez-nous</button>
                     </td>
                 </tr>
-                <div ng-submit="">
                     <tr >
                         <td>
                             <input class="textContact" type="text" name="nom" ng-show="textContact" placeholder="Votre nom" ng-model = "textNom">
@@ -63,10 +62,11 @@
                     <tr>
                         <td>
                         <br>
-                            <a href="mailto:hvpillot@gmail.com"><button class="bouttonContact" ng-show="textContact" name="envoyer" >Envoyer</button></a>
+                            <a href="mailto:hvpillot@gmail.com?subject=Personnaliser votre carte&body={{textNom}}%0D%0A{{textPrenom}}%0D%0A{{textEmail}}%0D%0A{{textNumero}}%0D%0A{{textMessage}}">
+                            <button class="bouttonContact" ng-show="textContact">Envoyer</button> </a>
                         </td>
                     </tr>
-                </div>
+              
                 <tr>
                     <td><br></td>
                 </tr>
