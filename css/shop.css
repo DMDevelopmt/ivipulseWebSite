@@ -24,7 +24,7 @@ background-color: #50E3C2;
   	height: 500px;
   	padding-top: 10px;
   	border-radius: 10px;
-  	overflow-x:scroll;
+  	overflow-x: scroll
 }
 
 .personaliserCarte{
@@ -154,4 +154,8 @@ table{
 	vertical-align: top;
     text-align: left;
     border-radius: 5px;
+}
+
+.card{
+	background-size: 100%;
 }

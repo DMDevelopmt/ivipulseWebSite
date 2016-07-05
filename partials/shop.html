@@ -1,5 +1,6 @@
  
 <section class ="fondSite" > 
+
 <!-- boutton modal personnliser carte -->
    <center><button class="personaliserCarte" data-toggle="modal" data-target="#myModal">Faites personnaliser votre carte &nbsp &nbsp<span class = "glyphicon glyphicon-arrow-right" aria-hidden="true"></span> 
     </button></center> 
@@ -118,12 +119,11 @@
         </div>
     
     <div class ="shop">     
-        <div class="col-sm-1" id="slider-thumbs"> 
+        <div class="col-sm-1 glob" id="slider-thumbs"> 
             <ul class="hide-bullets" ng-repeat = 'fond in fondCards'> 
                 <li class="col-sm-3" ng-repeat = 'template in fond'> 
-                    <a class="thumbnail" id="carousel-selector-{{template}}" 
-                    ng-class="{{template}}" ng-click = "ajouteFond(template)"> 
-                    
+                    <a class="thumbnail card {{template}}" id="carousel-selector-{{template}}"
+                    ng-click = "ajouteFond(template)">
                         <div ng-switch = "isAdded(template)">
                             <img  ng-switch-when=false class="plusOkIcon" src="img/plus.jpg" alt="plus">   
                             <img ng-switch-when=true class="plusOkIcon" src="img/ok.jpg" alt="ok"> 
