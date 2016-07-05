@@ -107,7 +107,11 @@
                         <li><a >Rouge</a></li>
                     </ul>
                 </li>
-                <li><a class="ajouterCarte" data-toggle="dropdown" role="button"> Ajouter ces &nbsp {{count}} &nbsp cartes </a></li>
+                <li>
+                <a class="ajouterCarte" data-toggle="dropdown" role="button" ng-switch = "textAjoute()" ng-show="fondAAjoute.length > 0">
+                    <div ng-switch-when = false>Ajouter cette carte</div> 
+                    <div ng-switch-when = true> Ajouter ces &nbsp {{fondAAjoute.length}}&nbsp cartes</div>
+                </a></li>
             </ul>
         </div>
     
@@ -116,11 +120,11 @@
             <ul class="hide-bullets" ng-repeat = 'fond in fondCards'> 
                 <li class="col-sm-3" ng-repeat = 'template in fond'> 
                     <a class="thumbnail" id="carousel-selector-{{template}}" 
-                    ng-class="{{template}}" > 
+                    ng-class="{{template}}" ng-click = "ajouteFond(template)"> 
                         template : {{template}} 
-                        <div ng-switch = "selectedIcon" ng-click= "selectedIcon = !selectedIcon; comptCarte()">
-                            <img  ng-switch-when=true class="plusOkIcon" src="img/plus.jpg" alt="plus">   
-                            <img ng-switch-when=false class="plusOkIcon" src="img/ok.jpg" alt="ok"> 
+                        <div ng-switch = "isAdded(template)">
+                            <img  ng-switch-when=false class="plusOkIcon" src="img/plus.jpg" alt="plus">   
+                            <img ng-switch-when=true class="plusOkIcon" src="img/ok.jpg" alt="ok"> 
                         </div>
                     </a> 
                 </li> 

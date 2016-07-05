@@ -142,6 +142,7 @@ table{
 	width: 243px;
 	height: 35px;
 	color: #50E3C2;
+	border-radius: 10px;
 
 }
 
@@ -151,4 +152,5 @@ table{
 	color: #50E3C2;
 	vertical-align: top;
     text-align: left;
+    border-radius: 10px;
 }
