@@ -24,6 +24,7 @@ background-color: #50E3C2;
   	height: 500px;
   	padding-top: 10px;
   	border-radius: 10px;
+  	overflow-x:scroll;
 }
 
 .personaliserCarte{
@@ -142,7 +143,7 @@ table{
 	width: 243px;
 	height: 35px;
 	color: #50E3C2;
-	border-radius: 10px;
+	border-radius: 5px;
 
 }
 
@@ -152,5 +153,5 @@ table{
 	color: #50E3C2;
 	vertical-align: top;
     text-align: left;
-    border-radius: 10px;
+    border-radius: 5px;
 }
