@@ -34,36 +34,38 @@
                
                 <tr>
                     <td>
-                     <button class="bouttonContact" ng-show="!contactEmail" ng-click ="contactEmail=!contactEmail" >Contactez-nous</button>
+                     <button class="bouttonContact" ng-show="!textContact" ng-click ="textContact=!textContact" >Contactez-nous</button>
                     </td>
                 </tr>
-                <tr >
-                    <td>
-                        <input class="textContact" type="text" name="nom" ng-show="contactEmail" placeholder="Votre nom">
-                    
-                         <input class="textContact" type="text" name="prénom" ng-show="contactEmail" placeholder="Votre prénom">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    <br>
-                       <input class="textContact" type="text" name="adresse mail" ng-show="contactEmail" placeholder="Votre adresse email">
-                    
-                       <input class="textContact" type="text" name="numero telephone" ng-show="contactEmail" placeholder="Votre numero de telephone">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    <br>
-                        <input class="messageContact" type="text" name="message" ng-show="contactEmail" placeholder="Votre message">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    <br>
-                        <button class="bouttonContact" ng-show="contactEmail" name="envoyer">Envoyer</button>
-                    </td>
-                </tr>
+                <div ng-submit="">
+                    <tr >
+                        <td>
+                            <input class="textContact" type="text" name="nom" ng-show="textContact" placeholder="Votre nom" ng-model = "textNom">
+                        
+                             <input class="textContact" type="text" name="prénom" ng-show="textContact" placeholder="Votre prénom" ng-model = "textPrenom">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <br>
+                           <input class="textContact" type="text" name="adresse mail" ng-show="textContact" placeholder="Votre adresse email" ng-model="textEmail">
+                        
+                           <input class="textContact" type="text" name="numero telephone" ng-show="textContact" placeholder="Votre numero de telephone" ng-model = "textNumero">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <br>
+                            <input class="messageContact" type="text" name="message" ng-show="textContact" placeholder="Votre message" ng-model = "textMessage">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <br>
+                            <a href="mailto:hvpillot@gmail.com"><button class="bouttonContact" ng-show="textContact" name="envoyer" >Envoyer</button></a>
+                        </td>
+                    </tr>
+                </div>
                 <tr>
                     <td><br></td>
                 </tr>
@@ -121,7 +123,7 @@
                 <li class="col-sm-3" ng-repeat = 'template in fond'> 
                     <a class="thumbnail" id="carousel-selector-{{template}}" 
                     ng-class="{{template}}" ng-click = "ajouteFond(template)"> 
-                        template : {{template}} 
+                    
                         <div ng-switch = "isAdded(template)">
                             <img  ng-switch-when=false class="plusOkIcon" src="img/plus.jpg" alt="plus">   
                             <img ng-switch-when=true class="plusOkIcon" src="img/ok.jpg" alt="ok"> 
