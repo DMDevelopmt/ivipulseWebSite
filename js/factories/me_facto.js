@@ -20,13 +20,49 @@ app.factory('me', function($q, $http){
     _new_user: false,
     _card_changed: false,
 
+    state: {
+    have_pulsed: false,
+    unread: {
+      cards: 0,
+      notifs: 0,
+      chats: 0,
+      chats_ids: []
+    },
+    last_status_update: null
+    },
+
+
     init: function (data) {
 
       this._data = {};
       this.is_authenticated = true;
 
+      //getters
+      _.each(this._getters, function (v,k) {
+        if (!this[k]) {
+          this._defineGetter__(k,v);
+        }
+      });
+
+      //getters from _data
+      
+      _.each(data, function(v,k) {
+        if(!this[k]){
+          this.__defineGetter__(k, function(_this) {
+            return function() {
+              return _this._data != null ? ref[k] : void 0;
+            }
+          });
+          this.__defineSetter__(k, function(_this) {
+            return function(val) {
+              return _this._data != null ? ref[k] = val : void 0;
+            };
+          });
+        }
+      });
+
       this.state.last_status_update = Date.now();
-      this.refresh_pending_cards();
+      //this.refresh_pending_cards();
       this.scope = this._data.sharing;
 
       return this;
@@ -110,7 +146,7 @@ app.factory('me', function($q, $http){
           if(res.me) {
             //on resout la promesse en transmettant l'attribut 'me' de  
             //la requête 
-            defMe = self.init(res.me);
+            defMe = this.me.init(res.me);
             resolve(defMe);
           } 
           //si problème serveur 
