@@ -1,8 +1,48 @@
 
-app.controller('shop_ctrl', function ($scope, shop_facto){
+app.controller('shop_ctrl', function ($scope, shop_facto,$http){
 	$scope.fondCards = {};
+    $scope.listCards = {};
 	$scope.selectedIcon = true;
 	$scope.fondAAjoute = [];
+    $scope.currentTemplate = {};
+
+    $scope.filter = "all";
+
+    $scope.categories = {
+    all: 'Toutes métiers',
+    graphic: 'Design',
+    pro: 'Professionnelles',
+    metal: 'Métal',
+    wood: 'Bois',
+    animaux: 'Nature',
+    cartoon: 'Cartoon',
+    netb: 'Noir et blanc',
+    bleu: 'Bleu',
+    marron: 'Marron',
+    rouge: 'Rouge'
+    };
+
+
+    /**
+    retourne le choix de combobox
+    */
+    $scope.comboFilter = function(){
+        switch($scope.filter){
+            case "all":
+            $scope.listCards = _.chain($scope.fondCards).values().flatten().value().reverse();
+            break;
+
+            default:
+            $scope.listCards = $scope.fondCards[$scope.filter];
+
+            console.log($scope.listCards);
+        }
+    };
+
+    $scope.$watch("filter", function(new_value, old_value) {
+        $scope.comboFilter(new_value);
+    });
+
 
     /**
     retourne vrai si le nombre de fond de carte est superieur a 1;
@@ -10,6 +50,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto){
     $scope.textAjoute = function(){
         return $scope.fondAAjoute.length > 1;
     }
+
 
     /**
     retourne le fond est vrai ou faut 
@@ -25,8 +66,9 @@ app.controller('shop_ctrl', function ($scope, shop_facto){
 	shop_facto.listFonds
 	.then(function(res) {
 		$scope.fondCards = res;
-		console.log("fondCards reçues");
-	 });
+        $scope.listCards = _.chain($scope.fondCards).values().flatten().value();
+		console.log($scope.fondCards);
+     });
 
 
     /**
@@ -49,9 +91,12 @@ app.controller('shop_ctrl', function ($scope, shop_facto){
     };
 
 
-    $scope.envoiText = function(textNom,textPrenom,textEmail,textNumero,textMessage){
-        return $scope.textNom; $scope.textPrenom; $scope.textEmail;
-    }
-    
+    /**
+
+    */
+    $scope.setCurrentTemplate = function(template){
+        $scope.currentTemplate = template;
+    };
+
 });
 
