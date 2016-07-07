@@ -8,7 +8,65 @@ app.factory('me', function($q, $http){
   var user = {}; 
  
   //retour de la factory 
-  return { 
+  me = { 
+
+    is_authenticated: false,
+    _data: {},
+
+    _token: null,
+
+    scope: [],
+
+    _new_user: false,
+    _card_changed: false,
+
+    state: {
+    have_pulsed: false,
+    unread: {
+      cards: 0,
+      notifs: 0,
+      chats: 0,
+      chats_ids: []
+    },
+    last_status_update: null
+    },
+
+
+    init: function (data) {
+
+      this._data = {};
+      this.is_authenticated = true;
+
+      //getters
+      _.each(this._getters, function (v,k) {
+        if (!this[k]) {
+          this._defineGetter__(k,v);
+        }
+      });
+
+      //getters from _data
+      
+      _.each(data, function(v,k) {
+        if(!this[k]){
+          this.__defineGetter__(k, function(_this) {
+            return function() {
+              return _this._data != null ? ref[k] : void 0;
+            }
+          });
+          this.__defineSetter__(k, function(_this) {
+            return function(val) {
+              return _this._data != null ? ref[k] = val : void 0;
+            };
+          });
+        }
+      });
+
+      this.state.last_status_update = Date.now();
+      //this.refresh_pending_cards();
+      this.scope = this._data.sharing;
+
+      return this;
+    },
     /* 
     fonction login 
     Cette fonction permet d'authentifier un utilisateur 
@@ -78,11 +136,18 @@ app.factory('me', function($q, $http){
         }) 
         //en cas de succès 
         .success(function(res) { 
+
+          if(res.token){
+            window.localStorage.token = 
+              $http.defaults.headers.common.token = 
+                this._token = res.token;
+          }
           //si le user existe 
-          if(res.me) { 
+          if(res.me) {
             //on resout la promesse en transmettant l'attribut 'me' de  
             //la requête 
-            resolve(res.me); 
+            defMe = this.me.init(res.me);
+            resolve(defMe);
           } 
           //si problème serveur 
           else { 
@@ -106,4 +171,5 @@ app.factory('me', function($q, $http){
  
     } 
   }; 
+  return me;
 });
