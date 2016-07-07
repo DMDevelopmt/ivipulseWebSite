@@ -35,7 +35,7 @@ app.controller("login_ctrl", function ($scope, me) {
 			$scope.err.message = err;
 		});
 		
-	}
+	};
 
 	$scope.email_signin = function () {
 
@@ -61,6 +61,6 @@ app.controller("login_ctrl", function ($scope, me) {
   		});
 		}
 		
-	}
+	};
 
 });

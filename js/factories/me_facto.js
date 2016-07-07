@@ -8,7 +8,29 @@ app.factory('me', function($q, $http){
   var user = {}; 
  
   //retour de la factory 
-  return { 
+  me = { 
+
+    is_authenticated: false,
+    _data: {},
+
+    _token: null,
+
+    scope: [],
+
+    _new_user: false,
+    _card_changed: false,
+
+    init: function (data) {
+
+      this._data = {};
+      this.is_authenticated = true;
+
+      this.state.last_status_update = Date.now();
+      this.refresh_pending_cards();
+      this.scope = this._data.sharing;
+
+      return this;
+    },
     /* 
     fonction login 
     Cette fonction permet d'authentifier un utilisateur 
@@ -78,11 +100,18 @@ app.factory('me', function($q, $http){
         }) 
         //en cas de succès 
         .success(function(res) { 
+
+          if(res.token){
+            window.localStorage.token = 
+              $http.defaults.headers.common.token = 
+                this._token = res.token;
+          }
           //si le user existe 
-          if(res.me) { 
+          if(res.me) {
             //on resout la promesse en transmettant l'attribut 'me' de  
             //la requête 
-            resolve(res.me); 
+            defMe = self.init(res.me);
+            resolve(defMe);
           } 
           //si problème serveur 
           else { 
@@ -106,4 +135,5 @@ app.factory('me', function($q, $http){
  
     } 
   }; 
+  return me;
 });
