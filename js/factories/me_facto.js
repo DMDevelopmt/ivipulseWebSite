@@ -169,7 +169,28 @@ app.factory('me', function($q, $http){
         }); 
       }); 
  
-    } 
-  }; 
-  return me;
+    }, 
+/* 
+    Cette fonction permet de mettre un jour les attributs d'un utilisateur 
+    Elle retourne une promesse contenant le résultat de la requête 
+     */ 
+
+    update: function(tmp_user) {
+    var ref;
+   //initialisation de la promesse de retour 
+      return $q(function(resolve, reject){ 
+        return $http.put(ROOT_URL + "/users/" + me._data.id, tmp_user)
+        .success(function(new_user) {
+          console.log("me updated", new_user);
+          if (new_user.birth_date) {
+            new_user.birth_date = new Date(new_user.birth_date);
+          }
+          return resolve(new_user);
+        }).error(reject);
+      });
+  }
+
+}; 
+return me;
+
 });

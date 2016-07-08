@@ -6,7 +6,7 @@ var app = angular.module("ivipulse", [
   'ngRoute' 
 ]);
 
-var ROOT_URL = 'http://192.168.1.14:8180';
+var ROOT_URL = 'http://192.168.1.3:8180';
 
 app.config(['$routeProvider', function($routeProvider) {
 
@@ -20,8 +20,8 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'login_ctrl'
 	})
 	.when('/signin', {
-		templateUrl: 'partials/signin.html',
-		controller: 'login_ctrl'
+		templateUrl: 'partials/signin.html'
+		
 	})
 	.when('/logged', {
 		templateUrl: 'partials/logged.html'
