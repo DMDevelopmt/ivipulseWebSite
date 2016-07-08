@@ -191,5 +191,6 @@ app.factory('me', function($q, $http){
   }
 
 }; 
+return me;
 
 });
