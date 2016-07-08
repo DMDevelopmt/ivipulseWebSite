@@ -96,6 +96,13 @@ app.factory('me', function($q, $http){
         $http(req)
         //en cas de succès 
         .success(function(res) { 
+
+          if(res.token){
+            window.localStorage.token = 
+              $http.defaults.headers.common.token = 
+                this._token = res.token;
+          }
+
           //si le user existe 
           if(res.me) { 
             //on resout la promesse en transmettant l'attribut 'me' de  

@@ -1,5 +1,5 @@
 //création du contrôleur "login_ctrl"
-app.controller("main_ctrl", function ($scope, $location, me) {
+app.controller("main_ctrl", function ($scope, $location, me, Cards) {
 
 	console.log("MainCtrl initialized");
 
@@ -11,6 +11,7 @@ app.controller("main_ctrl", function ($scope, $location, me) {
 	$scope.state = {
 		mode: "connexion"
 	};
+	$scope.cards = {};
 
 
 	/**
@@ -29,9 +30,15 @@ app.controller("main_ctrl", function ($scope, $location, me) {
 			//stocke l'objet user renvoyé par la factory dans le scope
 			$scope.user = res;
 			$scope.err.message = null;
-      console.log("user_name : " + res.email);
-      		$location.path("/logged");
+	      console.log("user_name : " + res.email);
+	      Cards.acceptedCards();
+      		//$location.path("/logged");
 		})
+  		.then(function(res){
+  			$cards = res;
+  			console.log(res);
+  			$location.path('/signin');
+  		})
 		.catch(function(err) {
 			$scope.err.message = err;
 		});
@@ -55,6 +62,13 @@ app.controller("main_ctrl", function ($scope, $location, me) {
   			//stocke l'objet renvoyé par la factory dans le scope
   			$scope.user = res;
   			$scope.err.message = null;
+  		})
+  		.then(function(){
+  			Cards.acceptedCards();
+  		})
+  		.then(function(cards){
+  			$cards = cards;
+  			$location.path('/store');
   		})
       //récupération du message d'erreur
   		.catch(function(err) {
