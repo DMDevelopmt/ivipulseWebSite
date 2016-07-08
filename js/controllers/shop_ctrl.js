@@ -51,7 +51,6 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http){
         return $scope.fondAAjoute.length > 1;
     }
 
-
     /**
     retourne le fond est vrai ou faut 
     */
