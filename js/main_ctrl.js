@@ -71,6 +71,13 @@ app.controller("main_ctrl", function ($scope, $location, me, Cards) {
   			$cards = cards;
   			$location.path('/store');
   		})
+  		.then(function(){
+  			Cards.acceptedCards();
+  		})
+  		.then(function(cards){
+  			$cards = cards;
+  			$location.path('/store');
+  		})
       //récupération du message d'erreur
   		.catch(function(err) {
   			$scope.err.message = err;
