@@ -1,8 +1,4 @@
-app.factory('me', function($q, $http){ 
-  //définition d'url racine du serveur d'application  
-  //(a pour vocation de migrer vers le fichier principal) 
-  //var ROOT_URL = 'http://192.168.1.11:8180'; 
-  //var ROOT_URL = 'http://192.168.0.40:8180'; 
+app.factory('me', function($q, $http, $rootScope, $cookies){ 
  
   //initialisation de la variable user 
   var user = {}; 
@@ -97,19 +93,11 @@ app.factory('me', function($q, $http){
         //en cas de succès 
         .success(function(res) { 
 
-          if(res.token){
-            window.localStorage.token = 
-              $http.defaults.headers.common.token = 
-                this._token = res.token;
-          }
+          if(saveToken(res)){
+            resolve(res.me);
 
-          //si le user existe 
-          if(res.me) { 
-            //on resout la promesse en transmettant l'attribut 'me' de  
-            //la requête 
-            console.log("me = " + res.me);
-            resolve(res.me); 
-          } 
+            console.log("this.token ", this._token);
+          }
           //si problème serveur 
           else { 
             reject("Problème interne, essayez plus tard"); 
@@ -119,8 +107,8 @@ app.factory('me', function($q, $http){
         .error(function () { 
           reject("Email ou mot de passe incorrect"); 
         }); 
-      }); 
-    }, 
+      });
+    },
     /* 
     Cette fonction permet d'inscrire un nouvel utilisateur 
     Elle retourne une promesse contenant le résultat de la requête 
@@ -198,6 +186,41 @@ app.factory('me', function($q, $http){
   }
 
 }; 
+
+/**
+ * Cette fonction permet de sauver l'authentification de l'utilisateur connecté
+ * sur le site.
+ * @param  {[type]} data [description]
+ * @return {[type]}      [description]
+ */
+saveToken = function (data) {
+
+  if(data.token && data.me){
+
+            $rootScope.globals = {
+              currentUser: {
+                first_name: data.me.first_name,
+                last_name: data.me.last_name,
+                mail: data.me.email,
+                token: data.token
+              }
+            };
+
+            window.localStorage.token = 
+              $http.defaults.headers.token = 
+                this._token = data.token;
+
+            $cookies.putObject('globals', $rootScope.globals);
+
+            console.log("Cookie first_name: ", $rootScope.globals.currentUser.first_name)
+
+            return true;
+  }
+  else
+    return false;
+}
+
+
 return me;
 
 });

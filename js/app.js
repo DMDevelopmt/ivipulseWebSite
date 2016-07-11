@@ -3,10 +3,12 @@
 //les dépendances utilisées
 var app = angular.module("ivipulse", [ 
   // Dépendances du module 
-  'ngRoute' 
+  'ngRoute',
+  'ngCookies',
+  'mgcrea.ngStrap'
 ]);
 
-var ROOT_URL = 'http://192.168.1.14:8180';
+var ROOT_URL = 'http://192.168.1.16:8180';
 
 app.config(['$routeProvider', function($routeProvider) {
 
@@ -45,3 +47,22 @@ app.config(['$routeProvider', function($routeProvider) {
 	});
 }]);
 
+app.run(['$rootScope', '$location', '$cookies', '$http',
+    function ($rootScope, $location, $cookies, $http) {
+        // keep user logged in after page refresh
+        console.log("Dans app.run()");
+
+        $rootScope.globals = $cookies.getObject('globals') || {};
+
+        console.log("rootScope.globals : ", $rootScope.globals);
+        if ($rootScope.globals.currentUser) {
+            $http.defaults.headers.token = $rootScope.globals.currentUser.token;
+        }
+  
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            // redirect to login page if not logged in
+            if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
+                $location.path('/login');
+            }
+        });
+    }]);

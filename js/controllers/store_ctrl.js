@@ -3,8 +3,12 @@ app.controller("store_ctrl", function ($scope, Cards) {
 	
 	console.log("StoreCtrl initialized");
 
+	$scope.cards = {};
 
-	//$scope.cards = Cards.acceptedCards();
+	Cards.acceptedCards()
+	.then(function(res) {
+		$scope.cards = res;
+	});
 
 });
 

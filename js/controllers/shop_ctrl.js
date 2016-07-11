@@ -9,9 +9,9 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http){
     $scope.filter = "all";
 
     $scope.categories = {
-    all: 'Toutes métiers',
+    all: 'Tous métiers',
     graphic: 'Design',
-    pro: 'Professionnelles',
+    pro: 'Professionnel',
     metal: 'Métal',
     wood: 'Bois',
     animaux: 'Nature',
