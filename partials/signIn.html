@@ -93,7 +93,7 @@
 			<label>Importer votre avatar</label>
 			<div class="form-group">
 				<div class="input-prepend input-append input-group ">
-				<span class="input-group-addon"><span class="glyphicon glyphicon-camera"></span></span><input type="text" id="avatar" name="avatar"><button class="btn btn-primary" type="button">Upload</button>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-camera"></span></span><input type="text" id="avatar" name="avatar" ng-model="user.avatar"><button class="btn btn-primary" type="button">Upload</button>
 				</div>
 			</div>
 
@@ -125,42 +125,42 @@
                 <div class="input-group">
                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
                    </span>
-                   <input type="phone" class="form-control" ng-model="user.phone" name="phone" placeholder="Tél" />
+                   <input type="phone" class="form-control" ng-model="user.phone1" name="phone" placeholder="Tél" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                    <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span>
                    </span>
-                   <input type="phone2" class="form-control" name="phone2" placeholder="Tél 2" />
+                   <input type="phone2" class="form-control" name="phone2" ng-model="user.phone2" placeholder="Tél 2" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                    <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span>
                    </span>
-                   <input type="school" class="form-control" name="school" placeholder="Poste / Etude / Classe" />
+                   <input type="school" class="form-control" name="school" ng-model="user.job" placeholder="Poste / Etude / Classe" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                    <span class="input-group-addon"><span class="fa fa-industry"></span>
                    </span>
-                   <input type="society" class="form-control" name="society" placeholder="Société / Université / Lycée" />
+                   <input type="society" class="form-control" name="society" ng-model="user.company" placeholder="Société / Université / Lycée" />
                 </div>
             </div>
              <div class="form-group">
                 <div class="input-group">
                    <span class="input-group-addon"><span class="fa fa-at"></span>
                    </span>
-                   <input type="text" class="form-control"  name="email" placeholder="Mail" />
+                   <input type="text" class="form-control"  name="email" ng-model="user.email" placeholder="Mail" />
                 </div>
             </div>
              <div class="form-group">
                 <div class="input-group">
                    <span class="input-group-addon"><span class="fa fa-at"></span>
                    </span>
-                   <input type="email" class="form-control" name="mail2"  placeholder="Mail 2" />
+                   <input type="email" class="form-control" name="mail2"  ng-model="user.email2" placeholder="Mail 2" />
                 </div>
             </div>
              <div class="form-group"> 
@@ -168,13 +168,13 @@
                    <span class="input-group-addon"><span class="fa fa-home"></span>
                   
                    </span>
-                   <input type="text" class="form-control" name="Localisation" placeholder="Localisation"/>
+                   <input type="text" class="form-control" name="Localisation" ng-model="user.localisation" placeholder="Localisation"/>
                 </div>
             </div>
              <div class="form-group">
                  <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                    <input type="text" class="form-control" name="web" placeholder="Site internet" />
+                    <input type="text" class="form-control" name="web" ng-model="user.website" placeholder="Site internet" />
                  </div>
             </div>
             <div class="form-group">
