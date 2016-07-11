@@ -28,14 +28,26 @@ app.controller("main_ctrl", function ($scope, $rootScope, $location, me, Cards) 
 		//a terminé son exécution
 		 .then(function(res) {
 			//stocke l'objet tmp_user renvoyé par la factory dans le scope
-			scope.user = res;
+			$scope.user = res;
 			$scope.err.message = null;
-			console.log("user_name : " + res.user_name);
+			console.log("user_name : " + res.password);
 			$location.path("/signin");
 		})
 		.catch(function(err) {
 			$scope.err.message = err;
 		});
 	}
+
+
+/*
+	$scope.ajouter = function(){
+		var fichier = document.getElementById('fichier').files[0],
+		var lecture = new FileReader();
+		lecture.onloadend = function(evenement){
+		var donnees = evenement.target.result;
+		//Traitez ici vos données binaires. Vous pouvez par exemple les envoyer à un autre niveau du framework avec $http ou $ressource
+		}
+		lecture.readAsBinaryString(fichier);
+		}*/
 
 });
