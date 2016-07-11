@@ -6,7 +6,7 @@ var app = angular.module("ivipulse", [
   'ngRoute' 
 ]);
 
-var ROOT_URL = 'http://192.168.1.3:8180';
+var ROOT_URL = 'http://192.168.1.3:8080';
 
 app.config(['$routeProvider', function($routeProvider) {
 
