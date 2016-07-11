@@ -9,7 +9,7 @@ var app = angular.module("ivipulse", [
   'ngAnimate'
 ]);
 
-var ROOT_URL = 'http://192.168.1.14:8180';
+var ROOT_URL = 'http://192.168.1.3:8080';
 
 app.config(['$routeProvider', function($routeProvider) {
 
