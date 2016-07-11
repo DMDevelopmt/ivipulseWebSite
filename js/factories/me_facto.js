@@ -183,8 +183,29 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
           return resolve(new_user);
         }).error(reject);
       });
-  }
+  },
 
+   get_credit: $q(function(resolve, reject){
+        var data ={};
+        var req = {
+              method: 'GET',
+              url: ROOT_URL + "/users/get_credits",
+              headers: {
+                token: $rootScope.globals.currentUser.token
+              },
+              data: data
+          };
+        $http(req)
+        .success(function(res){
+          console.log(res);
+          resolve(res);
+        })
+        .error(function(err) {
+          console.log("Erreur requete get_credits", err);
+          reject(err);
+        });
+    })
+  
 }; 
 
 /**
