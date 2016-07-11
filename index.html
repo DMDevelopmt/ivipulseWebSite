@@ -54,7 +54,7 @@
 
 	<body ng-app="ivipulse" ng-controller="main_ctrl">
 
-		<nav class="navbar navbar-default" role="navigation" bs-navbar>
+		<nav class="navbar navbar-default" role="navigation" bs-navbar ng-controller="login_ctrl">
 		  <div class="navbar-header">
 		    <a class="navbar-brand" href="#">Brand</a>
 		  </div>
@@ -62,7 +62,7 @@
 		    <li data-match-route="/home"><a href="#/">Home</a></li>
 		    <li data-match-route="/shop"><a href="#/shop">SHOP</a></li>
 		    <li data-match-route="/signin"><a href="#/signin">Signin</a></li>
-		    <li class="dropdown" ng-controller="login_ctrl">
+		    <li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" ng-if="!loggedIn"><b>Login</b> <span class="caret"></span></a>
 					<ul id="login-dp" class="dropdown-menu">
 						<li>
@@ -109,7 +109,9 @@
 							 </div>
 						</li>
 					</ul>
-				<a href="#" ng-click="logout()" ng-if="loggedIn">Logout</a>
+					<li  ng-if="loggedIn"><span>Bienvenue {{user.first_name}} {{user.last_name}}</span>
+					<a href="#" ng-click="logout()">Logout</a>
+					</li>
 		        </li>
 		  </ul>
 		</nav>
