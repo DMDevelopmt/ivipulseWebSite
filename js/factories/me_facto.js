@@ -166,10 +166,18 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
      */ 
 
     update: function(tmp_user) {
-    var ref;
+    console.log("fonction update me.facto", me._data.id);
+    var req = { 
+        method: 'PUT',
+        url: ROOT_URL + "/users/" + me._data.id, 
+        data: tmp_user,
+        headers: {
+            token: $rootScope.globals.currentUser.token
+                 }
+      }; 
    //initialisation de la promesse de retour 
       return $q(function(resolve, reject){ 
-        return $http.put(ROOT_URL + "/users/" + me._data.id, tmp_user)
+       $http(req)
         .success(function(new_user) {
           console.log("me updated", new_user);
           if (new_user.birth_date) {
