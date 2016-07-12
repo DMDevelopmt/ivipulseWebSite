@@ -8,7 +8,9 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	$scope.loggedIn = !!$rootScope.globals.currentUser;
 
 	var init = function() {
-		var req = {
+
+		if($rootScope.globals.currentUser){
+			var req = {
         		method: 'GET',
         		url: ROOT_URL + "/users/me",
 		        headers: {
@@ -23,6 +25,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
         		$scope.user = user;
         		
         	})
+		}		
 	};
 
 	init();
