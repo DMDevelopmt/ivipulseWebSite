@@ -22,7 +22,8 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'login_ctrl'
 	})
 	.when('/signin', {
-		templateUrl: 'partials/signin.html'
+		templateUrl: 'partials/signin.html',
+		controller: 'login_ctrl'
 		
 	})
 	.when('/logged', {

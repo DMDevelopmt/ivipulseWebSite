@@ -171,10 +171,10 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
      */ 
 
     update: function(tmp_user) {
-    console.log("fonction update me.facto", me._data.id);
+    console.log("fonction update me.facto", tmp_user._id);
     var req = { 
         method: 'PUT',
-        url: ROOT_URL + "/users/" + me._data.id, 
+        url: ROOT_URL + "/users/" +  tmp_user._id, 
         data: tmp_user,
         headers: {
             token: $rootScope.globals.currentUser.token
