@@ -43,7 +43,10 @@ app.config(['$routeProvider', function($routeProvider) {
 		templateUrl:'partials/store',
 		controller: 'store_ctrl'
 	})
-	.when('/', {
+	.when('/helpSocial', {
+		templateUrl: 'partials/helpSocial.html'
+	})
+	.when('/test', {
 		templateUrl: 'partials/test.html'
 	})
 	.otherwise({

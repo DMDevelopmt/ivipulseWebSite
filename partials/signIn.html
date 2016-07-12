@@ -60,79 +60,633 @@
             <legend id="titre"><a  href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-pencil"></i></a > Renseigner mon profil</legend>
 			<div class="row onl_row-sm-12 onl_socialButtons">
 			          <div class="col-xs-2 col-sm-2">
-			            <a href="#" class="btn btn-lg btn-block onl_btn-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+			            <a class="btn btn-lg btn-block onl_btn-facebook" data-toggle="modal" data-placement="top" title="Facebook" data-target="#modalFacebook">
 			              <i class="fa fa-facebook fa-2x"></i>
 			              <span class="hidden-xs"></span>
 			            </a>
 			          </div>
+						<!-- modal Facebook -->
+					    <div class="modal fade" id="modalFacebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					      <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					          <div class="modal-header1">
+					            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					              <span aria-hidden="true">&times;</span>
+					            </button>
+					          </div>
+					            <table id="popuSocial" border="0"> 
+					                <tr>
+					                    <td>
+					                        <p class="p1">
+					                        <span class="modal-title" id="myModalLabel">
+					                            Compte Facebook
+					                        </span>
+					                        <a href="#/helpSocial"><button class="btn btn-default btn-sg" ng-click="aideFacebook()">Aide
+					                        </button></a>
+					                        </p>
+					                        <p class="p2"><span>
+					                        <form id="formFacebook" ng-submit="enregistreFacebook()">
+					                        	<div class="form-group">
+													<input type="texte" name="popupFacebook" ng-model="user.social"> 
+					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
+					                        	</div>
+					                        	</span></p>
+					                        	<div class="form-group">
+					                        	<p class="p2">
+					                        	<span>
+					                            Appuyer sur vérifier:</span></p>
+					                            <p class="p2">
+					                            <span> Si votre compte apparait dans la fenetre qui s'ouvre, vous pouvez valider
+					                            </span>
+					                            </p>
+					                        	</div>
+					                        	<div>
+					                        		<button class="btn btn-default" ng-click ="enregistreFacebook()">Valider</button>
+					                        	</div>
+					                        </form>
+					                    </td>
+					                </tr>
+					            </table>
+					          </div>
+					      </div>
+					    </div>
+					<!-- fin modal Facebook -->
+ 
+
 			          <div class="col-xs-2 col-sm-2">
-			            <a href="#" class="btn btn-lg btn-block onl_btn-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+			            <a class="btn btn-lg btn-block onl_btn-twitter" data-toggle="modal" data-placement="top" title="Twitter" data-target="#modalTwitter">
 			              <i class="fa fa-twitter fa-2x"></i>
 			              <span class="hidden-xs"></span>
 			            </a>
 			          </div> 
+			          <!-- modal Twitter -->
+					    <div class="modal fade" id="modalTwitter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					      <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					          <div class="modal-header1">
+					            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					              <span aria-hidden="true">&times;</span>
+					            </button>
+					          </div>
+					            <table id="popuSocial" border="0"> 
+					                <tr>
+					                    <td>
+					                        <p class="p1">
+					                        <span class="modal-title" id="myModalLabel">
+					                            Compte Twitter
+					                        </span>
+					                        <a href="#/helpSocial"><button class="btn btn-default btn-sg" ng-click="aideTwitter()">Aide
+					                        </button></a>
+					                        </p>
+					                        <p class="p2"><span>
+					                        <form id="formFacebook" ng-submit="enregistreTwitter()">
+					                        	<div class="form-group">
+													<input type="texte" name="popupTwitter" ng-model="user.social"> 
+					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
+					                        	</div>
+					                        	</span></p>
+					                        	<div class="form-group">
+					                        	<p class="p2">
+					                        	<span>
+					                            Appuyer sur vérifier:</span></p>
+					                            <p class="p2">
+					                            <span> Si votre compte apparait dans la fenetre qui s'ouvre, vous pouvez valider
+					                            </span>
+					                            </p>
+					                        	</div>
+					                        	<div>
+					                        		<button class="btn btn-default" ng-click ="enregistreTwitter()">Valider</button>
+					                        	</div>
+					                        </form>
+					                    </td>
+					                </tr>
+					            </table>
+					          </div>
+					      </div>
+					    </div>
+					<!-- fin modal Twitter  -->
 			          <div class="col-xs-2 col-sm-2">
-			            <a href="#" class="btn btn-lg btn-block onl_btn-linkedin" data-toggle="tooltip" data-placement="top" title="LinkedIn">
+			            <a class="btn btn-lg btn-block onl_btn-linkedin" data-toggle="modal" data-placement="top" title="LinkedIn" data-target="#modalLinkedIn">
 			              <i class="fa fa-linkedin fa-2x"></i>
 			              <span class="hidden-xs"></span>
 			            </a>
 			          </div>
+			          <!-- modal LinkedIn -->
+					    <div class="modal fade" id="modalLinkedIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					      <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					          <div class="modal-header1">
+					            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					              <span aria-hidden="true">&times;</span>
+					            </button>
+					          </div>
+					            <table id="popuSocial" border="0"> 
+					                <tr>
+					                    <td>
+					                        <p class="p1">
+					                        <span class="modal-title" id="myModalLabel">
+					                            Compte LinkedIn
+					                        </span>
+					                        <a href="#/helpSocial"><button class="btn btn-default btn-sg" ng-click="aideLinkedIn()">Aide
+					                        </button></a>
+					                        </p>
+					                        <p class="p2"><span>
+					                        <form id="formFacebook" ng-submit="enregistreLinkedIn()">
+					                        	<div class="form-group">
+													<input type="texte" name="popupLinkedIn" ng-model="user.social"> 
+					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
+					                        	</div>
+					                        	</span></p>
+					                        	<div class="form-group">
+					                        	<p class="p2">
+					                        	<span>
+					                            Appuyer sur vérifier:</span></p>
+					                            <p class="p2">
+					                            <span> Si votre compte apparait dans la fenetre qui s'ouvre, vous pouvez valider
+					                            </span>
+					                            </p>
+					                        	</div>
+					                        	<div>
+					                        		<button class="btn btn-default" ng-click ="enregistreLinkedIn()">Valider</button>
+					                        	</div>
+					                        </form>
+					                    </td>
+					                </tr>
+					            </table>
+					          </div>
+					      </div>
+					    </div>
+					<!-- fin modal LinkedIn -->
 			           <div class="col-xs-2 col-sm-2">
-			            <a href="#" class="btn btn-lg btn-social-icon btn-snapchat-ghost" data-toggle="tooltip" data-placement="top" title="Snapchat">
+			            <a class="btn btn-lg btn-social-icon btn-snapchat-ghost" data-toggle="modal" data-placement="top" title="Snapchat" data-target="#modalSnapchat">
 			              <i class="fa fa-snapchat-ghost fa-2x" ></i>
 			              <span class="hidden-xs" aria-hidden="true"></span>
 			            </a>
 			          </div> 
+			          <!-- modal Snapchat -->
+					    <div class="modal fade" id="modalSnapchat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					      <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					          <div class="modal-header1">
+					            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					              <span aria-hidden="true">&times;</span>
+					            </button>
+					          </div>
+					            <table id="popuSocial" border="0"> 
+					                <tr>
+					                    <td>
+					                        <p class="p1">
+					                        <span class="modal-title" id="myModalLabel">
+					                            Compte Snapchat
+					                        </span>
+					                        <a href="#/helpSocial"><button class="btn btn-default btn-sg" ng-click="aideFacebook()">Aide
+					                        </button></a>
+					                        </p>
+					                        <p class="p2"><span>
+					                        <form id="formFacebook" ng-submit="enregistreSnapchat()">
+					                        	<div class="form-group">
+													<input type="texte" name="popupSnapchat" ng-model="user.social"> 
+					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
+					                        	</div>
+					                        	</span></p>
+					                        	<div class="form-group">
+					                        	<p class="p2">
+					                        	<span>
+					                            Appuyer sur vérifier:</span></p>
+					                            <p class="p2">
+					                            <span> Si votre compte apparait dans la fenetre qui s'ouvre, vous pouvez valider
+					                            </span>
+					                            </p>
+					                        	</div>
+					                        	<div>
+					                        		<button class="btn btn-default" ng-click ="enregistreSnapchat()">Valider</button>
+					                        	</div>
+					                        </form>
+					                    </td>
+					                </tr>
+					            </table>
+					          </div>
+					      </div>
+					    </div>
+					<!-- fin modal Snapchat -->
 			          <div class="col-xs-2 col-sm-2">
-			            <a href="#" class="btn btn-lg btn-block onl_btn-github" data-toggle="tooltip" data-placement="top" title="GitHub">
+			            <a class="btn btn-lg btn-block onl_btn-github" data-toggle="modal" data-placement="top" title="GitHub" data-target="#modalGitHub">
 			              <i class="fa fa-github fa-2x"></i>
 			              <span class="hidden-xs"></span>
 			            </a>
 			          </div>
+			          <!-- modal GitHub -->
+					    <div class="modal fade" id="modalGitHub" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					      <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					          <div class="modal-header1">
+					            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					              <span aria-hidden="true">&times;</span>
+					            </button>
+					          </div>
+					            <table id="popuSocial" border="0"> 
+					                <tr>
+					                    <td>
+					                        <p class="p1">
+					                        <span class="modal-title" id="myModalLabel">
+					                            Compte GitHub
+					                        </span>
+					                        <a href="#/helpSocial"><button class="btn btn-default btn-sg" ng-click="aideGitHub()">Aide
+					                        </button></a>
+					                        </p>
+					                        <p class="p2"><span>
+					                        <form id="formGitHub" ng-submit="enregistreGitHub()">
+					                        	<div class="form-group">
+													<input type="texte" name="popupGitHub" ng-model="user.social"> 
+					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
+					                        	</div>
+					                        	</span></p>
+					                        	<div class="form-group">
+					                        	<p class="p2">
+					                        	<span>
+					                            Appuyer sur vérifier:</span></p>
+					                            <p class="p2">
+					                            <span> Si votre compte apparait dans la fenetre qui s'ouvre, vous pouvez valider
+					                            </span>
+					                            </p>
+					                        	</div>
+					                        	<div>
+					                        		<button class="btn btn-default" ng-click ="enregistreGitHub()">Valider</button>
+					                        	</div>
+					                        </form>
+					                    </td>
+					                </tr>
+					            </table>
+					          </div>
+					      </div>
+					    </div>
+					<!-- fin modal GitHub -->
 			          <div class="col-xs-2 col-sm-2">
-			            <a href="#" class="btn btn-lg btn-social-icon btn-viadeo" data-toggle="tooltip" data-placement="top" title="Viadeo">
+			            <a class="btn btn-lg btn-social-icon btn-viadeo" data-toggle="modal" data-placement="top" title="Viadeo" data-target="#modalViadeo">
 			              <i class="fa fa-viadeo fa-2x" ></i>
 			              <span class="hidden-xs" aria-hidden="true"></span>
 			            </a>
 			          </div>
-			   </div>      
-			   <div class="row onl_row-sm-12 onl_socialButtons">       
+			          <!-- modal Viadeo -->
+					    <div class="modal fade" id="modalViadeo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					      <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					          <div class="modal-header1">
+					            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					              <span aria-hidden="true">&times;</span>
+					            </button>
+					          </div>
+					            <table id="popuSocial" border="0"> 
+					                <tr>
+					                    <td>
+					                        <p class="p1">
+					                        <span class="modal-title" id="myModalLabel">
+					                            Compte Viadeo
+					                        </span>
+					                        <a href="#/helpSocial"><button class="btn btn-default btn-sg" ng-click="aideSkype()">Aide
+					                        </button></a>
+					                        </p>
+					                        <p class="p2"><span>
+					                        <form id="formViadeo" ng-submit="enregistreViadeo()">
+					                        	<div class="form-group">
+													<input type="texte" name="popupSkype" ng-model="user.social"> 
+					                           		<button class="btn btn-default" ng-click ="VerifViadeo()" >Verifier</button>
+					                        	</div>
+					                        	</span></p>
+					                        	<div class="form-group">
+					                        	<p class="p2">
+					                        	<span>
+					                            Appuyer sur vérifier:</span></p>
+					                            <p class="p2">
+					                            <span> Si votre compte apparait dans la fenetre qui s'ouvre, vous pouvez valider
+					                            </span>
+					                            </p>
+					                        	</div>
+					                        	<div>
+					                        		<button class="btn btn-default" ng-click ="enregistreViadeo()">Valider</button>
+					                        	</div>
+					                        </form>
+					                    </td>
+					                </tr>
+					            </table>
+					          </div>
+					      </div>
+					    </div>
+					<!-- fin modal Viadeo--> 
+			  </div>      
+			  		 <div class="row onl_row-sm-12 onl_socialButtons">       
 			    		<div class="col-xs-2 col-sm-2">
-			            <a href="#" class="btn btn-lg btn-social-icon btn-skype" data-toggle="tooltip" data-placement="top" title="Skype">
+			            <a class="btn btn-lg btn-social-icon btn-skype" data-toggle="modal" data-placement="top" title="Skype" data-target="#modalSkype">
 			              <i class="fa fa-skype fa-2x"></i>
 			              <span class="hidden-xs"></span>
 			            </a>
-			          </div> 
+			          </div>
+			          <!-- modal Skype -->
+					    <div class="modal fade" id="modalSkype" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					      <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					          <div class="modal-header1">
+					            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					              <span aria-hidden="true">&times;</span>
+					            </button>
+					          </div>
+					            <table id="popuSocial" border="0"> 
+					                <tr>
+					                    <td>
+					                        <p class="p1">
+					                        <span class="modal-title" id="myModalLabel">
+					                            Compte Skype
+					                        </span>
+					                        <a href="#/helpSocial"><button class="btn btn-default btn-sg" ng-click="aideSkype()">Aide
+					                        </button></a>
+					                        </p>
+					                        <p class="p2"><span>
+					                        <form id="formSkype" ng-submit="enregistreSkype()">
+					                        	<div class="form-group">
+													<input type="texte" name="popupSkype" ng-model="user.social"> 
+					                           		<button class="btn btn-default" ng-click ="VerifSkype()" >Verifier</button>
+					                        	</div>
+					                        	</span></p>
+					                        	<div class="form-group">
+					                        	<p class="p2">
+					                        	<span>
+					                            Appuyer sur vérifier:</span></p>
+					                            <p class="p2">
+					                            <span> Si votre compte apparait dans la fenetre qui s'ouvre, vous pouvez valider
+					                            </span>
+					                            </p>
+					                        	</div>
+					                        	<div>
+					                        		<button class="btn btn-default" ng-click ="enregistreSkype()">Valider</button>
+					                        	</div>
+					                        </form>
+					                    </td>
+					                </tr>
+					            </table>
+					          </div>
+					      </div>
+					    </div>
+					<!-- fin modal Skype --> 
 			          <div class="col-xs-2 col-sm-2">
-			            <a href="#" class="btn btn-lg btn-block onl_btn-tumblr" data-toggle="tooltip" data-placement="top" title="Tumblr">
+			            <a class="btn btn-lg btn-block onl_btn-tumblr" data-toggle="modal" data-placement="top" title="Tumblr" data-target="#modalTumblr">
 			              <i class="fa fa-tumblr fa-2x"></i>
 			              <span class="hidden-xs"></span>
 			            </a>
 			          </div> 
+			          <!-- modal Tumblr -->
+					    <div class="modal fade" id="modalTumblr" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					      <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					          <div class="modal-header1">
+					            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					              <span aria-hidden="true">&times;</span>
+					            </button>
+					          </div>
+					            <table id="popuSocial" border="0"> 
+					                <tr>
+					                    <td>
+					                        <p class="p1">
+					                        <span class="modal-title" id="myModalLabel">
+					                            Compte Tumblr
+					                        </span>
+					                        <a href="#/helpSocial"><button class="btn btn-default btn-sg" ng-click="aideTumblr()">Aide
+					                        </button></a>
+					                        </p>
+					                        <p class="p2"><span>
+					                        <form id="formTumblr" ng-submit="enregistreTumblr()">
+					                        	<div class="form-group">
+													<input type="texte" name="popupTumblr" ng-model="user.social"> 
+					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
+					                        	</div>
+					                        	</span></p>
+					                        	<div class="form-group">
+					                        	<p class="p2">
+					                        	<span>
+					                            Appuyer sur vérifier:</span></p>
+					                            <p class="p2">
+					                            <span> Si votre compte apparait dans la fenetre qui s'ouvre, vous pouvez valider
+					                            </span>
+					                            </p>
+					                        	</div>
+					                        	<div>
+					                        		<button class="btn btn-default" ng-click ="enregistreTumblr()">Valider</button>
+					                        	</div>
+					                        </form>
+					                    </td>
+					                </tr>
+					            </table>
+					          </div>
+					      </div>
+					    </div>
+					<!-- fin modal Tumblr -->
 					  <div class="col-xs-2 col-sm-2">
-			            <a href="#" class="btn btn-lg btn-social-icon btn-youtube" data-toggle="tooltip" data-placement="top" title="Instagram">
+			            <a class="btn btn-lg btn-social-icon btn-youtube" data-toggle="modal" data-placement="top" title="Youtube" data-target="#modalYoutube">
 			              <i class="fa fa-youtube fa-2x"></i>
 			              <span class="hidden-xs"></span>
 			            </a>
 			          </div> 
+			          <!-- modal Youtube -->
+					    <div class="modal fade" id="modalYoutube" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					      <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					          <div class="modal-header1">
+					            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					              <span aria-hidden="true">&times;</span>
+					            </button>
+					          </div>
+					            <table id="popuSocial" border="0"> 
+					                <tr>
+					                    <td>
+					                        <p class="p1">
+					                        <span class="modal-title" id="myModalLabel">
+					                            Compte Youtube
+					                        </span>
+					                        <a href="#/helpSocial"><button class="btn btn-default btn-sg" ng-click="aideYoutube()">Aide
+					                        </button></a>
+					                        </p>
+					                        <p class="p2"><span>
+					                        <form id="formYoutube" ng-submit="enregistreYoutube()">
+					                        	<div class="form-group">
+													<input type="texte" name="popupYoutube" ng-model="user.social"> 
+					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
+					                        	</div>
+					                        	</span></p>
+					                        	<div class="form-group">
+					                        	<p class="p2">
+					                        	<span>
+					                            Appuyer sur vérifier:</span></p>
+					                            <p class="p2">
+					                            <span> Si votre compte apparait dans la fenetre qui s'ouvre, vous pouvez valider
+					                            </span>
+					                            </p>
+					                        	</div>
+					                        	<div>
+					                        		<button class="btn btn-default" ng-click ="enregistreYoutube()">Valider</button>
+					                        	</div>
+					                        </form>
+					                    </td>
+					                </tr>
+					            </table>
+					          </div>
+					      </div>
+					    </div>
+					<!-- fin modal Youtube -->
 			          <div class="col-xs-2 col-sm-2">
-			            <a href="#" class="btn btn-lg btn-block onl_btn-pinterest" data-toggle="tooltip" data-placement="top" title="Pinterest">
+			            <a class="btn btn-lg btn-block onl_btn-pinterest" data-toggle="modal" data-placement="top" title="Pinterest" data-target="#modalPinterest">
 			              <i class="fa fa-pinterest fa-2x"></i>
 			              <span class="hidden-xs"></span>
 			            </a>
 			          </div>
+			          <!-- modal Pinterest -->
+					    <div class="modal fade" id="modalPinterest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					      <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					          <div class="modal-header1">
+					            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					              <span aria-hidden="true">&times;</span>
+					            </button>
+					          </div>
+					            <table id="popuSocial" border="0"> 
+					                <tr>
+					                    <td>
+					                        <p class="p1">
+					                        <span class="modal-title" id="myModalLabel">
+					                            Compte Pinterest
+					                        </span>
+					                        <a href="#/helpSocial"><button class="btn btn-default btn-sg" ng-click="aidePinterest()">Aide
+					                        </button></a>
+					                        </p>
+					                        <p class="p2"><span>
+					                        <form id="formPinterest" ng-submit="enregistrePinterest()">
+					                        	<div class="form-group">
+													<input type="texte" name="popupFacebook" ng-model="user.social"> 
+					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
+					                        	</div>
+					                        	</span></p>
+					                        	<div class="form-group">
+					                        	<p class="p2">
+					                        	<span>
+					                            Appuyer sur vérifier:</span></p>
+					                            <p class="p2">
+					                            <span> Si votre compte apparait dans la fenetre qui s'ouvre, vous pouvez valider
+					                            </span>
+					                            </p>
+					                        	</div>
+					                        	<div>
+					                        		<button class="btn btn-default" ng-click ="enregistrePinterest()">Valider</button>
+					                        	</div>
+					                        </form>
+					                    </td>
+					                </tr>
+					            </table>
+					          </div>
+					      </div>
+					    </div>
+					<!-- fin modal Pinterest -->
 			         <div class="col-xs-2 col-sm-2">
-			            <a href="#" class="btn btn-lg btn-social-icon btn-instagram" data-toggle="tooltip" data-placement="top" title="Instagram">
+			            <a class="btn btn-lg btn-social-icon btn-instagram" data-toggle="modal" data-placement="top" title="Instagram" data-target="#modalInstagram">
 			              <i class="fa fa-instagram fa-2x"></i>
 			              <span class="hidden-xs"></span>
 			            </a>
 			          </div> 
+			          <!-- modal Instagram -->
+					    <div class="modal fade" id="modalInstagram" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					      <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					          <div class="modal-header1">
+					            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					              <span aria-hidden="true">&times;</span>
+					            </button>
+					          </div>
+					            <table id="popuSocial" border="0"> 
+					                <tr>
+					                    <td>
+					                        <p class="p1">
+					                        <span class="modal-title" id="myModalLabel">
+					                            Compte Instagram
+					                        </span>
+					                        <a href="#/helpSocial"><button class="btn btn-default btn-sg" ng-click="aideInstagram()">Aide
+					                        </button></a>
+					                        </p>
+					                        <p class="p2"><span>
+					                        <form id="formInstagram" ng-submit="enregistreInstagram()">
+					                        	<div class="form-group">
+													<input type="texte" name="popupInstagram" ng-model="user.social"> 
+					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
+					                        	</div>
+					                        	</span></p>
+					                        	<div class="form-group">
+					                        	<p class="p2">
+					                        	<span>
+					                            Appuyer sur vérifier:</span></p>
+					                            <p class="p2">
+					                            <span> Si votre compte apparait dans la fenetre qui s'ouvre, vous pouvez valider
+					                            </span>
+					                            </p>
+					                        	</div>
+					                        	<div>
+					                        		<button class="btn btn-default" ng-click ="enregistreInstagram()">Valider</button>
+					                        	</div>
+					                        </form>
+					                    </td>
+					                </tr>
+					            </table>
+					          </div>
+					      </div>
+					    </div>
+					<!-- fin modal Instagram -->
 			          <div class="col-xs-2 col-sm-2">
-			            <a href="#" class="btn btn-lg btn-block onl_btn-steam" data-toggle="tooltip" data-placement="top" title="Steam">
+			            <a class="btn btn-lg btn-block onl_btn-steam" data-toggle="modal" data-placement="top" title="Steam" data-target="#modalSteam">
 			              <i class="fa fa-steam fa-2x"></i>
 			              <span class="hidden-xs"></span>
 			            </a>
 			          </div>
+			          <!-- modal Steam -->
+					    <div class="modal fade" id="modalSteam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					      <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					          <div class="modal-header1">
+					            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					              <span aria-hidden="true">&times;</span>
+					            </button>
+					          </div>
+					            <table id="popuSocial" border="0"> 
+					                <tr>
+					                    <td>
+					                        <p class="p1">
+					                        <span class="modal-title" id="myModalLabel">
+					                            Compte Steam
+					                        </span>
+					                        <a href="#/helpSocial"><button class="btn btn-default btn-sg">Aide
+					                        </button></a>
+					                        </p>
+					                        <p class="p2"><span>
+					                        <form id="formSteam" ng-submit="enregistreSteam()">
+					                        	<div class="form-group">
+													<input type="texte" name="popupSteam" ng-model="user.social"> 
+					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
+					                        	</div>
+					                        	</span></p>
+					                        	<div class="form-group">
+					                        	<p class="p2">
+					                        	<span>
+					                            Appuyer sur vérifier:</span></p>
+					                            <p class="p2">
+					                            <span> Si votre compte apparait dans la fenetre qui s'ouvre, vous pouvez valider
+					                            </span>
+					                            </p>
+					                        	</div>
+					                        	<div>
+					                        		<button class="btn btn-default" ng-click ="enregistreSteam()">Valider</button>
+					                        	</div>
+					                        </form>
+					                    </td>
+					                </tr>
+					            </table>
+					          </div>
+					      </div>
+					    </div>
+					<!-- fin modal Steam -->
 			</div><br>
         </div>
 	 	<form  id="signForm" ng-submit="update()" class="form well well-sm" role="form">
@@ -368,7 +922,7 @@
                 </div>
 	        </div>
 	        <button class="btn btn-sg btn-default btn-block" type="button" ng-click="update()">
-                Sign up</button>        
+                Valider</button>        
 	 	</form>
 	</div>
 	</div>
