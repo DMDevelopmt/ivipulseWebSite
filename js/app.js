@@ -41,3 +41,32 @@ app.config(['$routeProvider', function($routeProvider) {
 	});
 }]);
 
+/**
+ * Ce run permet de récupérer les données du user depuis le cookie vers le rootScope.
+ * Si le cookie est vide, redirige vers login.
+ * 
+ * @param  {[type]} $rootScope [description]
+ * @param  {[type]} $location  [description]
+ * @param  {[type]} $cookies   [description]
+ * @param  {[type]} $http)
+ * @return {[type]}            [description]
+ */
+app.run(['$rootScope', '$location', '$cookies', '$http',
+    function ($rootScope, $location, $cookies, $http) {
+        // keep user logged in after page refresh
+        console.log("Dans app.run()");
+
+        $rootScope.globals = $cookies.getObject('globals') || {};
+
+        console.log("rootScope.globals : ", $rootScope.globals);
+        if ($rootScope.globals.currentUser) {
+            $http.defaults.headers.token = $rootScope.globals.currentUser.token;
+        }
+  
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            // redirect to login page if not logged in
+            if (!$rootScope.globals.currentUser && $location.path() !== '/login') {
+                $location.path('/login');
+            }
+        });
+    }]);
