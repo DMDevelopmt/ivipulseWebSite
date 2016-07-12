@@ -45,10 +45,10 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	//a terminé son exécution
 	.then(function(user) {
 		//stocke l'objet user renvoyé par la factory dans le scope
-		$scope.user = user;
+		$rootScope.user = user;
 		$scope.loggedIn = true;
 		$scope.err.message = null;
-      	console.log("user_name : " + user.first_name);
+      	//console.log("user_name : " + user.first_name);
 			$location.path('/store');
 	})
 	.catch(function(err) {
