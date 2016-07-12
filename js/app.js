@@ -8,7 +8,7 @@ var app = angular.module("ivipulse", [
   'mgcrea.ngStrap'
 ]);
 
-var ROOT_URL = 'http://192.168.1.11:8180';
+var ROOT_URL = 'http://192.168.1.21:8180';
 
 app.config(['$routeProvider', function($routeProvider) {
 
