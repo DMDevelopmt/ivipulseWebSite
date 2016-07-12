@@ -3,7 +3,31 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	
 	console.log("LoginCtrl initialized");
 
+	$scope.user = {};
+
 	$scope.loggedIn = !!$rootScope.globals.currentUser;
+
+	var init = function() {
+		var req = {
+        		method: 'GET',
+        		url: ROOT_URL + "/users/me",
+		        headers: {
+		        	token: $rootScope.globals.currentUser.token
+			    }
+        	};
+
+        	$http.defaults.headers.token = $rootScope.globals.currentUser.token;
+        	$http(req)
+        	.success(function(user) {
+        		console.log("login_ctrl, user = " , $scope.user);
+        		$scope.user = user;
+        		
+        	})
+	};
+
+	init();
+
+	
 
 
 	/**
@@ -20,10 +44,10 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	//a terminé son exécution
 	.then(function(user) {
 		//stocke l'objet user renvoyé par la factory dans le scope
-		$scope.user = user;
+		$rootScope.user = user;
 		$scope.loggedIn = true;
 		$scope.err.message = null;
-      	console.log("user_name : " + user.first_name);
+      	//console.log("user_name : " + user.first_name);
 			$location.path('/store');
 	})
 	.catch(function(err) {

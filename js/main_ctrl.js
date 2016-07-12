@@ -3,7 +3,7 @@ app.controller("main_ctrl", function ($scope, $rootScope, $location, me, Cards) 
 
 	console.log("MainCtrl initialized");
 
-	$scope.user = $rootScope.globals.currentUser || {};
+	$scope.user = $rootScope.user || {};
 	$scope.password_check = "";
 	$scope.err = {
 		message: ""
@@ -13,6 +13,10 @@ app.controller("main_ctrl", function ($scope, $rootScope, $location, me, Cards) 
 		mode: "connexion"
 	};
 
+	$rootScope.$on('$rootScope.user', function (event, next, current) {
+            // redirect to login page if not logged in
+            $scope.user = $rootScope.user
+        });
 	
 	/**
 	 * La méthode update permet de mettre à jour
