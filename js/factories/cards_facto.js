@@ -16,7 +16,7 @@ app.factory("Cards", function($http, $q, $rootScope) {
 			        data: data
 
 			    };
-			    console.log("$http.defaults.headers.token ; ", $http.defaults.headers.token);
+			    console.log("$http.defaults.headers.token : ", $http.defaults.headers.token);
 				$http(req)
 				.success(function(res){
 					console.log(res);
