@@ -1,7 +1,7 @@
 app.factory('shop_facto', function($http,$q)
 {
 
-return{
+	return{
 		listFonds: $q(function(resolve, reject){
 			var req = {
 		        method: 'GET',
@@ -23,4 +23,4 @@ return{
 		})
 		
 	};
-   });
+});

@@ -3,10 +3,12 @@
 //les dépendances utilisées
 var app = angular.module("ivipulse", [ 
   // Dépendances du module 
-  'ngRoute' 
+  'ngRoute',
+  'ngCookies',
+  'mgcrea.ngStrap'
 ]);
 
-var ROOT_URL = 'http://192.168.1.21:8180';
+var ROOT_URL = 'http://192.168.1.11:8180';
 
 app.config(['$routeProvider', function($routeProvider) {
 
@@ -20,8 +22,8 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'login_ctrl'
 	})
 	.when('/signin', {
-		templateUrl: 'partials/signin.html',
-		controller: 'login_ctrl'
+		templateUrl: 'partials/signin.html'
+		
 	})
 	.when('/logged', {
 		templateUrl: 'partials/logged.html'
@@ -34,7 +36,11 @@ app.config(['$routeProvider', function($routeProvider) {
 		templateUrl: 'partials/home.html'
 	})
 	.when('/personnaliserCarte',{
-		templateUrl:'partials/personnaliserCarte',
+		templateUrl:'partials/personnaliserCarte'
+	})
+	.when('/store',{
+		templateUrl:'partials/store',
+		controller: 'store_ctrl'
 	})
 	.otherwise({
 		redirectTo: '/'

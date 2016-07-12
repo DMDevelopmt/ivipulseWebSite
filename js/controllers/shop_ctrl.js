@@ -1,22 +1,63 @@
 
-app.controller('shop_ctrl', function ($scope, shop_facto){
+app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
 	$scope.fondCards = {};
+    $scope.listCards = {};
 	$scope.selectedIcon = true;
 	$scope.fondAAjoute = [];
+    $scope.currentTemplate = {};
+    $scope.getCredits = {};
+
+    $scope.filter = "all";
+
+    $scope.categories = {
+    all: 'Tous métiers',
+    graphic: 'Design',
+    pro: 'Professionnel',
+    metal: 'Métal',
+    wood: 'Bois',
+    animaux: 'Nature',
+    cartoon: 'Cartoon',
+    netb: 'Noir et blanc',
+    bleu: 'Bleu',
+    marron: 'Marron',
+    rouge: 'Rouge'
+    };
+
+
+    /**
+    retourne le choix de combobox
+    */
+    $scope.comboFilter = function(){
+        switch($scope.filter){
+            case "all":
+            $scope.listCards = _.chain($scope.fondCards).values().flatten().value().reverse();
+            break;
+
+            default:
+            $scope.listCards = $scope.fondCards[$scope.filter];
+
+            console.log($scope.listCards);
+        }
+    };
+
+    $scope.$watch("filter", function(new_value, old_value) {
+        $scope.comboFilter(new_value);
+    });
+
 
     /**
     retourne vrai si le nombre de fond de carte est superieur a 1;
     */
     $scope.textAjoute = function(){
         return $scope.fondAAjoute.length > 1;
-    }
+    };
 
     /**
     retourne le fond est vrai ou faut 
     */
 	$scope.isAdded = function(fond){
         return $scope.fondAAjoute.indexOf(fond) != -1;
-    }
+    };
 
 
     /**
@@ -25,9 +66,20 @@ app.controller('shop_ctrl', function ($scope, shop_facto){
 	shop_facto.listFonds
 	.then(function(res) {
 		$scope.fondCards = res;
-		console.log("fondCards reçues");
-	 });
+        $scope.listCards = _.chain($scope.fondCards).values().flatten().value();
+		console.log($scope.fondCards);
+     });
 
+
+
+    /**
+
+    */
+    me.get_credit
+    .then(function(res) {
+        $scope.getCredits = res;
+        console.log($scope.getCredits);
+    });
 
     /**
     envoie la quantite de carte selectione
@@ -49,9 +101,12 @@ app.controller('shop_ctrl', function ($scope, shop_facto){
     };
 
 
-    $scope.envoiText = function(textNom,textPrenom,textEmail,textNumero,textMessage){
-        return $scope.textNom; $scope.textPrenom; $scope.textEmail;
-    }
-    
+    /**
+
+    */
+    $scope.setCurrentTemplate = function(template){
+        $scope.currentTemplate = template;
+    };
+
 });
 
