@@ -1,16 +1,9 @@
 //création du contrôleur "login_ctrl"
-app.controller("login_ctrl", function ($scope, me) {
+app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $cookies, me) {
 	
 	console.log("LoginCtrl initialized");
 
-	$scope.user = {};
-	$scope.password_check = "";
-	$scope.err = {
-		message: ""
-	};
-	$scope.state = {
-		mode: "connexion"
-	};
+	$scope.loggedIn = !!$rootScope.globals.currentUser;
 
 
 	/**
@@ -23,18 +16,20 @@ app.controller("login_ctrl", function ($scope, me) {
 
 	//appel de la fonction login de la factory "me"
 	me.login($scope.user.mail, $scope.user.password)
-		//1er callback, s'exécute lorsque la méthode me.login
-		//a terminé son exécution
-		.then(function(res) {
-			//stocke l'objet user renvoyé par la factory dans le scope
-			$scope.user = res;
-			$scope.err.message = null;
-      console.log("user_name : " + res.email);
-		})
-		.catch(function(err) {
-			$scope.err.message = err;
-		});
-		
+	//1er callback, s'exécute lorsque la méthode me.login
+	//a terminé son exécution
+	.then(function(user) {
+		//stocke l'objet user renvoyé par la factory dans le scope
+		$scope.user = user;
+		$scope.loggedIn = true;
+		$scope.err.message = null;
+      	console.log("user_name : " + user.first_name);
+			$location.path('/store');
+	})
+	.catch(function(err) {
+		$scope.err.message = err;
+	});
+	
 	}
 
 	$scope.email_signin = function () {
@@ -54,13 +49,19 @@ app.controller("login_ctrl", function ($scope, me) {
   			//stocke l'objet renvoyé par la factory dans le scope
   			$scope.user = res;
   			$scope.err.message = null;
+  			$location.path("/signin");
   		})
       //récupération du message d'erreur
   		.catch(function(err) {
   			$scope.err.message = err;
   		});
 		}
-		
-	}
+	};
 
+	$scope.logout = function () {
+		$scope.loggedIn = false;
+		$rootScope.globals = {};
+		$cookies.remove('globals');
+		$http.defaults.headers.token = '';
+	}
 });

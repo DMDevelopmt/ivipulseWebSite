@@ -1,14 +1,68 @@
-app.factory('me', function($q, $http){ 
-  //définition d'url racine du serveur d'application  
-  //(a pour vocation de migrer vers le fichier principal) 
-  var ROOT_URL = 'http://192.168.1.99:8180'; 
-  //var ROOT_URL = 'http://192.168.0.40:8180'; 
+app.factory('me', function($q, $http, $rootScope, $cookies){ 
  
   //initialisation de la variable user 
   var user = {}; 
  
   //retour de la factory 
-  return { 
+  me = { 
+
+    is_authenticated: false,
+    _data: {},
+
+    _token: null,
+
+    scope: [],
+
+    _new_user: false,
+    _card_changed: false,
+
+    state: {
+    have_pulsed: false,
+    unread: {
+      cards: 0,
+      notifs: 0,
+      chats: 0,
+      chats_ids: []
+    },
+    last_status_update: null
+    },
+
+
+    init: function (data) {
+
+      this._data = {};
+      this.is_authenticated = true;
+
+      //getters
+      _.each(this._getters, function (v,k) {
+        if (!this[k]) {
+          this._defineGetter__(k,v);
+        }
+      });
+
+      //getters from _data
+      
+      _.each(data, function(v,k) {
+        if(!this[k]){
+          this.__defineGetter__(k, function(_this) {
+            return function() {
+              return _this._data != null ? ref[k] : void 0;
+            }
+          });
+          this.__defineSetter__(k, function(_this) {
+            return function(val) {
+              return _this._data != null ? ref[k] = val : void 0;
+            };
+          });
+        }
+      });
+
+      this.state.last_status_update = Date.now();
+      //this.refresh_pending_cards();
+      this.scope = this._data.sharing;
+
+      return this;
+    },
     /* 
     fonction login 
     Cette fonction permet d'authentifier un utilisateur 
@@ -38,13 +92,12 @@ app.factory('me', function($q, $http){
         $http(req)
         //en cas de succès 
         .success(function(res) { 
-          //si le user existe 
-          if(res.me) { 
-            //on resout la promesse en transmettant l'attribut 'me' de  
-            //la requête 
-            console.log("me = " + res.me);
-            resolve(res.me); 
-          } 
+
+          if(saveToken(res)){
+            resolve(res.me);
+
+            console.log("this.token ", this._token);
+          }
           //si problème serveur 
           else { 
             reject("Problème interne, essayez plus tard"); 
@@ -54,8 +107,8 @@ app.factory('me', function($q, $http){
         .error(function () { 
           reject("Email ou mot de passe incorrect"); 
         }); 
-      }); 
-    }, 
+      });
+    },
     /* 
     Cette fonction permet d'inscrire un nouvel utilisateur 
     Elle retourne une promesse contenant le résultat de la requête 
@@ -78,11 +131,18 @@ app.factory('me', function($q, $http){
         }) 
         //en cas de succès 
         .success(function(res) { 
+
+          if(res.token){
+            window.localStorage.token = 
+              $http.defaults.headers.common.token = 
+                this._token = res.token;
+          }
           //si le user existe 
-          if(res.me) { 
+          if(res.me) {
             //on resout la promesse en transmettant l'attribut 'me' de  
             //la requête 
-            resolve(res.me); 
+            defMe = this.me.init(res.me);
+            resolve(defMe);
           } 
           //si problème serveur 
           else { 
@@ -104,17 +164,25 @@ app.factory('me', function($q, $http){
         }); 
       }); 
  
-    } 
+    }, 
 /* 
     Cette fonction permet de mettre un jour les attributs d'un utilisateur 
     Elle retourne une promesse contenant le résultat de la requête 
      */ 
 
     update: function(tmp_user) {
-    var ref;
+    console.log("fonction update me.facto", me._data.id);
+    var req = { 
+        method: 'PUT',
+        url: ROOT_URL + "/users/" + me._data.id, 
+        data: tmp_user,
+        headers: {
+            token: $rootScope.globals.currentUser.token
+                 }
+      }; 
    //initialisation de la promesse de retour 
       return $q(function(resolve, reject){ 
-        return $http.put(ROOT_URL + "/users/" + me._data.id, tmp_user)
+       $http(req)
         .success(function(new_user) {
           console.log("me updated", new_user);
           if (new_user.birth_date) {
@@ -122,10 +190,45 @@ app.factory('me', function($q, $http){
           }
           return resolve(new_user);
         }).error(reject);
-      };
-    );
+      });
   }
 
 }; 
+
+/**
+ * Cette fonction permet de sauver l'authentification de l'utilisateur connecté
+ * sur le site.
+ * @param  {[type]} data [description]
+ * @return {[type]}      [description]
+ */
+saveToken = function (data) {
+
+  if(data.token && data.me){
+
+            $rootScope.globals = {
+              currentUser: {
+                first_name: data.me.first_name,
+                last_name: data.me.last_name,
+                mail: data.me.email,
+                token: data.token
+              }
+            };
+
+            window.localStorage.token = 
+              $http.defaults.headers.token = 
+                this._token = data.token;
+
+            $cookies.putObject('globals', $rootScope.globals);
+
+            console.log("Cookie first_name: ", $rootScope.globals.currentUser.first_name)
+
+            return true;
+  }
+  else
+    return false;
+}
+
+
+return me;
 
 });

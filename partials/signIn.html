@@ -1,15 +1,56 @@
-
 <div class="container">
 	<div class="row" id="rowSign">
 	<div class="row col-lg-5" id="cardPerso">
-		<p>
-		qsffdsqfgsgdsgqhgdhdhdhdhdhdhd
-		</p>
+		<div>
+			<div id="cardProfil">
+				<span>
+					{{user.avatar}}
+				</span>
+				<span>
+					{{user.first_name}}
+				</span>
+				<span>
+					{{user.last_name}}
+				</span>
+				<span>
+					{{user.email}}
+				</span>
+				<span>
+					{{user.email2}}
+				</span>
+				<span>
+					{{user.phone1}}
+				</span>
+				<span>
+					{{user.phone2}}
+				</span>
+				<span>
+					{{user.job}}
+				</span>
+				<span>
+					{{user.company}}
+				</span>
+				<span>
+					{{user.localisation}}
+				</span>
+				<span>
+					{{user.website}}
+				</span>
+				<span>
+					{{user.birth_date}}
+				</span>
+			</div>
+			<div>
+				<a href="#/shop"><button class="btn btn-sg btn-default btn-block" type="button">
+                Choisir son fond de carte</button> 
+                </a>
+			</div>	
+		</div>
 
 	</div>
 	<div class="row form-group col-lg-offset-2 col-lg-5 pre-scrollable" id="sign">
 		 <div class="col-xs-12 col-sm-12 col-md-12 well well-sm">
-            <legend><a href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-pencil"></i></a> Renseigner mon profil</legend>
+            <legend id="titre"><a  href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-pencil"></i></a > Renseigner mon profil</legend>
 			<div class="row onl_row-sm-12 onl_socialButtons">
 			          <div class="col-xs-2 col-sm-2">
 			            <a href="#" class="btn btn-lg btn-block onl_btn-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
@@ -87,19 +128,18 @@
 			          </div>
 			</div><br>
         </div>
-
-	 	<form action="update()" method="post" class="form well well-sm" role="form">
+	 	<form  id="signForm" ng-submit="update()" class="form well well-sm" role="form">
 			
 
 			<label>Importer votre avatar</label>
 			<div class="form-group">
 				<div class="input-prepend input-append input-group ">
-				<span class="input-group-addon"><span class="glyphicon glyphicon-camera"></span></span><input type="text" id="avatar" name="avatar"><button class="btn btn-primary" type="button">Upload</button>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-camera"></span></span><input type="text" id="avatar" name="avatar" ng-model="user.avatar"><button class="btn btn-default" type="button" ng-click="ajouter()">Upload</button>
 				</div>
 			</div>
 
 			<div class="progress">
-            	<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+            	<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
                 <span class="sr-only">20% Complete (info)</span>
 				</div>
             	<span class="progress-type">Remplissage de votre profil</span>
@@ -126,61 +166,62 @@
                 <div class="input-group">
                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
                    </span>
-                   <input type="phone" class="form-control" ng-model="user.phone" name="phone" placeholder="Tél" />
+                   <input type="phone" class="form-control" ng-model="user.phone1" name="phone" placeholder="Tél" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
-                   <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span>
+                   <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span>
                    </span>
-                   <input type="phone2" class="form-control" name="phone2" placeholder="Tél 2" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                   <span class="input-group-addon"><span class="glyphicon glyphicon-education"></span>
-                   </span>
-                   <input type="school" class="form-control" name="school" placeholder="Poste / Etude / Classe" />
+                   <input type="phone2" class="form-control" name="phone2" ng-model="user.phone2" placeholder="Tél 2" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                    <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span>
                    </span>
-                   <input type="society" class="form-control" name="society" placeholder="Société / Université / Lycée" />
+                   <input type="school" class="form-control" name="school" ng-model="user.job" placeholder="Poste / Etude / Classe" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                   <span class="input-group-addon"><span class="fa fa-industry"></span>
+                   </span>
+                   <input type="society" class="form-control" name="society" ng-model="user.company" placeholder="Société / Université / Lycée" />
                 </div>
             </div>
              <div class="form-group">
                 <div class="input-group">
-                   <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                   <span class="input-group-addon"><span class="fa fa-at"></span>
                    </span>
-                   <input type="text" class="form-control" ng-model="{{user.email}}" name="email" placeholder="Mail" />
+                   <input type="text" class="form-control"  name="email" ng-model="user.email" placeholder="Mail" />
                 </div>
             </div>
              <div class="form-group">
                 <div class="input-group">
-                   <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                   <span class="input-group-addon"><span class="fa fa-at"></span>
                    </span>
-                   <input type="email" class="form-control" name="mail2" ng-model="{{user.email2}}" placeholder="Mail 2" />
+                   <input type="email" class="form-control" name="mail2"  ng-model="user.email2" placeholder="Mail 2" />
                 </div>
             </div>
              <div class="form-group"> 
                 <div class="input-group">
-                   <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
+                   <span class="input-group-addon"><span class="fa fa-home"></span>
+                  
                    </span>
-                   <input type="text" class="form-control" name="Localisation" placeholder="Localisation"/>
+                   <input type="text" class="form-control" name="Localisation" ng-model="user.localisation" placeholder="Localisation"/>
                 </div>
             </div>
              <div class="form-group">
                  <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                    <input type="text" class="form-control" name="web" placeholder="Site internet" />
+                    <input type="text" class="form-control" name="web" ng-model="user.website" placeholder="Site internet" />
                  </div>
             </div>
             <div class="form-group">
 				<div class="input-group">
-                    <span class="input-group-addon"><i class="material-icons" style="font-size:18px">cake</i></span>
-                    <a class="list-group-item">Date de Naissance</a>
+                    <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+                   <input type="text" class="form-control" name="birthday" ng-model="user.birth_date" placeholder="Date de naissance" />
             	</div>
             </div>
             <div class="row">
@@ -319,7 +360,7 @@
                     </select>
                 </div>
 	        </div>
-	        <button class="btn btn-sg btn-primary btn-block" type="submit">
+	        <button class="btn btn-sg btn-default btn-block" type="button" ng-click="update()">
                 Sign up</button>        
 	 	</form>
 	</div>

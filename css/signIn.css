@@ -1,12 +1,13 @@
 body { padding-top:30px;
-	padding-bottom: 30px; 
+	padding-bottom: 30px;
+	 
 }
-.form-control { margin-bottom: 10px; }
+.form-control { margin-bottom: 10px;
+color: #50E3C2; }
 
 body{
 	background-color: #50E3C2;
-}
-
+}	
 
 /*
     Note: It is best to use a less version of this file ( see http://css2less.cc
@@ -22,6 +23,7 @@ body{
 }
 body {
     font-family: 'Titillium Web', sans-serif; 
+
 }
 .onl_login .onl_authTitle {
     text-align: center;
@@ -31,12 +33,42 @@ body {
 .onl_login .onl_socialButtons a {
 	color: white; // In yourUse @body-bg 
 	opacity:0.9;
+
 }
-.onl_login .onl_socialButtons a:hover {
-    color: white;
-	opacity:1;    	
+.onl_socialButtons a {
+	color: #50E3C2;
+
+}
+#titre{
+color: #50E3C2;
 }
 
+input{
+color: #50E3C2;
+}
+
+.glyphicon{
+	color: #50E3C2;
+}
+
+.fa{
+	color: #50E3C2;
+}
+
+.btn-default{
+	color: #50E3C2;
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.progress {
+	color: #50E3C2;
+	background-color: #50E3C2;
+}
+
+.onl_login .onl_socialButtons a:hover {
+    color: white;
+	opacity:1; 
+}
 
 .onl_login .onl_loginOr {
 	position: relative;
@@ -101,3 +133,26 @@ body {
 	max-height:500px;
 }
 
+#cardProfil{
+
+	background-color: white;
+	width: 450px;
+	height: 300px;
+	text-align: center;
+	border:1px ;
+	padding:10px 20px;
+	font-size:18px; 
+	color: #50E3C2;
+	margin-top: 2px;
+	margin-bottom: 10px;
+	padding-top: 10px;
+	border-radius: 10px;
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.container{
+	color: #50E3C2;
+
+}
+#sign{
+	color: #50E3C2;
+}

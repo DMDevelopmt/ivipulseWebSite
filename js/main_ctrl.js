@@ -1,68 +1,19 @@
 //création du contrôleur "login_ctrl"
-app.controller("main_ctrl", function ($scope, $location, me) {
+app.controller("main_ctrl", function ($scope, $rootScope, $location, me, Cards) {
 
 	console.log("MainCtrl initialized");
 
-	$scope.user = {};
+	$scope.user = $rootScope.globals.currentUser || {};
 	$scope.password_check = "";
 	$scope.err = {
 		message: ""
 	};
+	
 	$scope.state = {
 		mode: "connexion"
 	};
 
-
-	/**
-	 * La méthode email_login permet à un utilisateur de 
-	 * se connecter via email.
-	 * Elle fait appel à la fonction login de la factory 'me'
-	 * @return {[type]}
-	 */
-	$scope.email_login = function () {
-
-	//appel de la fonction login de la factory "me"
-	me.login($scope.user.mail, $scope.user.password)
-		//1er callback, s'exécute lorsque la méthode me.login
-		//a terminé son exécution
-		.then(function(res) {
-			//stocke l'objet user renvoyé par la factory dans le scope
-			$scope.user = res;
-			$scope.err.message = null;
-      console.log("user_name : " + res.email);
-      		$location.path("/logged");
-		})
-		.catch(function(err) {
-			$scope.err.message = err;
-		});
-		
-	}
-
-	$scope.email_signin = function () {
-
-		console.log("password : " + $scope.user.password);
-		console.log("password_check : " + $scope.password_check);
-		//on vérifie la correspondance des mots de passe
-		if($scope.user.password !== $scope.password_check) {
-			$scope.err.message = "Les mots de passe de sont pas identiques";
-		}
-
-		else {
-			me.signin($scope.user.mail, $scope.user.password)
-  		//1er callback, s'exécute lorsque la méthode me.login
-  		//a terminé son exécution
-  		.then(function(res) {
-  			//stocke l'objet renvoyé par la factory dans le scope
-  			$scope.user = res;
-  			$scope.err.message = null;
-  			$location.path("/signin");
-  		})
-      //récupération du message d'erreur
-  		.catch(function(err) {
-  			$scope.err.message = err;
-  		});
-		}
-	}
+	
 	/**
 	 * La méthode update permet de mettre à jour
 	 * les infos .
@@ -77,14 +28,26 @@ app.controller("main_ctrl", function ($scope, $location, me) {
 		//a terminé son exécution
 		 .then(function(res) {
 			//stocke l'objet tmp_user renvoyé par la factory dans le scope
-			scope.user = res;
+			$scope.user = res;
 			$scope.err.message = null;
-			console.log("user_name : " + res.user_name);
+			console.log("user_name : " + res.password);
 			$location.path("/signin");
 		})
 		.catch(function(err) {
 			$scope.err.message = err;
 		});
 	}
+
+
+/*
+	$scope.ajouter = function(){
+		var fichier = document.getElementById('fichier').files[0],
+		var lecture = new FileReader();
+		lecture.onloadend = function(evenement){
+		var donnees = evenement.target.result;
+		//Traitez ici vos données binaires. Vous pouvez par exemple les envoyer à un autre niveau du framework avec $http ou $ressource
+		}
+		lecture.readAsBinaryString(fichier);
+		}*/
 
 });
