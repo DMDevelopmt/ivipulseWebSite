@@ -91,4 +91,29 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 		$cookies.remove('globals');
 		$http.defaults.headers.token = '';
 	}
+
+	/**
+	 * La méthode update permet de mettre à jour
+	 * les infos .
+	 * Elle fait appel à la fonction update de la factory 'me'
+	 * 
+	 */
+	$scope.update= function(){
+
+		//appel de la fonction update de la factory "me"
+		 me.update($scope.user)
+		 //1er callback, s'exécute lorsque la méthode me.update
+		//a terminé son exécution
+		 .then(function(res) {
+			//stocke l'objet tmp_user renvoyé par la factory dans le scope
+			$scope.user = res;
+			$scope.err.message = null;
+			console.log("user_name : " + res.password);
+			$location.path("/signin");
+		})
+		.catch(function(err) {
+			$scope.err.message = err;
+		});
+	}
+
 });
