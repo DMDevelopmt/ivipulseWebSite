@@ -231,7 +231,7 @@ saveToken = function (data) {
               currentUser: {
                 first_name: data.me.first_name,
                 last_name: data.me.last_name,
-                mail: data.me.email,
+                email: data.me.email,
                 token: data.token
               }
             };
