@@ -150,15 +150,25 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <center>
                         <p class="achatTitle">Achat de cartes premium</p>
-                        <p class="achatCarte">1 carte premium au choix &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 1,99 €</p>
-                        <p class="achatCarte">3 carte premium au choix &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 3,99 €</p>
-                        <p class="achatCarte">5 carte premium au choix &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 5,99 €
+                        
+                        
+                        <p class="achatCarte"> Vous avez choisit {{fondAAjoute.length}} carte(s), vous avez &nbsp {{getCredits}} &nbsp crédit(s)
                         </p>
+
+                        <p class="achatCarte"> Vous restez &nbsp {{resteCredits}} &nbsp crédit(s)
+                        </p>
+
+                        <h5 style="color:white"> * 1 credit = 1 carte </h5>
                         <p>
-                        <button class="achatBouton"> Vous avez &nbsp {{getCredits}} &nbspde crédit, achtez avec vos crédits</button>
-                        <button class="achatBouton">Achetez avec Paypal</button>
+                        <button class="achatBouton" ng-click="calculCredits()"> Achtez avec vos crédits</button>
                         </p> 
-                        <p class="achatPied">Ou ajoutez &nbsp <span class="resteCarte">{{100-fondAAjoute.length}}</span>&nbsp contacts pour bénéficier d'un fond de carte gratuit</p>
+
+                        <p class="achatCarte" ng-click="formule='formule3'"> {{fondAAjoute.length}} carte premium au choix &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {{prix}} €
+                        </p>
+
+                        <button class="achatBouton">Achetez avec Paypal</button>
+                        <p class="achatPied">Ou ajoutez &nbsp <span class="resteCarte">{{50-fondAAjoute.length}}</span>&nbsp contacts pour bénéficier d'un fond de carte gratuit</p>
+                        
                      </center>
             </div>
         </div>
