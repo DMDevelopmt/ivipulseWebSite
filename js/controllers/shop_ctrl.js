@@ -5,9 +5,10 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
 	$scope.selectedIcon = true;
 	$scope.fondAAjoute = [];
     $scope.currentTemplate = {};
-    $scope.getCredits = {};
+    $scope.getCredits = null;
     $scope.resteCredits = {};
     $scope.achat = true;
+    $scope.prix = null;
 
     $scope.filter = "all";
 
@@ -84,7 +85,6 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
     retourne le reste de crédit après l'achat de carte
     */
     $scope.calculCredits = function(){
-        getCreditF();
         if($scope.getCredits < $scope.fondAAjoute.length){
             $scope.err.message = " Credit insuffisant";
         }
@@ -94,6 +94,32 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
             $scope.fondAAjoute = [];
         }
         console.log("resteCredits :", $scope.resteCredits);
+    };
+
+
+
+    /**
+    cette fonction permet de calculer le prix total en euro pour l'achat 
+    de carte choisie
+    */
+
+    $scope.calculPrix = function(){
+
+        getCardShared();
+        $scope.achat = true;
+
+        if($scope.fondAAjoute.length == 1)
+        {
+            $scope.prix = 1.99;
+        }
+        else if($scope.fondAAjoute.length > 5) {
+            $scope.prix = 1.99 * $scope.fondAAjoute.length * 0.8;
+        }
+        else {
+            $scope.prix = 1.99 * $scope.fondAAjoute.length * 0.9;
+        }
+
+        console.log("prix : ", $scope.prix);
     };
 
 

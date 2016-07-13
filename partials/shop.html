@@ -99,7 +99,7 @@
                    </select>
                 </li>
                 <li>
-                    <a class="ajouterCarte" data-toggle="modal" data-target="#achatCarte" data-toggle="dropdown" role="button" ng-switch = "textAjoute()" ng-show="fondAAjoute.length> 0" ng-click="achat = true">
+                    <a class="ajouterCarte" data-toggle="modal" data-target="#achatCarte" data-toggle="dropdown" role="button" ng-switch = "textAjoute()" ng-show="fondAAjoute.length > 0" ng-click="calculPrix()">
                         <div ng-switch-when = false>Ajouter cette carte</div> 
                         <div ng-switch-when = true> Ajouter ces &nbsp{{fondAAjoute.length}}&nbsp cartes</div>
                     </a>
@@ -151,7 +151,7 @@
                     <center>
                         <p class="achatTitle">Achat de cartes premium</p>
                         <div>
-                        <p class="achatCarte" ng-show="achat"> Vous avez choisit {{fondAAjoute.length}} carte(s), vous avez &nbsp {{getCredits}} &nbsp crédit(s)
+                        <p class="achatCarte" ng-show="achat"> Vous avez choisit &nbsp {{fondAAjoute.length}} &nbsp carte(s), vous avez &nbsp {{getCredits}} &nbsp crédit(s)
                         </p>
                         <p class="achatCarte" ng-show="!achat"> Vous restez &nbsp {{resteCredits}} &nbsp crédit(s)
                         </p>
@@ -159,11 +159,12 @@
 
                         <h5 style="color:white"> * 1 credit = 1 carte </h5>
                         <p>
-                        <button class="achatBouton" ng-click="calculCredits()"> Achtez avec vos crédits</button>
+                        <button class="achatBouton" ng-click="calculCredits()"> Achetez avec vos crédits</button>
                         </p> 
                         <h5 style="color:red">{{err.message}}</h5>
 
-                        <p class="achatCarte" ng-click="formule='formule3'"> {{fondAAjoute.length}} carte premium au choix &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {{prix}} €
+                        <p class="achatCarte"> Vous avez choisit &nbsp {{fondAAjoute.length}} &nbsp carte(s) &nbsp &nbsp &nbsp 
+                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  {{prix}} €
                         </p>
 
                         <button class="achatBouton">Achetez avec Paypal</button>
