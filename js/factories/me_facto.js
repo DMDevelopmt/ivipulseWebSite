@@ -219,10 +219,10 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
 
 
   /**
-  cette function permet de recuperer le nbre de carte que l'user a diffusé
+  cette function permet de recuperer le nombre de carte que l'user a diffuse et reciproque
   */
 
-    get_cardsShared : $q(function(resolve,reject){
+    get_cardsCount : $q(function(resolve,reject){
         var data = {};
         var req = {
           method : 'GET',
