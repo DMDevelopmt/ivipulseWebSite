@@ -57,10 +57,13 @@ app.config(['$routeProvider', function($routeProvider) {
  * @param  {[type]} $http)
  * @return {[type]}            [description]
  */
-app.run(['$rootScope', '$location', '$cookies', '$http',
-    function ($rootScope, $location, $cookies, $http) {
+app.run(['$rootScope', '$location', '$cookies', '$http', 'me',
+    function ($rootScope, $location, $cookies, $http, me) {
         // keep user logged in after page refresh
         console.log("Dans app.run()");
+
+        window.$rootScope = $rootScope;
+        window.me = $rootScope.me = me;
 
         $rootScope.globals = $cookies.getObject('globals') || {};
 
