@@ -115,4 +115,18 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 		});
 	}
 
+	$scope.card = {
+		first_name: {},
+		last_name:{},
+		avatar:{},
+		phone1:{},
+		phone2:{},
+		email:{},
+		email2:{},
+		company:{},
+		job:{},
+		localisation:{},
+		website:{},
+		birth_date:{}
+	}
 });
