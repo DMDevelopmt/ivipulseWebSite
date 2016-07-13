@@ -6,8 +6,13 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
 	$scope.fondAAjoute = [];
     $scope.currentTemplate = {};
     $scope.getCredits = {};
+    $scope.resteCredits = {};
 
     $scope.filter = "all";
+
+    $scope.formule = "";
+
+
 
     $scope.categories = {
     all: 'Tous métiers',
@@ -63,23 +68,48 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
     /**
     envoie la liste de fond de carte existe dans le base de donnee
     */
-	shop_facto.listFonds
-	.then(function(res) {
-		$scope.fondCards = res;
-        $scope.listCards = _.chain($scope.fondCards).values().flatten().value();
-		console.log($scope.fondCards);
-     });
+    var shopListFonds = function(){
+    	shop_facto.listFonds
+    	.then(function(res) {
+    		$scope.fondCards = res;
+            $scope.listCards = _.chain($scope.fondCards).values().flatten().value();
+    		console.log($scope.fondCards);
+         });
+    };
 
+    shopListFonds();
+
+    /**
+    retourne le reste de crédit après l'achat de carte
+    */
+    $scope.calculCredits = function(){
+        getCreditF();
+        if($scope.getCredits < $scope.fondAAjoute.length){
+            $scope.err.message = " Credit insuffisant";
+        }
+        else{
+            $scope.resteCredits = $scope.getCredits - $scope.fondAAjoute.length;
+        }
+        console.log("resteCredits :", $scope.resteCredits);
+    };
 
 
     /**
-
+    retourne le crédit que l'user procède
     */
-    me.get_credit
-    .then(function(res) {
-        $scope.getCredits = res;
-        console.log($scope.getCredits);
-    });
+    var getCreditF = function(){
+        me.get_credit
+        .then(function(res) {
+            $scope.getCredits = res;
+            console.log($scope.getCredits);
+        });
+    };
+
+    
+
+
+    /**
+    retourne le     */
 
     /**
     envoie la quantite de carte selectione
