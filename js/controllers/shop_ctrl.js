@@ -7,6 +7,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
     $scope.currentTemplate = {};
     $scope.getCredits = {};
     $scope.resteCredits = {};
+    $scope.achat = true;
 
     $scope.filter = "all";
 
@@ -89,6 +90,8 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
         }
         else{
             $scope.resteCredits = $scope.getCredits - $scope.fondAAjoute.length;
+            $scope.achat = false;
+            $scope.fondAAjoute = [];
         }
         console.log("resteCredits :", $scope.resteCredits);
     };
@@ -109,7 +112,15 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
 
 
     /**
-    retourne le     */
+    retourne le nombre de cart a partagé et le nombre de cart est récipoque  */
+
+    var getCardShared = function(){
+        me.get_cardsCount
+        .then(function(res){
+            $scope.countCardShared = res.shared;
+            $scope.countCardReciprocal = res.reciprocal;
+        });
+    };
 
     /**
     envoie la quantite de carte selectione
