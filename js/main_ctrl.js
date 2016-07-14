@@ -1,5 +1,5 @@
 //création du contrôleur "login_ctrl"
-app.controller("main_ctrl", function ($scope, $rootScope, $location, me, Cards) {
+app.controller("main_ctrl", function ($scope, $rootScope, $location,  $aside, me, Cards) {
 
 	console.log("MainCtrl initialized");
 
@@ -13,6 +13,25 @@ app.controller("main_ctrl", function ($scope, $rootScope, $location, me, Cards) 
 		mode: "connexion"
 	};
 
+	$scope.contacts_filter = "";
+
+	$scope.aside = {
+	  "title": "Title"
+	};
+	$scope.asideLogin = {
+	  "title": "Title"
+	};
+
+	$scope.cards = {};
+
+	var refresh_cards = function() {
+		Cards.acceptedCards()
+		.then (function(cards){
+			$scope.cards = cards;
+		});
+	};
+
+	refresh_cards();
 	
 	/**
 	 * La méthode update permet de mettre à jour
@@ -39,3 +58,17 @@ app.controller("main_ctrl", function ($scope, $rootScope, $location, me, Cards) 
 	}
 
 });
+
+/*// Show a basic aside from a controller
+  var myAside = $aside({title: 'My Title', content: 'My Content', show: true});
+
+  // Pre-fetch an external template populated with a custom scope
+  var myOtherAside = $aside({scope: $scope, template: 'aside/docs/aside.demo.tpl.html'});
+  // Show when some event occurs (use $promise property to ensure the template has been loaded)
+  myOtherAside.$promise.then(function() {
+    myOtherAside.show();
+  });*/
+/*
+$scope.searchContact = function(){
+
+};*/
