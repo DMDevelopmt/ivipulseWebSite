@@ -41,6 +41,7 @@ body {
 }
 #titre{
 color: #50E3C2;
+text-align: center;
 }
 
 input{
@@ -163,4 +164,13 @@ color: #50E3C2;
 	margin-top: 40px;
 	margin-bottom: 30px;
 	color:white;
+}
+.row{
+
+
+}
+
+#buttonCard{
+	width: 450px;
+	margin-bottom: 10px;
 }
