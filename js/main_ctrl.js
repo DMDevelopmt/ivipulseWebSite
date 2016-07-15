@@ -34,6 +34,19 @@ app.controller("main_ctrl", function ($scope, $rootScope, $location,  $aside, me
 	refresh_cards();
 	
 
+	$scope.filterFunction = function (card) {
+		//console.log("filtre : " + $scope.contacts_filter);
+		//console.log(card._sender.first_name.includes($scope.contacts_filter));
+		return card._sender.first_name.includes('a');
+	}
+	/**
+	 * La méthode update permet de mettre à jour
+	 * les infos .
+	 * Elle fait appel à la fonction update de la factory 'me'
+	 * 
+	 */
+	$scope.update= function(){
+
 /*
 	$scope.ajouter = function(){
 		var fichier = document.getElementById('fichier').files[0],
