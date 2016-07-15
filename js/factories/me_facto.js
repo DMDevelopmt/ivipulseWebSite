@@ -95,7 +95,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
 
           if(saveToken(res)){
             resolve(res.me);
-
+            $scope.user = res.me;
             console.log("this.token ", this._token);
           }
           //si problème serveur 
@@ -188,21 +188,23 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       });
   },
 
+
+
+  
+
   /**
    Cette fonction permet de recuperer le credit que l'user proède
   */
 
    get_credit: $q(function(resolve, reject){
 
-     if ($rootScope.globals) {
-        var data = {};
+     if ($rootScope.globals && $rootScope.globals.currentUser) {
         var req = {
               method: 'GET',
               url: ROOT_URL + "/users/me/credits",
               headers: {
                 token: $rootScope.globals.currentUser.token
-              },
-              data : data
+              }
           };
         $http(req)
         .success(function(res){
@@ -228,7 +230,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
 
     get_cardsCount : $q(function(resolve,reject){
 
-      if ($rootScope.globals) {
+      if ($rootScope.globals && $rootScope.globals.currentUser) {
         var data = {};
         var req = {
           method : 'GET',
