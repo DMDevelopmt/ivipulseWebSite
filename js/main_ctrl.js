@@ -33,6 +33,12 @@ app.controller("main_ctrl", function ($scope, $rootScope, $location,  $aside, me
 
 	refresh_cards();
 	
+
+	$scope.filterFunction = function (card) {
+		//console.log("filtre : " + $scope.contacts_filter);
+		//console.log(card._sender.first_name.includes($scope.contacts_filter));
+		return card._sender.first_name.includes('a');
+	}
 	/**
 	 * La méthode update permet de mettre à jour
 	 * les infos .
