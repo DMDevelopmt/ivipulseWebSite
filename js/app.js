@@ -11,6 +11,7 @@ var app = angular.module("ivipulse", [
 
 var ROOT_URL = 'http://192.168.1.21:8180';
 
+
 app.config(['$routeProvider', function($routeProvider) {
 
 	//système de routage
