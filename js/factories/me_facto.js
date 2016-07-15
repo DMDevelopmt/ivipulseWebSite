@@ -195,14 +195,14 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
    get_credit: $q(function(resolve, reject){
 
      if ($rootScope.globals) {
-        var data ={};
+        var data = {};
         var req = {
               method: 'GET',
-              url: ROOT_URL + "/users/get_credits",
+              url: ROOT_URL + "/users/me/credits",
               headers: {
                 token: $rootScope.globals.currentUser.token
               },
-              data: data
+              data : data
           };
         $http(req)
         .success(function(res){
@@ -215,7 +215,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
         });
       }
       else {
-        resolve("User introuvable");
+        resolve("getcredits : User introuvable");
       }
     }),
   
