@@ -11,8 +11,6 @@ background-color: #50E3C2;
     width: 100%;
 }
 
-
-
 .shop {
 	background-color: white;
 	text-align: center;
@@ -233,28 +231,29 @@ table{
 
 .achatTitle{
 	margin-top: 30px;
-	margin-bottom: 30px;
-	font-size: 22px;
+	margin-bottom: 20px;
+	font-size: 26px;
 	color: white;
 }
 
 .achatCarte{
-	padding-top: 10px;
+	padding-top: 15px;
 	font-size: 16px;
 	width: 480px;
-	height: 40px;
+	height: 50px;
 	color: #50E3C2;
 	background-color: white;
 	border-radius: 8px;
 }
 
 .achatBouton {
-	margin-top: 30px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	width: 480px;
 	height: 50px;
 	font-size: 18px;
-	background-color: white;
-	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4), 0 6px 20px 0 rgba(0,0,0,0.19);
+	background-color: black;
+	box-shadow: 0 3px 3px 0 rgba(0,0,0,0.4), 0 6px 20px 0 rgba(0,0,0,0.19);
 	border-radius: 8px;
 	border: 2px;
 	color: #50E3C2;

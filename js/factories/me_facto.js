@@ -188,6 +188,10 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       });
   },
 
+  /**
+   Cette fonction permet de recuperer le credit que l'user proède
+  */
+
    get_credit: $q(function(resolve, reject){
 
      if ($rootScope.globals) {
@@ -215,7 +219,34 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       }
     })
   
-}; 
+
+
+
+  /**
+  cette function permet de recuperer le nombre de carte que l'user a diffuse et reciproque
+  */
+
+    get_cardsCount : $q(function(resolve,reject){
+        var data = {};
+        var req = {
+          method : 'GET',
+          url: ROOT_URL + "/users/me/counters",
+              headers: {
+                token: $rootScope.globals.currentUser.token
+              },
+              data: data
+          };
+        $http(req)
+        .success(function(res){
+          console.log(res);
+          resolve(res);
+        })
+        .error(function(err) {
+          console.log("Erreur requete get_cardsShared", err);
+          reject(err);
+        });
+    })
+ }
 
 /**
  * Cette fonction permet de sauver l'authentification de l'utilisateur connecté
