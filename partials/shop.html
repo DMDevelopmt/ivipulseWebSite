@@ -99,7 +99,7 @@
                    </select>
                 </li>
                 <li>
-                    <a class="ajouterCarte" data-toggle="modal" data-target="#achatCarte" data-toggle="dropdown" role="button" ng-switch = "textAjoute()" ng-show="fondAAjoute.length> 0">
+                    <a class="ajouterCarte" data-toggle="modal" data-target="#achatCarte" data-toggle="dropdown" role="button" ng-switch = "textAjoute()" ng-show="fondAAjoute.length > 0" ng-click="calculPrix()">
                         <div ng-switch-when = false>Ajouter cette carte</div> 
                         <div ng-switch-when = true> Ajouter ces &nbsp{{fondAAjoute.length}}&nbsp cartes</div>
                     </a>
@@ -150,15 +150,27 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <center>
                         <p class="achatTitle">Achat de cartes premium</p>
-                        <p class="achatCarte">1 carte premium au choix &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 1,99 €</p>
-                        <p class="achatCarte">3 carte premium au choix &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 3,99 €</p>
-                        <p class="achatCarte">5 carte premium au choix &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 5,99 €
+                        <div>
+                        <p class="achatCarte" ng-show="achat"> Vous avez choisit &nbsp {{fondAAjoute.length}} &nbsp carte(s), vous avez &nbsp {{getCredits}} &nbsp crédit(s)
                         </p>
+                        <p class="achatCarte" ng-show="!achat"> Vous restez &nbsp {{resteCredits}} &nbsp crédit(s)
+                        </p>
+                        </div>
+
+                        <h5 style="color:white"> * 1 credit = 1 carte </h5>
                         <p>
-                        <button class="achatBouton"> Vous avez &nbsp {{getCredits}} &nbspde crédit, achtez avec vos crédits</button>
-                        <button class="achatBouton">Achetez avec Paypal</button>
+                        <button class="achatBouton" ng-click="calculCredits()"> Achetez avec vos crédits</button>
                         </p> 
-                        <p class="achatPied">Ou ajoutez &nbsp <span class="resteCarte">{{100-fondAAjoute.length}}</span>&nbsp contacts pour bénéficier d'un fond de carte gratuit</p>
+                        <h5 style="color:red">{{err.message}}</h5>
+
+                        <p class="achatCarte"> Vous avez choisit &nbsp {{fondAAjoute.length}} &nbsp carte(s) &nbsp &nbsp &nbsp 
+                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  {{prix}} €
+                        </p>
+                         <h5 style="color:white"> * -10% pour 2 à 5 cartes, -20% dès 6 cartes</h5>
+
+                        <button class="achatBouton">Achetez avec Paypal</button>
+                        <p class="achatPied">Ou ajoutez &nbsp <span class="resteCarte">{{50-countCardShared}}</span>&nbsp contacts pour bénéficier d'un fond de carte gratuit</p>
+                        
                      </center>
             </div>
         </div>
