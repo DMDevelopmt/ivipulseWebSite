@@ -213,6 +213,10 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
           console.log("Erreur requete get_credits", err);
           reject(err);
         });
+      }
+      else {
+        resolve("User introuvable");
+      }
     }),
   
 
@@ -223,6 +227,8 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
   */
 
     get_cardsCount : $q(function(resolve,reject){
+
+      if ($rootScope.globals) {
         var data = {};
         var req = {
           method : 'GET',
@@ -241,6 +247,10 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
           console.log("Erreur requete get_cardsShared", err);
           reject(err);
         });
+        }
+      else {
+        resolve("User introuvable");
+      }
     })
  }
 
