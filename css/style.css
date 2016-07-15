@@ -57,14 +57,20 @@ body{
 
 
 
-
-
 .card {
+    height: 100px;
+    width: 680px;
+
+    opacity: 1;
+    transition: 0.3s;
+
 }
-	.card .background {
-	    position: absolute;
-	    background-position: center;
-	    -webkit-filter: blur(2px);
-	            filter: blur(2px); }
-	    .card .background:before {
-	      background: black; }
+.card.background{
+    width: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 90px); /* w3c */
+
+}
+
+.aside{
+    width: 400px;
+}

@@ -1,0 +1,22 @@
+<div class="aside" tabindex="-1" role="dialog">
+  <div class="aside-dialog">
+    <div class="aside-content">
+      <div class="aside-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="aside-title">Contacts</h4>
+      </div>
+      <div class="aside-body" ng-show="cards">
+        <input ng-model="contacts_filter">
+        <!-- <pre> {{cards | json }}</pre> -->
+        <div class="card-container" ng-repeat="card in cards | filter : filterFunction">
+          <ivicard card="card"></ivipulse>
+        </div>
+        
+      </div>
+      <div class="aside-footer">
+        <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="$hide()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

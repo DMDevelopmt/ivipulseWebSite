@@ -5,10 +5,11 @@ var app = angular.module("ivipulse", [
   // Dépendances du module 
   'ngRoute',
   'ngCookies',
-  'mgcrea.ngStrap'
+  'mgcrea.ngStrap',
+  'ngAnimate'
 ]);
 
-var ROOT_URL = 'http://192.168.1.11:8180';
+var ROOT_URL = 'http://192.168.1.21:8180';
 
 app.config(['$routeProvider', function($routeProvider) {
 
