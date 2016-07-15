@@ -1,9 +1,13 @@
 <section>
+<!-- 
+	<pre>
+		{{cards | json}}
+	</pre> -->
 	
 	<list 
 	ng-repeat="card in cards">
 		<ul>
-			{{card._sender.first_name}}
+			<ivicard card="card"></ivicard>
 		</ul>
 		
 	</list>

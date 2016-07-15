@@ -1,17 +1,18 @@
 
-app.controller('shop_ctrl', function ($scope, shop_facto,$http){
+app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
 	$scope.fondCards = {};
     $scope.listCards = {};
 	$scope.selectedIcon = true;
 	$scope.fondAAjoute = [];
     $scope.currentTemplate = {};
+    $scope.getCredits = {};
 
     $scope.filter = "all";
 
     $scope.categories = {
-    all: 'Toutes métiers',
+    all: 'Tous métiers',
     graphic: 'Design',
-    pro: 'Professionnelles',
+    pro: 'Professionnel',
     metal: 'Métal',
     wood: 'Bois',
     animaux: 'Nature',
@@ -49,15 +50,14 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http){
     */
     $scope.textAjoute = function(){
         return $scope.fondAAjoute.length > 1;
-    }
-
+    };
 
     /**
     retourne le fond est vrai ou faut 
     */
 	$scope.isAdded = function(fond){
         return $scope.fondAAjoute.indexOf(fond) != -1;
-    }
+    };
 
 
     /**
@@ -70,6 +70,16 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http){
 		console.log($scope.fondCards);
      });
 
+
+
+    /**
+
+    */
+    me.get_credit
+    .then(function(res) {
+        $scope.getCredits = res;
+        console.log($scope.getCredits);
+    });
 
     /**
     envoie la quantite de carte selectione
