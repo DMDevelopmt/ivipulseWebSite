@@ -3,8 +3,7 @@ app.controller("main_ctrl", function ($scope, $rootScope, $location,  $aside, me
 
 	console.log("MainCtrl initialized");
 
-	$scope.user = $rootScope.user;
-	$scope.password_check = "";
+	//$scope.user = $rootScope.user || {};
 	$scope.err = {
 		message: ""
 	};
@@ -34,11 +33,24 @@ app.controller("main_ctrl", function ($scope, $rootScope, $location,  $aside, me
 	refresh_cards();
 	
 
-	$scope.filterFunction = function (card) {
+	$scope.filterFunction = function (card, contacts_filter) {
 		//console.log("filtre : " + $scope.contacts_filter);
 		//console.log(card._sender.first_name.includes($scope.contacts_filter));
-		return card._sender.first_name.includes('a');
-	}
+		/*
+		cards.forEach(function(card, i, cards){
+			if (card._sender.first_name.includes($scope.contacts_filter) ||
+						card._sender.last_name.includes($scope.contacts_filter)){
+				return true;
+			}
+			else {
+				return false;
+			}
+		});*/
+
+		//console.log("filterFunction ", card);
+		console.log("filterFunction ", contacts_filter);
+		return card._sender.first_name.includes(contacts_filter);
+	};
 	
 
 /*

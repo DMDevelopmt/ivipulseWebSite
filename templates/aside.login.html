@@ -1,4 +1,4 @@
-<div class="aside" tabindex="-1" role="dialog">
+<div class="aside" tabindex="-1" role="dialog" ng-controller="login_ctrl">
   <div class="aside-dialog">
     <div class="aside-content">
       <div class="aside-header">
@@ -28,16 +28,16 @@
                        <input type="password" 
                        ng-show="state.mode=='inscription'"
                        ng-model="password_check"
-                       class="form-control" id="exampleInputPassword3" placeholder="Password" required
+                       class="form-control" placeholder="Password" required
                        >
                                              <div class="help-block text-right"><a href="">Forget the password ?</a></div>
                     </div>
                     <div class="form-group">
                        <button 
-                       ng-show="state.mode=='connexion'"
+                       ng-show="state.mode =='connexion'"
                        class="btn btn-primary btn-block" ng-click="email_login();$event.stopPropagation()">Login</button>
                        <button 
-                       ng-show="state.mode=='inscription'"
+                       ng-show="state.mode =='inscription'"
                        class="btn btn-primary btn-block" ng-click="email_signin();$event.stopPropagation()">S'inscrire</button>
                     </div>
                  </div>

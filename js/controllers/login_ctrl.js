@@ -4,6 +4,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	console.log("LoginCtrl initialized");
 
 	$scope.user = {};
+	$scope.password_check = "";
 
 	$scope.loggedIn = !!$rootScope.globals.currentUser;
 
@@ -61,6 +62,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 
 	$scope.email_signin = function () {
 
+		console.log("email : " + $scope.user.email);
 		console.log("password : " + $scope.user.password);
 		console.log("password_check : " + $scope.password_check);
 		//on vérifie la correspondance des mots de passe
@@ -69,7 +71,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 		}
 
 		else {
-			me.signin($scope.user.mail, $scope.user.password)
+			me.signin($scope.user.email, $scope.user.password)
   		//1er callback, s'exécute lorsque la méthode me.login
   		//a terminé son exécution
   		.then(function(res) {
