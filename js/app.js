@@ -51,6 +51,9 @@ app.config(['$routeProvider', function($routeProvider) {
 	.when('/test', {
 		templateUrl: 'partials/test.html'
 	})
+	.when('/carte', {
+		templateUrl: 'partials/carte.html'
+	})
 	.otherwise({
 		redirectTo: '/'
 	});
