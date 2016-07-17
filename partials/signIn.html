@@ -1,65 +1,36 @@
 <div class="container">
 	<div class="row col-lg-5" id="rowSign">
-	<div>
-		
-	</div>
-		<div>
-			<div id="cardProfil">
-				<span>
-					<img src="user.avatar" />
-				</span>
-				< hr/>
-				<span>
-					{{user.first_name}}
-				</span>
-				< hr/>
-				<span>
-					{{user.last_name}}
-				</span>
-				< hr/>
-				<span>
-					{{user.email}}
-				</span>
-				< hr/>
-				<span>
-					{{user.email2}}
-				</span>
-				< hr/>
-				<span>
-					{{user.phone1}}
-				</span>
-				< hr/>
-				<span>
-					{{user.phone2}}
-				</span>
-				< hr/>
-				<span>
-					{{user.job}}
-				</span>
-				< hr/>
-				<span>
-					{{user.company}}
-				</span>
-				< hr/>
-				<span>
-					{{user.localisation}}
-				</span>
-				< hr/>
-				<span>
-					{{user.website}}
-				</span>
-				< hr/>
-				<span>
-					{{user.birth_date}}
-				</span>
+		<div class="row">
+			<div class="twPc-div">
+		    <a class="twPc-bg twPc-block"></a>
+				<div>
+					<div class="cardProfil">
+					<a class="twPc-avatarLink">
+						<img ng-src="img/avatar/baer.jpg" class="twPc-avatarImg">
+					</a>
+			           <span>{{user.first_name}}</span><br>
+						<span>{{user.last_name}}</span><br>
+						<span>{{user.email}}</span><br>
+						<span>{{user.email2}}</span><br>
+						<span>{{user.phone1}}</span><br>
+						<span>{{user.phone2}}</span><br>
+						<span>{{user.job}}</span><br>
+						<span>{{user.company}}</span><br>
+						<span>{{user.localisation}}</span><br>
+						<span>{{user.website}}</span><br>
+						<span>{{user.birth_date}}</span> 
+					</div>
+				</div>
 			</div>
 			<div>
-				<a href="#/shop" class="btn btn-sg btn-default btn-block" id="buttonCard" type="button">
-                Choisir son fond de carte</a>
+				<a href="#/shop" class="btn btn-sg btn-default btn-block" id="buttonCard" type="button" >Choisir son fond de carte
+                </a>
 			</div>	
 		</div>
 	</div>
-	<div class="row form-group col-lg-offset-0 col-lg-7 pre-scrollable" id="sign">
+
+
+	<div class="row form-group col-lg-offset-0 col-lg-7 " id="sign">
 		 <div class="col-xs-12 col-sm-12 col-md-12 well well-sm">
             <legend id="titre"><a  href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-pencil"></i></a > Mon profil</legend>
 			<div class="row onl_row-sm-12 onl_socialButtons">
@@ -713,7 +684,7 @@
 			<div class="form-group col-xs-6 col-sm-6 col-md-6">
              	<div class="input-group">
                     <span class="input-group-addon "><span class="glyphicon glyphicon-user"></span></span>
-                    <input type="text" ng-model="user.last_name" class="form-control" name="lastname" placeholder="Nom" required autofocus/>
+                    <input type="text" ng-model="user.last_name" class="form-control" name="lastname" placeholder="Nom" required/>
                 </div>
            </div>
             <div class="form-group col-xs-6 col-sm-6 col-md-6">
@@ -781,7 +752,7 @@
             <div class="form-group col-xs-12 col-sm-12 col-md-12" ng-class="{'has-error': datepickerForm.date.$invalid}">
 				<div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-                   <input class="form-control" name="birthday" ng-model="user.birth_date" bs-datepicker type="text" language="fr" data-format="dd-mm-yyyy" placeholder="Date de naissance"  />
+                   <input class="form-control" name="birthday" ng-model="user.birth_date" bs-datepicker type="text" language="fr" data-format="dd-mmmm-yyyy" placeholder="Date de naissance"  />
             	</div>
             </div>
 	        <button class="btn btn-sg btn-default btn-block" type="button" ng-click="update()">

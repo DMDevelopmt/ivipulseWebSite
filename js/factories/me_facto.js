@@ -248,9 +248,9 @@ saveToken = function (data) {
   }
   else
     return false;
-},
+}
 
-sendPictureB64 = function(b64) {
+/*sendPictureB64 = function(b64) {
     return $q(function(resolve, reject) {
         return $http.post(ROOT_URL + "/users/me/pictureb64", {
           b64: b64
@@ -259,7 +259,7 @@ sendPictureB64 = function(b64) {
         });
       });
   }
-
+*/
 return me;
 
 });

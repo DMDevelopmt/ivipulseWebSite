@@ -3,7 +3,7 @@ body { padding-top:30px;
 	 
 }
 .form-control { margin-bottom: 10px;
-color: #50E3C2; }
+color: grey; }
 
 body{
 	background-color: #50E3C2;
@@ -45,7 +45,7 @@ text-align: center;
 }
 
 input{
-color: #50E3C2;
+color: grey;
 }
 
 .glyphicon{
@@ -139,11 +139,11 @@ color: #50E3C2;
 	background-color: white;
 	width: 450px;
 	height: 300px;
-	text-align: center;
+	
 	border:1px ;
 	padding:10px 20px;
 	font-size:18px; 
-	color: #50E3C2;
+	
 	margin-top: 2px;
 	margin-bottom: 10px;
 	padding-top: 10px;
@@ -151,11 +151,11 @@ color: #50E3C2;
 	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .container{
-	color: #50E3C2;
+	color: grey;
 
 }
 #sign{
-	color: #50E3C2;
+	color: grey;
 }
 #popuSocial{
 	background-color: #50E3C2;
@@ -171,6 +171,21 @@ color: #50E3C2;
 }
 
 #buttonCard{
-	width: 450px;
+	width: 340px;
 	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.imgAvatarProfil{
+	position: absolute;
+	overflow:hidden;
+    border-radius:100%;
+    width:40px;
+    height:40px;
+    z-index: 2;
+    top:15%;
+    left: 10%;
+}
+
+.textCardProfil{
+	color: grey;
 }

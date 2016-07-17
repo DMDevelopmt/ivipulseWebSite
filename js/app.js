@@ -9,7 +9,7 @@ var app = angular.module("ivipulse", [
   'ngAnimate'
 ]);
 
-var ROOT_URL = 'http://192.168.1.3:8180';
+var ROOT_URL = 'http://192.168.1.12:8180';
 
 app.config(['$routeProvider', function($routeProvider) {
 
@@ -49,6 +49,9 @@ app.config(['$routeProvider', function($routeProvider) {
 	})
 	.when('/test', {
 		templateUrl: 'partials/test.html'
+	})
+	.when('/carte', {
+		templateUrl: 'partials/carte.html'
 	})
 	.otherwise({
 		redirectTo: '/'

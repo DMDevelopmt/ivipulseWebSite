@@ -1,4 +1,4 @@
-<div class ="card">
+<!-- <div class ="card">
 	<img src="">avatar</img>
 	<span>
 		{{card._sender.first_name}}
@@ -6,4 +6,29 @@
 	<span>
 		{{card._sender.last_name}}
 	</span>
+</div> -->
+
+<div class="twPc-div">
+    <a class="twPc-bg twPc-block"></a>
+
+	<div>
+		<div class="twPc-button">
+           <span>{{user.first_name}}</span><br>
+			<span>{{user.last_name}}</span><br>
+			<span>{{user.email}}</span><br>
+			<span>{{user.email2}}</span><br>
+			<span>{{user.phone1}}</span><br>
+			<span>{{user.phone2}}</span><br>
+			<span>{{user.job}}</span><br>
+			<span>{{user.company}}</span><br>
+			<span>{{user.localisation}}</span><br>
+			<span>{{user.website}}</span><br>
+			<span>{{user.birth_date}}</span> 
+		</div>
+		<a class="twPc-avatarLink">
+			<img ng-src="data:image/JPEG;base64,{{user.avatar}}">
+		</a>
+	</div>
+</div>
+<!-- code end -->
 </div>
