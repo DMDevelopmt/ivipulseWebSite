@@ -133,7 +133,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
 
           if(saveToken(res)){
             resolve(res.me);
-            $scope.user = res.me;
+            $rootScope.user = res.me;
             console.log("this.token ", this._token);
           }
           //si problème serveur 

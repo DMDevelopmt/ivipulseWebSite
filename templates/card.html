@@ -1,0 +1,41 @@
+<div class="main-card">
+	<div class="card-content">
+		<div class="avatar" ng-click="">
+			<div class="avatar-img" style="background-image:url({{card._sender.avatar || 'img/avatar/myAvatar.svg'}})" >
+			</div>
+		</div>
+		<div class="profile-card">
+			<div class="profile-infos">
+				<div class="username">
+					<span>{{card._sender.first_name}}</span>
+					<br>
+					<span>{{card._sender.last_name}}</span>
+				</div>
+			</div>
+			<div class="full-infos">
+				<span>{{card._sender.job}}</span>
+				<span>{{card._sender.company}}</span>
+				<span>{{card._sender.phone1}}</span>
+				<span>{{card._sender.phone2}}</span>
+			</div>
+
+			<ul class="social-list">
+				<li>
+					<i class="fa fa-facebook fa-2x"></i>
+					<i class="fa fa-twitter"></i>
+				</li>
+			</ul>
+			<div class="card-actions icon-action">
+				<a ng-click="" >
+					<svg width="20" height="20" viewBox="0 0 50 50"  
+					src="img/svg/icon-mail2.svg">
+						
+					</svg>
+				</a>
+				<a ng-click="">
+					<img class="icon-action" src="img/svg/icon-url.svg">
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
