@@ -4,11 +4,18 @@ body{
 
 }
 
+
+
 .barre {
-    background-color: #20c7a1;
+    background-color: black;
 }
+
 .navigbarre {
     background-color: #20c7a1;
+    margin-bottom: 0px;
+}
+.nav-bar{
+    margin-bottom: 0px;
 }
 
 #login-dp{

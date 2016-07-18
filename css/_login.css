@@ -1,7 +1,5 @@
 #connexion {
 	background-image: url(../img/splash.jpg);
-	margin-left: 400px;
-	margin-right: 400px;
 }
 
 .head-title{
@@ -10,20 +8,81 @@
 .btn {
 	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
+
 .button-login{
 	background-color: #20c7a1 !important;
 }
 
-.main-login{
+
+
+
+.left{
+	width: 30%;
+	
+}
+
+.logo{
+	width: 250px;
+	height: 250px;
+	-webkit-mask-image:-webkit-gradient(linear, left top, left bottom, 
+		from(rgba(0,0,0,1)), to(rgba(0,0,0,1)));
+	
+}
+
+.middle{
+	width: 30%;
+}
+
+.logoText{
+	height: 130px;
+	-webkit-mask-image:-webkit-gradient(linear, left top, left bottom, 
+		from(rgba(0,0,0,0.3)), to(rgba(0,0,0,1)));
+	margin-right: 25px;
+	margin-left: 50px;
+}
+
+
+.right{
+	float: right;
+	width: 100%;
+	width: 400px;
 	background-image: url(../img/splash.jpg);
-
-	padding-bottom: 30px !important;
-	padding-top: 30px !important;
+	-webkit-mask-image:-webkit-gradient(linear, left top, left bottom, 
+		from(rgba(0,0,0,0.3)), to(rgba(0,0,0,1)));
 }
 
-login-element {
-	margin: 30px, 20px, 30px, 50px;
+.text{
+	color: white;
+	font-size: 16px;
 }
 
-.div1 {
+.socialButton{
+	height: 40px;
+	width: 178px;
+	font-size: 16px;
+}
+
+.champInscrit{
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.champOnly{
+	background-color:rgba(0,0,0,0.5);
+	height: 40px;
+	font-size: 16px;
+	color: white;
+}
+
+.boutonOnly{
+	height: 45px;
+}
+
+.partiLeft{
+	background-color: red;
+	background-image: url(../img/splash.jpg);
+	height: 100px;
+	width: 100px;
 }

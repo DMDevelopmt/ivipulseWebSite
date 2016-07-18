@@ -72,8 +72,8 @@
 	</head>
 
 	<body ng-app="ivipulse" ng-controller="main_ctrl" data-spy="scroll" data-target=".navbar-custom">
-
-		<nav class="navbar navbar-default barre" role="navigation" bs-navbar ng-controller="login_ctrl">
+	<div class="barre">
+		<nav class="navbar navbar-default" role="navigation" bs-navbar ng-controller="login_ctrl">
 		  <div class="navbar-header">
 		    <a class="navbar-brand" href="#">Brand</a>
 		  </div>
@@ -140,8 +140,9 @@
 		        </li>
 		  </ul>
 		</nav>
+	</div>
 
-	    <div ng-view> 
+	    <div ng-view class="contentView"> 
 	       
 	    </div> 
   </body> 
