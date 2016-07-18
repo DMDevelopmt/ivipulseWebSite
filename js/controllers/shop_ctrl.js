@@ -9,6 +9,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
     $scope.resteCredits = {};
     $scope.achat = true;
     $scope.prix = null;
+    $scope.avatar = {};
 
     $scope.filter = "all";
 
