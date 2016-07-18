@@ -1,8 +1,14 @@
 body{
     background-color: #50E3C2;
-    padding:50px;
     width:100%;
 
+}
+
+.barre {
+    background-color: #20c7a1;
+}
+.navigbarre {
+    background-color: #20c7a1;
 }
 
 #login-dp{

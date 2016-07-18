@@ -51,10 +51,11 @@ app.config(['$routeProvider', function($routeProvider) {
 	.when('/test', {
 		templateUrl: 'partials/test.html'
 	})
-	.when('/carte', {
-		templateUrl: 'partials/carte.html'
+	.when('/loginAside', {
+		templateUrl: 'templates/aside.login.html'
 	})
 	.otherwise({
+
 		redirectTo: '/'
 	});
 }]);
@@ -85,7 +86,7 @@ app.run(['$rootScope', '$location', '$cookies', '$http',
   
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in
-            if (!$rootScope.globals.currentUser && $location.path() !== '/login') {
+            if (!$rootScope.globals.currentUser && $location.path() !== '/loginAside') {
                 $location.path('/login');
             }
         });

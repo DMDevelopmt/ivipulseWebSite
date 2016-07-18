@@ -3,8 +3,7 @@ app.controller("main_ctrl", function ($scope, $rootScope, $location,  $aside,  C
 
 	console.log("MainCtrl initialized");
 
-	$scope.user = $rootScope.user;
-	$scope.password_check = "";
+	//$scope.user = $rootScope.user || {};
 	$scope.err = {
 		message: ""
 	};
@@ -32,14 +31,7 @@ app.controller("main_ctrl", function ($scope, $rootScope, $location,  $aside,  C
 	};
 
 	refresh_cards();
-	
-
-	$scope.filterFunction = function (card) {
-		//console.log("filtre : " + $scope.contacts_filter);
-		//console.log(card._sender.first_name.includes($scope.contacts_filter));
-		return card._sender.first_name.includes('a');
-	}
-	
+		
 
 /*
 	$scope.ajouter = function(){
