@@ -3,7 +3,7 @@ app.controller("main_ctrl", function ($scope, $rootScope, $location,  $aside, me
 
 	console.log("MainCtrl initialized");
 
-	//$scope.user = $rootScope.user || {};
+	$scope.user = $rootScope.user;
 	$scope.password_check = "";
 	$scope.err = {
 		message: ""

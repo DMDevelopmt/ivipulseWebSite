@@ -1,5 +1,5 @@
 
-app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
+app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
 	$scope.fondCards = {};
     $scope.listCards = {};
 	$scope.selectedIcon = true;
@@ -9,6 +9,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
     $scope.resteCredits = {};
     $scope.achat = true;
     $scope.prix = null;
+    $scope.avatar = {};
 
     $scope.filter = "all";
 
@@ -30,6 +31,29 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
     rouge: 'Rouge'
     };
 
+    var init = function() {
+
+        if($rootScope.globals.currentUser){
+            var req = {
+                method: 'GET',
+                url: ROOT_URL + "/users/me",
+                headers: {
+                    token: $rootScope.globals.currentUser.token
+                }
+            };
+
+            $http.defaults.headers.token = $rootScope.globals.currentUser.token;
+            $http(req)
+            .success(function(user) {
+                console.log("login_ctrl, user = " , $scope.user);
+                console.log("user.avatar : ", user.avatar);
+                $scope.user = user;
+                
+            })
+        }       
+    };
+
+    init();
 
     /**
     retourne le choix de combobox
@@ -104,7 +128,8 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
     */
 
     $scope.calculPrix = function(){
-
+        console.log("currentUser ", $rootScope.globals.currentUser);
+        getCreditF();
         getCardShared();
         $scope.achat = true;
 
@@ -129,7 +154,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
     var getCreditF = function(){
         me.get_credit
         .then(function(res) {
-            $scope.getCredits = res;
+            $scope.getCredits = res.credits;
             console.log($scope.getCredits);
         });
     };
@@ -147,6 +172,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
             $scope.countCardReciprocal = res.reciprocal;
         });
     };
+
 
     /**
     envoie la quantite de carte selectione
@@ -172,6 +198,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, me){
 
     */
     $scope.setCurrentTemplate = function(template){
+
         $scope.currentTemplate = template;
     };
 
