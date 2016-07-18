@@ -4,9 +4,6 @@
 <!-- boutton modal personnliser carte -->
    <center><button class="personaliserCarte" data-toggle="modal" data-target="#myModal">Faites personnaliser votre carte &nbsp &nbsp<span class = "glyphicon glyphicon-arrow-right" aria-hidden="true"></span> 
     </button></center> 
-   <div>
-      avatar {{user.avatar}}
-   </div>
 
 <!-- modal Personnaliser carte -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -114,7 +111,7 @@
             <ul class="hide-bullets" > 
                 <li class="col-sm-3" ng-repeat = 'template in listCards'> 
                     <a class="thumbnail card {{template}}" id="carousel-selector-{{template}}" data-toggle="modal" data-target="#openFond" ng-click="setCurrentTemplate(template)">
-                        <img class = "imgAvatar" src="user.avatar" alt="imgAvatar">
+                        <img class = "imgAvatar" src="{{user.avatar}}" alt="imgAvatar">
                         <div ng-switch = "isAdded(template)" ng-click = "ajouteFond(template)">
                             <img  ng-switch-when=false class="plusOkIcon" src="img/plus.jpg" alt="plus">   
                             <img ng-switch-when=true class="plusOkIcon" src="img/ok.jpg" alt="ok"> 
@@ -129,7 +126,7 @@
         <div class="modal-dialog modalOpen" role="document">
             <div class="modal-content">
                 <div class="modal-header2">
-                    <img class ="imgAvatarM" src="user.avatar" alt="imgAvatarM">
+                    <img class ="imgAvatarM" src="{{user.avatar}}" alt="imgAvatarM">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
                 </div>
@@ -167,7 +164,7 @@
                         <h5 style="color:red">{{err.message}}</h5>
 
                         <p class="achatCarte"> Vous avez choisit &nbsp {{fondAAjoute.length}} &nbsp carte(s) &nbsp &nbsp &nbsp 
-                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  {{prix}} €
+                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  {{prix | number:2}} €
                         </p>
                          <h5 style="color:white"> * -10% pour 2 à 5 cartes, -20% dès 6 cartes</h5>
 

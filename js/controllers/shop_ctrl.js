@@ -31,6 +31,29 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
     rouge: 'Rouge'
     };
 
+    var init = function() {
+
+        if($rootScope.globals.currentUser){
+            var req = {
+                method: 'GET',
+                url: ROOT_URL + "/users/me",
+                headers: {
+                    token: $rootScope.globals.currentUser.token
+                }
+            };
+
+            $http.defaults.headers.token = $rootScope.globals.currentUser.token;
+            $http(req)
+            .success(function(user) {
+                console.log("login_ctrl, user = " , $scope.user);
+                console.log("user.avatar : ", user.avatar);
+                $scope.user = user;
+                
+            })
+        }       
+    };
+
+    init();
 
     /**
     retourne le choix de combobox
