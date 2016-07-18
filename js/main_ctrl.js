@@ -1,5 +1,5 @@
 //création du contrôleur "login_ctrl"
-app.controller("main_ctrl", function ($scope, $rootScope, $location,  $aside, me, Cards) {
+app.controller("main_ctrl", function ($scope, $rootScope, $location,  $aside,  Cards) {
 
 	console.log("MainCtrl initialized");
 

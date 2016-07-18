@@ -2,6 +2,42 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
  
   //initialisation de la variable user 
   var user = {}; 
+
+  /**
+     * Cette fonction permet de sauver l'authentification de l'utilisateur connecté
+     * sur le site.
+     * @param  {[type]} data [description]
+     * @return {[type]}      [description]
+     */
+  var saveToken = function (data) {
+
+    if(data.token && data.me){
+
+              $rootScope.globals = {
+                currentUser: {
+                  first_name: data.me.first_name,
+                  last_name: data.me.last_name,
+                  email: data.me.email,
+                  token: data.token
+                }
+              };
+
+              window.localStorage.token = 
+                $http.defaults.headers.token = 
+                  this._token = data.token;
+
+              $cookies.putObject('globals', $rootScope.globals);
+
+              console.log("Cookie first_name: ", $rootScope.globals.currentUser.first_name)
+
+              return true;
+    }
+    else
+    {
+      return false;
+    }
+  };
+  
  
   //retour de la factory 
   me = { 
@@ -17,14 +53,16 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
     _card_changed: false,
 
     state: {
-    have_pulsed: false,
-    unread: {
-      cards: 0,
-      notifs: 0,
-      chats: 0,
-      chats_ids: []
-    },
-    last_status_update: null
+
+      have_pulsed: false,
+      unread: {
+        cards: 0,
+        notifs: 0,
+        chats: 0,
+        chats_ids: []
+      },
+
+      last_status_update: null
     },
 
 
@@ -159,11 +197,13 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
         }); 
       }); 
  
-    }, 
-/* 
+    },
+
+    /* 
     Cette fonction permet de mettre un jour les attributs d'un utilisateur 
     Elle retourne une promesse contenant le résultat de la requête 
      */ 
+    
 
     update: function(tmp_user) {
     console.log("fonction update me.facto", tmp_user._id);
@@ -186,41 +226,38 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
           return resolve(new_user);
         }).error(reject);
       });
-  },
+    },
 
-  /**
-   Cette fonction permet de recuperer le credit que l'user proède
-  */
+       /**
+     Cette fonction permet de recuperer le credit que l'user proède
+    */
 
-   get_credit: $q(function(resolve, reject){
+     get_credit: $q(function(resolve, reject){
 
-     if ($rootScope.globals && $rootScope.globals.currentUser) {
-        var req = {
-              method: 'GET',
-              url: ROOT_URL + "/users/me/credits",
-              headers: {
-                token: $rootScope.globals.currentUser.token
-              }
-          };
-        $http(req)
-        .success(function(res){
-          console.log(res);
-          resolve(res);
-        })
-        .error(function(err) {
-          console.log("Erreur requete get_credits", err);
-          reject(err);
-        });
-      }
-      else {
-        resolve("getcredits : User introuvable");
-      }
-    }),
-  
+       if ($rootScope.globals && $rootScope.globals.currentUser) {
+          var req = {
+                method: 'GET',
+                url: ROOT_URL + "/users/me/credits",
+                headers: {
+                  token: $rootScope.globals.currentUser.token
+                }
+            };
+          $http(req)
+          .success(function(res){
+            console.log(res);
+            resolve(res);
+          })
+          .error(function(err) {
+            console.log("Erreur requete get_credits", err);
+            reject(err);
+          });
+        }
+        else {
+          resolve("getcredits : User introuvable");
+        }
+      }),
 
-
-
-  /**
+     /**
   cette function permet de recuperer le nombre de carte que l'user a diffuse et reciproque
   */
 
@@ -250,85 +287,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
         resolve("User introuvable");
       }
     })
- }
 
-
-
-  /**
-  cette function permet de recuperer le nombre de carte que l'user a diffuse et reciproque
-  */
-
-    get_cardsCount : $q(function(resolve,reject){
-
-      if ($rootScope.globals) {
-        var data = {};
-        var req = {
-          method : 'GET',
-          url: ROOT_URL + "/users/me/counters",
-              headers: {
-                token: $rootScope.globals.currentUser.token
-              },
-              data: data
-          };
-        $http(req)
-        .success(function(res){
-          console.log(res);
-          resolve(res);
-        })
-        .error(function(err) {
-          console.log("Erreur requete get_cardsShared", err);
-          reject(err);
-        });
-        }
-      else {
-        resolve("User introuvable");
-      }
-    })
- }
-
-/**
- * Cette fonction permet de sauver l'authentification de l'utilisateur connecté
- * sur le site.
- * @param  {[type]} data [description]
- * @return {[type]}      [description]
- */
-saveToken = function (data) {
-
-  if(data.token && data.me){
-
-            $rootScope.globals = {
-              currentUser: {
-                first_name: data.me.first_name,
-                last_name: data.me.last_name,
-                email: data.me.email,
-                token: data.token
-              }
-            };
-
-            window.localStorage.token = 
-              $http.defaults.headers.token = 
-                this._token = data.token;
-
-            $cookies.putObject('globals', $rootScope.globals);
-
-            console.log("Cookie first_name: ", $rootScope.globals.currentUser.first_name)
-
-            return true;
-  }
-  else
-    return false;
-}
-
-/*sendPictureB64 = function(b64) {
-    return $q(function(resolve, reject) {
-        return $http.post(ROOT_URL + "/users/me/pictureb64", {
-          b64: b64
-        }).success(function(res) {
-          return resolve(res.avatar);
-        });
-      });
-  }
-*/
-return me;
-
+   };
+  return me;
 });
