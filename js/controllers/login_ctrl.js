@@ -43,7 +43,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	$scope.email_login = function () {
 
 	//appel de la fonction login de la factory "me"
-	me.login($scope.user.mail, $scope.user.password)
+	me.login($scope.user.email, $scope.user.password)
 	//1er callback, s'exécute lorsque la méthode me.login
 	//a terminé son exécution
 	.then(function(user) {
