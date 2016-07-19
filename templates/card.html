@@ -5,32 +5,32 @@
 				<div class="row">
 					<div class="user-avatar-infos">
 						<div class="col-xs-4">
-							<div class="avatar-div">
-								<img class="avatar-block" src="{{card._sender.avatar}}">
-								</img>
+							<div class="avatar-block">
+								<div style="background-image:url({{card._sender.avatar}});height: 200px;width: 200px;background-size: cover;;background-repeat: no-repeat;border-radius: 50%;border: 1px solid white; overflow: hidden;margin-top:15px;" class="avatar-image">
+								</div>
 							</div>
 						</div>
 
 						<div class="col-xs-8">
-							<div class="profile-card">
-								<div class="profile-infos">
-									<div class="username">
-										<span>{{card._sender.first_name}}</span>
-										<br>
-										<span>{{card._sender.last_name}}</span>
-									</div>
-								</div>
-								<div class="full-infos">
-									<span>{{card._sender.job}}</span>
-									<span>{{card._sender.company}}</span>
-									<span>{{card._sender.phone1}}</span>
-									<span>{{card._sender.phone2}}</span>
+							<div class="profile-infos">
+								<div class="username">
+									<br><br>
+									<span>{{card._sender.first_name}}</span>
+									<br>
+									<span>{{card._sender.last_name}}</span>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-xs-8">
+							<div class="full-infos">
+									
+									<div>{{card._sender.job}}</div>
+									<div>{{card._sender.company}}</div>
+									<div>{{card._sender.phone1}}</div>
+									<div>{{card._sender.phone2}}</div>
+							</div>
 							<div class="social-list ">
 								<i class="fa fa-facebook fa-2x"></i>
 								<i class="fa fa-twitter fa-2x"></i>

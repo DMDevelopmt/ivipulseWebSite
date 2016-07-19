@@ -1,10 +1,6 @@
 .form-control { margin-bottom: 10px;
 color: grey; }
 
-body{
-	background-color: #50E3C2;
-}	
-
 /*
     Note: It is best to use a less version of this file ( see http://css2less.cc
     For the media queries use @screen-sm-min instead of 768px.

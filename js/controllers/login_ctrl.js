@@ -4,6 +4,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	console.log("LoginCtrl initialized");
 
 	$scope.user = {};
+	$scope.card = {};
 	$scope.password_check = "";
 
 	$scope.loggedIn = !!$rootScope.globals.currentUser;
@@ -24,6 +25,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
         	.success(function(user) {
         		console.log("login_ctrl, user = " , $scope.user);
         		$scope.user = user;
+        		$scope.card._sender = user;
         		
         	})
 		}		

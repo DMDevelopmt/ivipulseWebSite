@@ -7,45 +7,40 @@
 	width: 600px;
 }
 .avatar-block{
-	height: 300px;
+	height: 200px;
 	width: 100%;
-}
-
-.avatar-div{
-	border-radius: 6px;
-	display:inline-block;
-	float:left;
-	margin: -30px 5px 0 8px;
-	max-width: 100%;
-	padding: 1px;
-	vertical-align: bottom;
 }
 .avatar-image{
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	z-index: 2;
-	/*height: 200px;width: 200px;
+	background-repeat: no-repeat;
+	height: 200px;width: 200px;
 	background-size: cover;
 	background-repeat: no-repeat;
 	border-radius: 50%;
-	border: 1px solid white;*/
+	border: 1px solid white;
 	overflow: hidden;
 }
 .user-avatar-infos{
-	height: 300px;
+	height: 200px;
 	width: 100%;
 }
+.profile-infos{
+	margin-left: 50px;
+}
 .username{
-	height: 300px;
+	height: 200px;
 	display: table-cell;
 	vertical-align: middle;
-	font-size: 18pt;
+	font-size: 20pt;
 }
-
+.full-infos{
+	height: 104px;
+	font-size: 14pt;
+	margin-left: 15px;
+	margin-top: 5px;
+}
 .social-list{
 	margin-left: 30px;
-	margin-bottom: 15px;
+	margin-bottom: 0px;
 }
 .card-actions{
 	width: 30px;
@@ -57,3 +52,4 @@
 .icon-action{
 	margin-top: 10px;
 }
+
