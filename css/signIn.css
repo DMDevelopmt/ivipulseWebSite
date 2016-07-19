@@ -3,7 +3,7 @@ body { padding-top:30px;
 	 
 }
 .form-control { margin-bottom: 10px;
-color: grey; }
+color: white; }
 
 body{
 	background-color: #50E3C2;
@@ -44,9 +44,9 @@ color: #50E3C2;
 text-align: center;
 }
 
-input{
-color: grey;
-}
+/* input{
+color: white;
+} */
 
 .glyphicon{
 	color: #50E3C2;
@@ -150,13 +150,13 @@ color: grey;
 	border-radius: 10px;
 	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-.container{
+./* container{
 	color: grey;
 
-}
-#sign{
+} */
+/* #sign{
 	color: grey;
-}
+} */
 #popuSocial{
 	background-color: #50E3C2;
 	margin-left: 40px;
@@ -165,8 +165,14 @@ color: grey;
 	margin-bottom: 30px;
 	color:white;
 }
-.row{
-
+.signForm{
+float: right;
+	width: 100%;
+	width: 600px;
+	background-image: url(../img/icon-ivipulse.png);
+	background-size: cover;
+	-webkit-mask-image:-webkit-gradient(linear, left top, left bottom, 
+		from(rgba(0,0,0,1)), to(rgba(0,0,0,1)));
 
 }
 
@@ -186,6 +192,17 @@ color: grey;
     left: 10%;
 }
 
-.textCardProfil{
+/* .textCardProfil{
 	color: grey;
+} */
+
+.champonly{
+	background-color:rgba(0,0,0,0.5);
+	height: 40px;
+	font-size: 16px;
+	color: white;
+}
+.champonly > .placeholder{
+	color:white;
+
 }

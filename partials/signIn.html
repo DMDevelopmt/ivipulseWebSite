@@ -32,7 +32,7 @@
 
 	<div class="row form-group col-lg-offset-0 col-lg-7 " id="sign">
 		 <div class="col-xs-12 col-sm-12 col-md-12 well well-sm">
-            <legend id="titre"><a  href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-pencil"></i></a > Mon profil</legend>
+            <legend class="text" id="titre"><a  href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-pencil"></i></a > Mon profil</legend>
 			<div class="row onl_row-sm-12 onl_socialButtons">
 			          <div class="col-xs-2 col-sm-2">
 			            <a class="btn btn-lg btn-block onl_btn-facebook" data-toggle="modal" data-placement="top" title="Facebook" data-target="#modalFacebook">
@@ -664,7 +664,7 @@
 					<!-- fin modal Steam -->
 			</div><br>
         </div>
-	 	<form  name= "signForm" id="signForm" ng-submit="update()" class="form well well-sm" role="form" novalidate="">
+	 	<form  name= "signForm" id="signForm" ng-submit="update()" class="form well well-sm signForm" role="form" novalidate="">
 			
 
 			<label>Importer votre avatar</label>
@@ -684,7 +684,7 @@
 			<div class="form-group col-xs-6 col-sm-6 col-md-6">
              	<div class="input-group">
                     <span class="input-group-addon "><span class="glyphicon glyphicon-user"></span></span>
-                    <input type="text" ng-model="user.last_name" class="form-control" name="lastname" placeholder="Nom" required/>
+                    <input type="text" ng-model="user.last_name" class="form-control champOnly" name="lastname" placeholder="Nom" required/>
                 </div>
                 <div class="alert alert-danger fade in" ng-messages="signForm.lastname.$error" ng-messages-include="erreurs.html" ng-if="signForm.$submitted">
                 	<div ng-message="required">Votre nom est requis</div>
@@ -693,7 +693,7 @@
             <div class="form-group col-xs-6 col-sm-6 col-md-6">
              	<div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                    <input type="text" class="form-control" ng-model="user.first_name" name="firstname" placeholder="Prénom" required/>
+                    <input type="text" class="form-control champOnly" ng-model="user.first_name" name="firstname" placeholder="Prénom" required/>
                 </div>
                  <div class="alert alert-danger fade in" ng-messages="signForm.firstname.$error" ng-messages-include="erreurs.html" ng-if="signForm.$submitted">
                 	<div ng-message="required">Votre prénom est requis</div>
@@ -703,42 +703,42 @@
                 <div class="input-group">
                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
                    </span>
-                   <input type="phone" class="form-control" ng-model="user.phone1" name="phone" placeholder="Tél" />
+                   <input type="phone" class="form-control champOnly" ng-model="user.phone1" name="phone" placeholder="Tél" />
                 </div>
             </div>
             <div class="form-group col-xs-6 col-sm-6 col-md-6">
                 <div class="input-group">
                    <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span>
                    </span>
-                   <input type="phone2" class="form-control" name="phone2" ng-model="user.phone2" placeholder="Tél 2" />
+                   <input type="phone2" class="form-control champOnly" name="phone2" ng-model="user.phone2" placeholder="Tél 2" />
                 </div>
             </div>
             <div class="form-group col-xs-6 col-sm-6 col-md-6">
                 <div class="input-group">
                    <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span>
                    </span>
-                   <input type="school" class="form-control" name="school" ng-model="user.job" placeholder="Poste / Etude / Classe" />
+                   <input type="school" class="form-control champOnly" name="school" ng-model="user.job" placeholder="Poste / Etude / Classe" />
                 </div>
             </div>
             <div class="form-group col-xs-6 col-sm-6 col-md-6">
                 <div class="input-group">
                    <span class="input-group-addon"><span class="fa fa-industry"></span>
                    </span>
-                   <input type="society" class="form-control" name="society" ng-model="user.company" placeholder="Société / Université / Lycée" />
+                   <input type="society" class="form-control champOnly" name="society" ng-model="user.company" placeholder="Société / Université / Lycée" />
                 </div>
             </div>
              <div class="form-group col-xs-6 col-sm-6 col-md-6">
                 <div class="input-group">
                    <span class="input-group-addon"><span class="fa fa-at"></span>
                    </span>
-                   <input type="text" class="form-control"  name="email" ng-model="user.email" placeholder="Mail" />
+                   <input type="text" class="form-control champOnly"  name="email" ng-model="user.email" placeholder="Mail" />
                 </div>
             </div>
              <div class="form-group col-xs-6 col-sm-6 col-md-6">
                 <div class="input-group">
                    <span class="input-group-addon"><span class="fa fa-at"></span>
                    </span>
-                   <input type="email" class="form-control" name="mail2"  ng-model="user.email2" placeholder="Mail 2" />
+                   <input type="email" class="form-control champOnly" name="mail2"  ng-model="user.email2" placeholder="Mail 2" />
                 </div>
             </div>
              <div class="form-group col-xs-6 col-sm-6 col-md-6"> 
@@ -746,19 +746,19 @@
                    <span class="input-group-addon"><span class="fa fa-home"></span>
                   
                    </span>
-                   <input type="text" class="form-control" name="Localisation" ng-model="user.localisation" placeholder="Localisation"/>
+                   <input type="text" class="form-control champOnly" name="Localisation" ng-model="user.localisation" placeholder="Localisation"/>
                 </div>
             </div>
              <div class="form-group col-xs-6 col-sm-6 col-md-6">
                  <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                    <input type="text" class="form-control" name="web" ng-model="user.website" placeholder="Site internet" />
+                    <input type="text" class="form-control champOnly" name="web" ng-model="user.website" placeholder="Site internet" />
                  </div>
             </div>
             <div class="form-group col-xs-12 col-sm-12 col-md-12" ng-class="{'has-error': datepickerForm.date.$invalid}">
 				<div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-                   <input class="form-control" name="birthday" ng-model="user.birth_date" bs-datepicker type="text" language="fr" data-format="dd-mmmm-yyyy" placeholder="Date de naissance"  />
+                   <input class="form-control champOnly" name="birthday" ng-model="user.birth_date" bs-datepicker type="text" language="fr" data-format="dd-mmmm-yyyy" placeholder="Date de naissance"  />
             	</div>
             </div>
 	        <button class="btn btn-sg btn-default btn-block" type="submit" ng-click="update()">

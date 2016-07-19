@@ -9,7 +9,7 @@ var app = angular.module("ivipulse", [
   'ngAnimate'
 ]);
 
-var ROOT_URL = 'http://192.168.1.12:8180';
+var ROOT_URL = 'http://192.168.1.3:8180';
 
 
 app.config(['$routeProvider', function($routeProvider) {
@@ -83,10 +83,10 @@ app.run(['$rootScope', '$location', '$cookies', '$http',
             $http.defaults.headers.token = $rootScope.globals.currentUser.token;
         }
   
-        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        /*$rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in
             if (!$rootScope.globals.currentUser && $location.path() !== '/login') {
                 $location.path('/login');
             }
-        });
+        });*/
     }]);
