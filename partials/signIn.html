@@ -664,7 +664,7 @@
 					<!-- fin modal Steam -->
 			</div><br>
         </div>
-	 	<form  id="signForm" ng-submit="update()" class="form well well-sm" role="form">
+	 	<form  name= "signForm" id="signForm" ng-submit="update()" class="form well well-sm" role="form" novalidate="">
 			
 
 			<label>Importer votre avatar</label>
@@ -686,11 +686,17 @@
                     <span class="input-group-addon "><span class="glyphicon glyphicon-user"></span></span>
                     <input type="text" ng-model="user.last_name" class="form-control" name="lastname" placeholder="Nom" required/>
                 </div>
+                <div class="alert alert-danger fade in" ng-messages="signForm.lastname.$error" ng-messages-include="erreurs.html" ng-if="signForm.$submitted">
+                	<div ng-message="required">Votre nom est requis</div>
+                </div>
            </div>
             <div class="form-group col-xs-6 col-sm-6 col-md-6">
              	<div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                     <input type="text" class="form-control" ng-model="user.first_name" name="firstname" placeholder="Prénom" required/>
+                </div>
+                 <div class="alert alert-danger fade in" ng-messages="signForm.firstname.$error" ng-messages-include="erreurs.html" ng-if="signForm.$submitted">
+                	<div ng-message="required">Votre prénom est requis</div>
                 </div>
            </div>
            <div class="form-group col-xs-6 col-sm-6 col-md-6">
