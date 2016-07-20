@@ -86,8 +86,13 @@ app.run(['$rootScope', '$location', '$cookies', '$http',
   
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in
-            if (!$rootScope.globals.currentUser && $location.path() !== '/loginAside') {
+            if (!$rootScope.globals.currentUser && $location.path() !== '/login') {
                 $location.path('/login');
+            }
+            else if($rootScope.globals.currentUser && 
+            		$rootScope.globals.currentUser.new_user &&
+            		$location.path() !== '/signin') {
+            	$location.path('/signin');
             }
         });
     }]);

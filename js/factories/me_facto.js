@@ -12,13 +12,15 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
   var saveToken = function (data) {
 
     if(data.token && data.me){
+      console.log("dans saveToken , valeur de _new_user : ", this.me._new_user);
 
               $rootScope.globals = {
                 currentUser: {
                   first_name: data.me.first_name,
                   last_name: data.me.last_name,
                   email: data.me.email,
-                  token: data.token
+                  token: data.token,
+                  new_user: this.me._new_user
                 }
               };
 
@@ -171,9 +173,11 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
         //en cas de succès 
         .success(function(res) { 
 
+          this.me._new_user = true;
+
           if(saveToken(res)){
             
-            this.me._new_user = true;
+            
             defMe = this.me.init(res.me);
             resolve(defMe);
           } 
@@ -223,7 +227,17 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
           if (new_user.birth_date) {
             new_user.birth_date = new Date(new_user.birth_date);
           }
-          return resolve(new_user);
+          if(new_user.first_name && new_user.first_name !== ""
+              && new_user.last_name && new_user.last_name !== ""){
+            this.me._new_user = false;
+            $rootScope.globals.currentUser.new_user = false;
+            $cookies.putObject('globals', $rootScope.globals);
+            console.log("dans me.update currentUser.new_user : ", $rootScope.globals.currentUser.new_user);
+
+            return resolve(new_user);
+          }
+          else 
+            reject("Champs nom ou prénom manquants");
         }).error(reject);
       });
     },
