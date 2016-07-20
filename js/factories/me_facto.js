@@ -172,8 +172,8 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
         .success(function(res) { 
 
           if(saveToken(res)){
-            //
-            //la requête 
+            
+            this.me._new_user = true;
             defMe = this.me.init(res.me);
             resolve(defMe);
           } 

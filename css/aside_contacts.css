@@ -8,6 +8,16 @@
 }
 .aside-content{
 }
+.content-folders{
+  height: 30px;
+  width: 30px;
+}
+.content-sortbyfilters{
+  height: 30px;
+  width: 30px;
+  display: table-cell;
+  vertical-align: middle;
+}
 .aside-dialog{
 
 }
@@ -49,7 +59,7 @@
     pointer-events: none;
 }
 
-.background::before {
+.background.background-search::before {
       content: '';
       position: absolute;
       top: 0;
