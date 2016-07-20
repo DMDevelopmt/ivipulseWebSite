@@ -16,7 +16,7 @@
 
 
 
-.left{
+.fond-left{
 	width: 30%;
 	
 }
@@ -29,7 +29,7 @@
 	
 }
 
-.middle{
+.fond-middle{
 	width: 30%;
 }
 
@@ -42,7 +42,7 @@
 }
 
 
-.right{
+.fond-right{
 	float: right;
 	width: 100%;
 	width: 400px;

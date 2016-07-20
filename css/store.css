@@ -1,20 +1,55 @@
-.card {
-	height: 100px;
-	width: 680px;
+.main-block{
+	height: 360px;
+	width: 600px;
+}
+.main-card{
+	height: 360px;
+	width: 600px;
+}
+.avatar-block{
+	height: 200px;
+	width: 100%;
+}
+.avatar-image{
+	background-repeat: no-repeat;
+	height: 200px;width: 200px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	border: 1px solid white;
+	overflow: hidden;
+}
+.user-avatar-infos{
+	height: 200px;
+	width: 100%;
+}
+.profile-infos{
+	margin-left: 50px;
+}
+.username{
+	height: 200px;
+	display: table-cell;
+	vertical-align: middle;
+	font-size: 20pt;
+}
+.full-infos{
+	height: 104px;
+	font-size: 14pt;
+	margin-left: 15px;
+	margin-top: 5px;
+}
+.social-list{
+	margin-left: 30px;
+	margin-bottom: 0px;
+}
+.card-actions{
+	width: 30px;
+	margin-top: 30px;
+	float: right;
+	margin-right: 10px;
 
 }
-.card.background{
-	
-	background-size: 100%;
-	background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 90px);
-		
-	
-}
-.card.background.grad {
-	
-}
-
 .icon-action{
-	width: 20px;
-	height: 20px;
+	margin-top: 10px;
 }
+
