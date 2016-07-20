@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="row col-lg-5" id="rowSign">
+	<div class="row col-lg-4" id="rowSign">
 		<div class="row">
 			<ivicard card="card" ></ivicard>
 			<div>
@@ -9,31 +9,28 @@
 		</div>
 	</div>
 
-	<div class="row form-group col-lg-offset-0 col-lg-7 " id="sign">
-		<form  id="signForm" ng-submit="update()" class="form well well-sm" role="form">
+	<div class="row form-group col-lg-offset-0 col-lg-8 " id="sign">
+		<form  id="signForm" name="signForm" ng-submit="update()" class="form well well-sm" role="form" novalidate>
             <legend id="titre">Profil</legend>
+            <div class="form-group col-xs-12 col-sm-12 col-md-12">
+	            <div class="alert alert-danger" role="alert" ng-if="signForm.$submitted">
+							{{err.message}}
+	           	</div>
+	           	</div>
 			<div class="form-group col-xs-6 col-sm-6 col-md-6">
-             	<div class="input-group has-error has-feedback">
+             	<div class="input-group">
                     <span class="input-group-addon ">
                 		<img class="icon-form" src="img/svg/icon-nom.svg"/>
                     </span>
-                    <input type="text" ng-model="user.last_name" class="form-control champOnly" name="lastname" placeholder="Nom(Obligatoire)" aria-describedby="inputErrorStatus" required/>
-                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                     <span id="inputErrorStatus" class="sr-only">{{err.message}}</span>
+                    <input type="text" ng-model="user.last_name" class="form-control champOnly" name="lastname" placeholder="Nom(Obligatoire)" />
                 </div>
            </div>
             <div class="form-group col-xs-6 col-sm-6 col-md-6">
-             	<div class="input-group has-error has-feedback">
+             	<div class="input-group">
                     <span class="input-group-addon">
                     	<img class="icon-form" src="img/svg/icon-prenom.svg"/>
                     </span>
-                    <input type="text" class="form-control champOnly" ng-model="user.first_name" name="firstname" placeholder="Prénom(Obligatoire)" required aria-describedby="inputError2Status" required/>
-                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                     <span id="inputError2Status" class="sr-only">{{err.message}}</span>
-                </div>
-                <pre>test {{err.message}}</pre>
-                <div class="alert alert-danger" ng-if="signForm.$submitted">
-						<span>{{err.message}}</span>
+                    <input type="text" class="form-control champOnly" ng-model="user.first_name" name="firstname" placeholder="Prénom(Obligatoire)" />
                 </div>
            </div>
 			<label id="titre">Importer votre avatar</label>
@@ -151,7 +148,7 @@
 				                        <p class="p2"><span>
 				                        <form id="formFacebook" ng-submit="enregistreFacebook()">
 				                        	<div class="form-group">
-												<input type="texte" name="popupFacebook" ng-model="user.social"> 
+												<input type="texte" name="popupFacebook" ng-model="user.social"/> 
 				                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 				                        	</div>
 				                        	</span></p>
@@ -165,7 +162,7 @@
 				                            </p>
 				                        	</div>
 				                        	<div>
-				                        		<button class="btn btn-default" ng-click ="enregistreFacebook()">Valider</button>
+				                        		<button class="btn btn-default" ng-click ="update()">Valider</button>
 				                        	</div>
 				                        </form>
 				                    </td>
@@ -203,7 +200,7 @@
 					                        <p class="p2"><span>
 					                        <form id="formFacebook" ng-submit="enregistreTwitter()">
 					                        	<div class="form-group">
-													<input type="texte" name="popupTwitter" ng-model="user.social"> 
+													<input type="texte" name="popupTwitter" ng-model="user.social"/> 
 					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 					                        	</div>
 					                        	</span></p>
@@ -217,7 +214,7 @@
 					                            </p>
 					                        	</div>
 					                        	<div>
-					                        		<button class="btn btn-default" ng-click ="enregistreTwitter()">Valider</button>
+					                        		<button class="btn btn-default" ng-click ="update()">Valider</button>
 					                        	</div>
 					                        </form>
 					                    </td>
@@ -255,7 +252,7 @@
 					                        <p class="p2"><span>
 					                        <form id="formFacebook" ng-submit="enregistreLinkedIn()">
 					                        	<div class="form-group">
-													<input type="texte" name="popupLinkedIn" ng-model="user.social"> 
+													<input type="texte" name="popupLinkedIn" ng-model="user.social"/> 
 					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 					                        	</div>
 					                        	</span></p>
@@ -269,7 +266,7 @@
 					                            </p>
 					                        	</div>
 					                        	<div>
-					                        		<button class="btn btn-default" ng-click ="enregistreLinkedIn()">Valider</button>
+					                        		<button class="btn btn-default" ng-click ="update()">Valider</button>
 					                        	</div>
 					                        </form>
 					                    </td>
@@ -307,7 +304,7 @@
 					                        <p class="p2"><span>
 					                        <form id="formFacebook" ng-submit="enregistreSnapchat()">
 					                        	<div class="form-group">
-													<input type="texte" name="popupSnapchat" ng-model="user.social"> 
+													<input type="texte" name="popupSnapchat" ng-model="user.social"/> 
 					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 					                        	</div>
 					                        	</span></p>
@@ -321,7 +318,7 @@
 					                            </p>
 					                        	</div>
 					                        	<div>
-					                        		<button class="btn btn-default" ng-click ="enregistreSnapchat()">Valider</button>
+					                        		<button class="btn btn-default" ng-click ="update()">Valider</button>
 					                        	</div>
 					                        </form>
 					                    </td>
@@ -359,7 +356,7 @@
 					                        <p class="p2"><span>
 					                        <form id="formGitHub" ng-submit="enregistreGitHub()">
 					                        	<div class="form-group">
-													<input type="texte" name="popupGitHub" ng-model="user.social"> 
+													<input type="texte" name="popupGitHub" ng-model="user.social"/> 
 					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 					                        	</div>
 					                        	</span></p>
@@ -373,7 +370,7 @@
 					                            </p>
 					                        	</div>
 					                        	<div>
-					                        		<button class="btn btn-default" ng-click ="enregistreGitHub()">Valider</button>
+					                        		<button class="btn btn-default" ng-click ="update()">Valider</button>
 					                        	</div>
 					                        </form>
 					                    </td>
@@ -411,7 +408,7 @@
 				                        <p class="p2"><span>
 				                        <form id="formViadeo" ng-submit="enregistreViadeo()">
 				                        	<div class="form-group">
-												<input type="texte" name="popupSkype" ng-model="user.social"> 
+												<input type="texte" name="popupSkype" ng-model="user.social"/> 
 				                           		<button class="btn btn-default" ng-click ="VerifViadeo()" >Verifier</button>
 				                        	</div>
 				                        	</span></p>
@@ -425,7 +422,7 @@
 				                            </p>
 				                        	</div>
 				                        	<div>
-				                        		<button class="btn btn-default" ng-click ="enregistreViadeo()">Valider</button>
+				                        		<button class="btn btn-default" ng-click ="update()">Valider</button>
 				                        	</div>
 				                        </form>
 				                    </td>
@@ -465,7 +462,7 @@
 				                        <p class="p2"><span>
 				                        <form id="formSkype" ng-submit="enregistreSkype()">
 				                        	<div class="form-group">
-												<input type="texte" name="popupSkype" ng-model="user.social"> 
+												<input type="texte" name="popupSkype" ng-model="user.social"/> 
 				                           		<button class="btn btn-default" ng-click ="VerifSkype()" >Verifier</button>
 				                        	</div>
 				                        	</span></p>
@@ -479,7 +476,7 @@
 				                            </p>
 				                        	</div>
 				                        	<div>
-				                        		<button class="btn btn-default" ng-click ="enregistreSkype()">Valider</button>
+				                        		<button class="btn btn-default" ng-click ="update()">Valider</button>
 				                        	</div>
 				                        </form>
 				                    </td>
@@ -517,8 +514,8 @@
 					                        <p class="p2"><span>
 					                        <form id="formTumblr" ng-submit="enregistreTumblr()">
 					                        	<div class="form-group">
-													<input type="texte" name="popupTumblr" ng-model="user.social"> 
-					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
+													<input type="texte" name="popupTumblr" ng-model="user.social"/> 
+					                           		<button class="btn btn-default" ng-click ="update()" >Verifier</button>
 					                        	</div>
 					                        	</span></p>
 					                        	<div class="form-group">
@@ -569,7 +566,7 @@
 					                        <p class="p2"><span>
 					                        <form id="formYoutube" ng-submit="enregistreYoutube()">
 					                        	<div class="form-group">
-													<input type="texte" name="popupYoutube" ng-model="user.social"> 
+													<input type="texte" name="popupYoutube" ng-model="user.social"/> 
 					                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 					                        	</div>
 					                        	</span></p>
@@ -583,7 +580,7 @@
 					                            </p>
 					                        	</div>
 					                        	<div>
-					                        		<button class="btn btn-default" ng-click ="enregistreYoutube()">Valider</button>
+					                        		<button class="btn btn-default" ng-click ="update()">Valider</button>
 					                        	</div>
 					                        </form>
 					                    </td>
@@ -621,7 +618,7 @@
 				                        <p class="p2"><span>
 				                        <form id="formPinterest" ng-submit="enregistrePinterest()">
 				                        	<div class="form-group">
-												<input type="texte" name="popupFacebook" ng-model="user.social"> 
+												<input type="texte" name="popupFacebook" ng-model="user.social"/> 
 				                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 				                        	</div>
 				                        	</span></p>
@@ -635,7 +632,7 @@
 				                            </p>
 				                        	</div>
 				                        	<div>
-				                        		<button class="btn btn-default" ng-click ="enregistrePinterest()">Valider</button>
+				                        		<button class="btn btn-default" ng-click ="update()">Valider</button>
 				                        	</div>
 				                        </form>
 				                    </td>
@@ -673,7 +670,7 @@
 				                        <p class="p2"><span>
 				                        <form id="formInstagram" ng-submit="enregistreInstagram()">
 				                        	<div class="form-group">
-												<input type="texte" name="popupInstagram" ng-model="user.social"> 
+												<input type="texte" name="popupInstagram" ng-model="user.social"/> 
 				                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 				                        	</div>
 				                        	</span></p>
@@ -687,7 +684,7 @@
 				                            </p>
 				                        	</div>
 				                        	<div>
-				                        		<button class="btn btn-default" ng-click ="enregistreInstagram()">Valider</button>
+				                        		<button class="btn btn-default" ng-click ="update()">Valider</button>
 				                        	</div>
 				                        </form>
 				                    </td>
@@ -725,7 +722,7 @@
 				                        <p class="p2"><span>
 				                        <form id="formSteam" ng-submit="enregistreSteam()">
 				                        	<div class="form-group">
-												<input type="texte" name="popupSteam" ng-model="user.social"> 
+												<input type="texte" name="popupSteam" ng-model="user.social"/> 
 				                           		<button class="btn btn-default" ng-click ="VerifSocial()" >Verifier</button>
 				                        	</div>
 				                        	</span></p>
@@ -739,7 +736,7 @@
 				                            </p>
 				                        	</div>
 				                        	<div>
-				                        		<button class="btn btn-default" ng-click ="enregistreSteam()">Valider</button>
+				                        		<button class="btn btn-default" ng-click ="update()">Valider</button>
 				                        	</div>
 				                        </form>
 				                    </td>
@@ -750,14 +747,14 @@
 				    </div>
 					<!-- fin modal Steam -->
 			</div><br>
-			<div class="progress col-xs-12 col-sm-12 col-md-12">
+			<div class="progress">
             	<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
                 <span class="sr-only">20% Complete (info)</span>
 				</div>
             	<span class="progress-type">Remplissage de votre profil</span>
             	<span class="progress-completed">20%</span>
         	</div>
-        	<button class="btn btn-sg btn-default btn-block  col-xs-12 col-sm-12 col-md-12" type="submit" ng-click="update()">
+        	<button class="btn btn-sg btn-default btn-block" type="submit" ng-click="update()">
                 Valider
             </button>
 	 	</form>
