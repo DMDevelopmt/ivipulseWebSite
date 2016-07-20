@@ -101,6 +101,9 @@
     min-width: 240px;
   }
 }
+.aside-title{
+  margin-top: 20px;
+}
 .aside.left {
   right: auto;
   left: 0px;
@@ -114,7 +117,8 @@
   border-bottom: 1px solid #e5e5e5;
   min-height: 16.42857143px;
   padding: 6px 15px;
-  background: #337ab7;
+  background: #50E3C2;
+  height: 70px;
   color: white;
 }
 .aside .aside-dialog .aside-header .close {
