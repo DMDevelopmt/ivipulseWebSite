@@ -91,13 +91,14 @@
 			    <li>
 			    	<button type="button" class="buttonRechercher" data-template-url="./templates/aside.search.html" data-placement="left" data-animation="am-slide-left" bs-aside="aside" data-container="body">Rechercher</button>
 			    </li>
-				<li class="barreBienvenue" ng-if="loggedIn">
+			    <li class="boutonLogout">
+					<a href="#" ng-click="logout()">Logout</a>
+				</li>
+				<li class="barreBienvenue" ng-show="loggedIn">
 					<span>Bienvenue  &nbsp&nbsp{{user.first_name}} &nbsp{{user.last_name}}
 					</span>
 				</li>
-				<li class="boutonLogout">
-					<a href="#" ng-click="logout()">Logout</a>
-				</li>
+				
 	  		</ul>
 		</nav>
 	</div>
