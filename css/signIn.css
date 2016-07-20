@@ -1,5 +1,3 @@
-.form-control { margin-bottom: 10px;
-color: grey; }
 
 /*
     Note: It is best to use a less version of this file ( see http://css2less.cc
@@ -13,10 +11,7 @@ color: grey; }
         margin-left: 25%;
     }
 }
-body {
-    font-family: 'Titillium Web', sans-serif; 
 
-}
 .onl_login .onl_authTitle {
     text-align: center;
 	line-height: 300%;
@@ -31,20 +26,12 @@ body {
 	color: #50E3C2;
 
 }
-#titre{
-color: #50E3C2;
-text-align: center;
-}
 
-input{
-color: grey;
-}
-
-.glyphicon{
+.iconLogo{
 	color: #50E3C2;
 }
 
-.fa{
+.iconLogo{
 	color: #50E3C2;
 }
 
@@ -126,29 +113,6 @@ color: grey;
 	max-height:500px;
 }
 
-#cardProfil{
-
-	background-color: white;
-	width: 450px;
-	height: 300px;
-	
-	border:1px ;
-	padding:10px 20px;
-	font-size:18px; 
-	
-	margin-top: 2px;
-	margin-bottom: 10px;
-	padding-top: 10px;
-	border-radius: 10px;
-	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-.container{
-	color: grey;
-
-}
-#sign{
-	color: grey;
-}
 #popuSocial{
 	background-color: #50E3C2;
 	margin-left: 40px;
@@ -157,9 +121,21 @@ color: grey;
 	margin-bottom: 30px;
 	color:white;
 }
-.row{
 
+#titre{
+color: white;
+text-align: center;
+}
 
+#signForm{
+	background-image: url("../img/splash.jpg");
+	background-size: cover;
+}
+#sign{
+	color:black;
+	float: right;
+	width: 100%;
+	width: 500px;
 }
 
 #buttonCard{
@@ -167,17 +143,7 @@ color: grey;
 	margin-bottom: 10px;
 	margin-top: 10px;
 }
-.imgAvatarProfil{
-	position: absolute;
-	overflow:hidden;
-    border-radius:100%;
-    width:40px;
-    height:40px;
-    z-index: 2;
-    top:15%;
-    left: 10%;
-}
-
-.textCardProfil{
-	color: grey;
+.icon-form{
+	width:20px;
+	color:#50E3C2;
 }
