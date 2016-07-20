@@ -17,7 +17,8 @@ app.config(['$routeProvider', function($routeProvider) {
 	//système de routage
 	$routeProvider
 	.when('/', {
-		templateUrl: 'partials/home.html'
+		templateUrl: 'partials/home.html',
+		controller: 'login_ctrl'
 	})
 	.when('/login', {
 		templateUrl: 'partials/login.html',
@@ -36,7 +37,8 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'shop_ctrl'
 	})
 	.when('/home', {
-		templateUrl: 'partials/home.html'
+		templateUrl: 'partials/home.html',
+		controller: 'login_ctrl'
 	})
 	.when('/personnaliserCarte',{
 		templateUrl:'partials/personnaliserCarte'
@@ -55,7 +57,6 @@ app.config(['$routeProvider', function($routeProvider) {
 		templateUrl: 'templates/aside.login.html'
 	})
 	.otherwise({
-
 		redirectTo: '/'
 	});
 }]);
