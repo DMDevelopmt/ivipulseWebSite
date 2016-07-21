@@ -1,5 +1,5 @@
 //création du contrôleur "store_ctrl"
-app.controller("store_ctrl", function ($scope, Cards) {
+app.controller("store_ctrl", function ($scope, $routeParams, Cards) {
 	
 	console.log("StoreCtrl initialized");
 
@@ -9,6 +9,10 @@ app.controller("store_ctrl", function ($scope, Cards) {
 	.then(function(res) {
 		$scope.cards = res;
 	});
+
+	$scope.selectContact = function(card) {
+		$scope.card = card;
+	};
 
 });
 

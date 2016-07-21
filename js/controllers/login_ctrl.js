@@ -55,7 +55,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 		$scope.loggedIn = true;
 		$scope.err.message = null;
       	//console.log("user_name : " + user.first_name);
-			$location.path('/store');
+			$location.path('/home');
 	})
 	.catch(function(err) {
 		$scope.err.message = err;

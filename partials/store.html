@@ -1,14 +1,225 @@
 <section>
-<!-- 
-	<pre>
-		{{cards | json}}
-	</pre> -->
-	
-	<list 
-	ng-repeat="card in cards">
-		<ul>
-			<ivicard card="card"></ivicard>
-		</ul>
-		
-	</list>
+	<div class="page-contacts">
+		<div class="container">
+			<div class="row">
+				<div class="contacts-container">
+					<div class="col-lg-6">
+						<div class="contacts-body">
+
+					        <div class="form-group">
+					          <div class="input-group">
+					            <span class="input-group-addon">
+					              <span class="glyphicon glyphicon-search"></span>
+					            </span>
+					            <input class="form-control" ng-model="contacts_filter" />
+					            <br>
+					          </div>
+					        </div>
+
+
+					        <div class="main-content">
+					            <div class="row">
+					              <div class="SortByFilters">
+					                <div class="col-xs-2">
+					                  <div class="content-sortbyfilters">
+					                    <span>A-Z</span>
+					                  </div> 
+					                </div>
+					                <div class="col-xs-2">
+					                  <div class="content-folders">
+					                    <img src="img/svg/icon-folders.svg"/>
+					                  </div>                  
+					                </div>
+					                <div class="col-xs-2">
+					                  <div class="content-sortbyfilters">
+					                    <span>Date</span>
+					                  </div>                  
+					                </div>
+					              </div>
+					            </div>
+					            <div class="row">
+					             	<div class="card-container" ng-repeat="card in cards | searchContactsFilter:contacts_filter">    <button ng-click="selectContact(card);">Select</button>
+
+						                <div class="sous-main card background background-search {{card._sender.template}}">
+						                
+						                  <div class="col-xs-3">
+						                    <div class="avatar-content" onclick="selectContact(card)">
+						                      <div style="background-image:url({{card._sender.avatar}});height: 100px;width: 100px;background-size: cover;;background-repeat: no-repeat;border-radius: 50%;border: 1px solid white; overflow: hidden;margin-top:5px;" class="avatar-img">
+						                      </div>
+						                    </div>
+						                  </div>
+
+
+						                  <div class="col-xs-6">
+						                    <div class="contact-infos">
+						                      <br>
+						                      <div class="infos-text" align="left">{{card._sender.first_name}} {{card._sender.last_name}}
+						                      </div>
+						                      <div class="infos-sup">Sociologue en chef</div>
+						                      <div class="infos-sup">Bureau des renseignements généraux</div>
+						                    </div>
+						                  </div>
+
+						                <!-- div sous-main -->
+						                </div>
+
+
+					            	</div>
+					            <!-- fin div row -->
+					            </div>
+					          <!--fin div container -->
+					        <!--fin div main-content -->
+					        </div>
+
+					      <!-- div contacts-body -->
+					      </div>
+					    <!-- div col-lg-6 -->
+					   	</div>
+					<!--fin div contacts-container-->
+					</div>
+				<div class="card-contact-right">
+					<div class="col-lg-6">
+						<ivicard card="card"></ivicard>
+						<div class="contact-infos-bottom">
+							<div class="contact-profile-bottom">			
+							<div class="form-group col-xs-6 col-sm-6 col-md-6" ng-show="card._sender.last_name">
+					             	<div class="input-group">
+					                    <span class="input-group-addon ">
+					                		<img class="icon-form" src="img/svg/icon-nom.svg"/>
+					                    </span>
+					                    <label  class="form-control champOnly">
+					                    	{{card._sender.last_name}}
+					                    </label>
+					                </div>
+					           </div>
+
+
+					            <div class="form-group col-xs-6 col-sm-6 col-md-6" ng-show="card._sender.first_name">
+					             	<div class="input-group">
+					                    <span class="input-group-addon">
+					                    	<img class="icon-form" src="img/svg/icon-prenom.svg"/>
+					                    </span>
+					                    <label class="form-control champOnly">
+					                    	{{card._sender.first_name}}
+					                    </label>
+					                </div>
+					           </div>
+								
+					           <div class="form-group col-xs-6 col-sm-6 col-md-6" ng-show="card._sender.phone1">
+					                <div class="input-group">
+					                   <span class="input-group-addon">
+					                   		<img class="icon-form" src="img/svg/icon-phone.svg"/>
+					                   </span>
+					                   <label class="form-control champOnly">
+					                   		{{card._sender.phone1}}
+					                   </label>
+					                </div>
+					            </div>
+
+					            <div class="form-group col-xs-6 col-sm-6 col-md-6" ng-show="card._sender.phone2">
+					                <div class="input-group">
+					                   <span class="input-group-addon">
+					                   		<img class="icon-form" src="img/svg/icon-phone2.svg"/>
+					                   </span>
+					                   <label class="form-control champOnly">
+					                   	{{card._sender.phone2}}
+					                   </label>
+					                </div>
+					            </div>
+
+					            <div class="form-group col-xs-6 col-sm-6 col-md-6" ng-show="card._sender.job">
+					                <div class="input-group">
+					                   <span class="input-group-addon">
+					                   		<img class="icon-form" src="img/svg/icon-job.svg"/>
+					                   </span>
+					                   <label class="form-control champOnly">
+					                   	{{card._sender.job}}
+					                   </label>
+					                </div>
+					            </div>
+
+					            <div class="form-group col-xs-6 col-sm-6 col-md-6" ng-show="card._sender.company">
+					                <div class="input-group">
+					                   <span class="input-group-addon">
+					                   		<img class="icon-form" src="img/svg/icon-entreprise.svg"/>
+					                   </span>
+					                   <label class="form-control champOnly">
+					                   	{{card._sender.company}}
+					                   </label>
+					                </div>
+					            </div>
+
+					             <div class="form-group col-xs-6 col-sm-6 col-md-6" ng-show="card._sender.email">
+					                <div class="input-group">
+					                	<span class="input-group-addon ">
+					                		<img class="icon-form" src="img/svg/icon-email2.svg"/>
+					                    </span>
+					                    <label class="form-control champOnly">
+					                    	{{card._sender.email}}
+					                    </label>
+					                </div>
+					            </div>
+
+					             <div class="form-group col-xs-6 col-sm-6 col-md-6" ng-show="card._sender.email2">
+					                <div class="input-group">
+					                   <span class="input-group-addon">
+					                   		<img class="icon-form" src="img/svg/icon-email2.svg"/>
+					                   </span>
+					                   <label type="email" class="form-control champOnly">
+					                   	{{card._sender.email2}}
+					                   </label>
+					                </div>
+					            </div>
+
+					             <div class="form-group col-xs-6 col-sm-6 col-md-6" ng-show="card._sender.localisation"> 
+					                <div class="input-group">
+					                   <span class="input-group-addon">
+					                   		<img class="icon-form" src="img/svg/icon-localisation.svg"/>
+					                   </span>
+					                   <label class="form-control champOnly">
+					                   	{{card._sender.localisation}}
+					                   </label>
+					                </div>
+					            </div>
+
+					             <div class="form-group col-xs-6 col-sm-6 col-md-6" ng-show="card._sender.website">
+					                 <div class="input-group">
+					                    <span class="input-group-addon">
+					                    	<img class="icon-form" src="img/svg/icon-url.svg"/>
+					                    </span>
+					                    <label class="form-control champOnly" ng-model="card._sender.website">
+					                    {{card._sender.website}}
+					                    </label>
+					                 </div>
+					            </div>
+
+					            <div class="form-group col-xs-12 col-sm-12 col-md-12" ng-show="card._sender.website">
+									<div class="input-group">
+					                    <span class="input-group-addon">
+					                    	<img class="icon-form" src="img/svg/icon-age.svg"/>
+					                    </span>
+					                   <label class="form-control champOnly">
+					                   	{{card._sender.birth_date}}
+					                   </label>
+					            	</div>
+					            </div>
+
+					            <div class="col-xs-offset-6 form-group col-xs-6 col-sm-6 col-md-6">
+					                 <button class="btn btn-default btn-block" ng-click="supprimerContact()">Supprimer
+					                 </button>
+					            </div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+			<!-- div row -->
+			</div>
+
+
+		</div>
+	</div>
+
 </section>

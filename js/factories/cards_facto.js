@@ -5,7 +5,7 @@ app.factory("Cards", function($http, $q, $rootScope, $location) {
 		acceptedCards: function (){
 			
 			return $q(function(resolve, reject) {
-				if($rootScope.globals.currentUser) {
+				if($rootScope.globals.currentUser && $rootScope.globals.currentUser.token) {
 
 					var data = {};
 				    //$http.defaults.headers.token = $rootScope.globals.currentUser.token;
@@ -33,6 +33,21 @@ app.factory("Cards", function($http, $q, $rootScope, $location) {
 					reject("Cannot find currentUser");
 				}
 			});
+		},
+
+		decline: function (cardId) {
+			return $q(function(resole, reject){
+				if($rootScope.globals.currentUser && $rootScope.globals.currentUser.token){
+
+					req = {
+						method: 'PUT',
+				        url: ROOT_URL + "/cards/#{{cardId}}",
+				        headers: {
+				        	token: $rootScope.globals.currentUser.token
+				        }
+					}
+				}
+			})
 		}
 	};
 });
