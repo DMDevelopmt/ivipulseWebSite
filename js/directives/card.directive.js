@@ -7,3 +7,13 @@ app.directive('ivicard', function(){
 		}
 	};
 });
+
+app.directive('infor',function(){
+	return{
+		restrict: 'E',
+		templateUrl: 'templates/signin.html',
+		scope: {
+			
+		}
+	}
+})

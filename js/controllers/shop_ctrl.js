@@ -1,20 +1,19 @@
 
 app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
+
+    $scope.user = {};
 	$scope.fondCards = {};
     $scope.listCards = {};
 	$scope.selectedIcon = true;
 	$scope.fondAAjoute = [];
     $scope.currentTemplate = {};
-    $scope.getCredits = null;
-    $scope.resteCredits = {};
     $scope.achat = true;
+    $scope.achatCredits = true;
     $scope.prix = null;
     $scope.avatar = {};
+    $scope.fondAAcheter = [];
 
     $scope.filter = "all";
-
-    $scope.formule = "";
-
 
 
     $scope.categories = {
@@ -48,6 +47,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
                 console.log("login_ctrl, user = " , $scope.user);
                 console.log("user.avatar : ", user.avatar);
                 $scope.user = user;
+                $scope.fondAAcheter = user.premium_cards;
                 
             })
         }       
@@ -105,21 +105,7 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
 
     shopListFonds();
 
-    /**
-    retourne le reste de crédit après l'achat de carte
-    */
-    $scope.calculCredits = function(){
-        if($scope.getCredits < $scope.fondAAjoute.length){
-            $scope.err.message = " Credit insuffisant";
-        }
-        else{
-            $scope.resteCredits = $scope.getCredits - $scope.fondAAjoute.length;
-            $scope.achat = false;
-            $scope.fondAAjoute = [];
-        }
-        console.log("resteCredits :", $scope.resteCredits);
-    };
-
+  
 
 
     /**
@@ -129,7 +115,6 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
 
     $scope.calculPrix = function(){
         console.log("currentUser ", $rootScope.globals.currentUser);
-        getCreditF();
         getCardShared();
         $scope.achat = true;
 
@@ -146,20 +131,6 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
 
         console.log("prix : ", $scope.prix);
     };
-
-
-    /**
-    retourne le crédit que l'user procède
-    */
-    var getCreditF = function(){
-        me.get_credit
-        .then(function(res) {
-            $scope.getCredits = res.credits;
-            console.log($scope.getCredits);
-        });
-    };
-
-    
 
 
     /**
@@ -202,5 +173,40 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
         $scope.currentTemplate = template;
     };
 
+
+    $scope.orderAchatCredit = function(){
+
+        me.purchase_many_credits($scope.fondAAjoute.length)
+        .then(function(credits){
+            console.log("shop_ctrl, orderAchatCredit nouveaux credits:", credits);
+            $scope.user.credits = credits;
+        });
+        $scope.achatCredits = false;
+    };
+
+
+    $scope.buy_cards = function(){
+        if($scope.user.credits < $scope.fondAAjoute.length){
+            $scope.err.message = " Credit insuffisant";
+        }
+        else{
+            me.purchase_card_buy($scope.fondAAjoute)
+            .then(function(res){
+                $scope.fondAAcheter = res.premium_cards;
+                $scope.user.credits = res.credits;
+            });
+            $scope.achat = false;
+        }
+        
+    }
+
+  /**  var compareCards = function($scope.fondAAjoute,$scope.fondAAcheter){
+        return matches.every(function(matched){
+            if ($scope.fondAAjoute === $scope.fondAAcheter){
+                return $scope.err.message = "carte deja acheter";
+                }
+            }
+    }
+    **/
 });
 
