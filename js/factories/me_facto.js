@@ -242,35 +242,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       });
     },
 
-       /**
-     Cette fonction permet de recuperer le credit que l'user proède
-    */
-
-     get_credit: $q(function(resolve, reject){
-
-       if ($rootScope.globals && $rootScope.globals.currentUser) {
-          var req = {
-                method: 'GET',
-                url: ROOT_URL + "/users/me/credits",
-                headers: {
-                  token: $rootScope.globals.currentUser.token
-                }
-            };
-          $http(req)
-          .success(function(res){
-            console.log(res);
-            resolve(res);
-          })
-          .error(function(err) {
-            console.log("Erreur requete get_credits", err);
-            reject(err);
-          });
-        }
-        else {
-          resolve("getcredits : User introuvable");
-        }
-      }),
-
+    
      /**
   cette function permet de recuperer le nombre de carte que l'user a diffuse et reciproque
   */
@@ -298,10 +270,74 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
         });
         }
       else {
-        resolve("User introuvable");
+        rejetct("User introuvable");
       }
-    })
+    }),
 
-   };
+
+    purchase_card_buy : function(listFonds){
+
+      if ($rootScope.globals && $rootScope.globals.currentUser) {
+        var data = {cards: listFonds};
+        var req = {
+          method : 'PUT',
+          url: ROOT_URL + "/users/me/premium_template/",
+              headers: {
+                token: $rootScope.globals.currentUser.token
+              },
+              data: data
+          };
+         return $q(function(resolve,reject){
+        $http(req)
+        .success(function(res){
+          console.log("purchase_card success", res);
+          resolve(res);
+        })
+        .error(function(err) {
+          console.log("Erreur requete purchase_card", err);
+          reject(err);
+          });
+        });
+        }
+      else {
+        rejetct("User introuvable");
+      }
+
+    },
+
+    purchase_many_credits : function(value){
+      if ($rootScope.globals && $rootScope.globals.currentUser){
+        var data = {};
+        var req = {
+          method : 'PUT',
+          url: ROOT_URL + "/users/me/purchase_many/" + value,
+              headers: {
+                token: $rootScope.globals.currentUser.token
+              },
+              data:data
+          };
+        return $q(function(resolve,reject){
+          $http(req)
+          .success(function(res){
+            console.log(res.credits);
+            resolve(res.credits);
+          })
+          .error(function(err){
+            reject(err);
+          });
+        });
+      }
+      else {
+        reject("User introuvable");
+      }
+    }
+
+  }
+
+
   return me;
 });
+
+  
+
+    
