@@ -176,9 +176,10 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
           this.me._new_user = true;
 
           if(saveToken(res)){
-            
+            console.log("me_facto : signin, user.template = ", res.me.template);
             
             defMe = this.me.init(res.me);
+
             resolve(defMe);
           } 
           //si problème serveur 
@@ -230,10 +231,6 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
           if(new_user.first_name && new_user.first_name !== ""
               && new_user.last_name && new_user.last_name !== ""){
             this.me._new_user = false;
-            $rootScope.globals.currentUser.new_user = false;
-            $cookies.putObject('globals', $rootScope.globals);
-            console.log("dans me.update currentUser.new_user : ", $rootScope.globals.currentUser.new_user);
-
             return resolve(new_user);
           }
           else 

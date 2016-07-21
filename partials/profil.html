@@ -94,7 +94,7 @@
 				<form  id="signForm" name="signForm" ng-submit="update()" role="form" novalidate>
 					<legend id="titre">Profil</legend>
 		            <div class="form-group col-xs-12 col-sm-12 col-md-12">
-			            <div class="alert alert-danger" role="alert" ng-if="signForm.$submitted">
+			            <div class="alert alert-danger" role="alert" ng-if="err.message">
 									{{err.message}}
 			           	</div>
 			        </div>

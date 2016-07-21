@@ -55,7 +55,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 		$scope.loggedIn = true;
 		$scope.err.message = null;
       	//console.log("user_name : " + user.first_name);
-			$location.path('/home');
+			$location.path('/profil');
 	})
 	.catch(function(err) {
 		$scope.err.message = err;
@@ -81,7 +81,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
   			//stocke l'objet renvoyé par la factory dans le scope
   			$scope.user = res;
   			$scope.err.message = null;
-  			$location.path("/signin");
+  			$location.path("/profil");
   		})
       //récupération du message d'erreur
   		.catch(function(err) {
@@ -113,11 +113,19 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 			//stocke l'objet tmp_user renvoyé par la factory dans le scope
 			$scope.user = res;
 			$scope.err.message = null;
-			console.log("user_name : " + res.password);
-			$location.path("/signin");
+			console.log("user_name : " + res.first_name);
+			if($rootScope.globals.currentUser.new_user){
+				
+	            $rootScope.globals.currentUser.new_user = false;
+	            $cookies.putObject('globals', $rootScope.globals);
+	            console.log("dans me.update currentUser.new_user : ", $rootScope.globals.currentUser.new_user);
+
+				$location.path("/shop");
+			}
+			
 		})
 		.catch(function(err) {
-			$scope.err.message = err;
+			$scope.err.message = "Les champs nom ou prénom sont absents";
 		});
 	}
 

@@ -25,11 +25,6 @@ app.config(['$routeProvider', function($routeProvider) {
 		templateUrl: 'partials/login.html',
 		controller: 'login_ctrl'
 	})
-	.when('/signin', {
-		templateUrl: 'partials/signin.html',
-		controller: 'login_ctrl'
-		
-	})
 	.when('/logged', {
 		templateUrl: 'partials/logged.html'
 	})
@@ -94,8 +89,9 @@ app.run(['$rootScope', '$location', '$cookies', '$http',
             }
             else if($rootScope.globals.currentUser && 
             		$rootScope.globals.currentUser.new_user &&
-            		$location.path() !== '/signin') {
-            	$location.path('/signin');
+            		$location.path() !== '/profil' &&
+            		$location.path() !== '/shop') {
+            	$location.path('/profil');
             }
         });
     }]);
