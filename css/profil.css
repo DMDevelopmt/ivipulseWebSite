@@ -141,7 +141,7 @@ text-align: center;
 	width: 275px;
 }
 .content-profil-page{
-	background-image: url("../img/icon-ivipulse.png");
+	background-image: url("../img/header.jpg");
 	-webkit-mask-image:-webkit-gradient(linear, right top, right bottom ,
 		from(rgba(0,0,0,1)), to(rgba(0,0,0,1)));
 	background-size: cover;
