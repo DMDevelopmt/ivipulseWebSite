@@ -38,12 +38,12 @@
 					              </div>
 					            </div>
 					            <div class="row">
-					             	<div class="card-container" ng-repeat="card in cards | searchContactsFilter:contacts_filter">    <button ng-click="selectContact(card);">Select</button>
+					             	<div class="card-container" ng-repeat="card in cards | searchContactsFilter:contacts_filter"  ng-click="selectContact(card)">
 
 						                <div class="sous-main card background background-search {{card._sender.template}}">
 						                
 						                  <div class="col-xs-3">
-						                    <div class="avatar-content" onclick="selectContact(card)">
+						                    <div class="avatar-content">
 						                      <div style="background-image:url({{card._sender.avatar}});height: 100px;width: 100px;background-size: cover;;background-repeat: no-repeat;border-radius: 50%;border: 1px solid white; overflow: hidden;margin-top:5px;" class="avatar-img">
 						                      </div>
 						                    </div>
@@ -77,7 +77,7 @@
 					   	</div>
 					<!--fin div contacts-container-->
 					</div>
-				<div class="card-contact-right">
+				<div class="card-contact-right" ng-show="card">
 					<div class="col-lg-6">
 						<ivicard card="card"></ivicard>
 						<div class="contact-infos-bottom">
@@ -204,9 +204,34 @@
 					            	</div>
 					            </div>
 
-					            <div class="col-xs-offset-6 form-group col-xs-6 col-sm-6 col-md-6">
-					                 <button class="btn btn-default btn-block" ng-click="supprimerContact()">Supprimer
+					            <div class="col-xs-offset-6 form-group col-xs-6 col-sm-6 col-md-6" name="delete-area">
+					                 <button class="btn btn-default btn-block" ng-click="deleteContact(card._id)" data-toggle="modal" data-placement="center" data-target="#modalDelete">Supprimer
 					                 </button>
+
+									<!-- modal Facebook -->
+								    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								      <div class="modal-dialog delete">
+								        <div class="modal-content delete">
+								          <div class="modal-header1">
+								            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								              <span aria-hidden="true">&times;</span>
+								            </button>
+								          </div>
+								            <table id="modal-delete-contact" border="0"> 
+								                <tr>
+								                    <td>
+								                        <p class="p2">
+								                        	<span>
+								                        		{{message.delete}}
+								                        	</span>
+								                        </p>
+								                    </td>
+								                </tr>
+								            </table>
+								          </div>
+								      </div>
+								    </div>
+
 					            </div>
 
 							</div>

@@ -36,18 +36,31 @@ app.factory("Cards", function($http, $q, $rootScope, $location) {
 		},
 
 		decline: function (cardId) {
-			return $q(function(resole, reject){
+			return $q(function(resolve, reject){
 				if($rootScope.globals.currentUser && $rootScope.globals.currentUser.token){
 
 					req = {
 						method: 'PUT',
-				        url: ROOT_URL + "/cards/#{{cardId}}",
+				        url: ROOT_URL + "/cards/" + cardId + "/decline",
 				        headers: {
 				        	token: $rootScope.globals.currentUser.token
 				        }
-					}
+					};
+
+					$http(req)
+					.success(function(card){
+						console.log("CardsFacto, decline, card declined");
+						resolve(card);
+					})
+					.error(function(err){
+						console.log("Erreur requete declinecard", err);
+						reject(err);
+					});
 				}
-			})
+				else {
+					reject("User non authentifié");
+				}
+			});
 		}
 	};
 });
