@@ -22,31 +22,23 @@
 	opacity:0.9;
 
 }
-.onl_socialButtons a {
-	color: #50E3C2;
+.onl_socialButtons a: {
 
-}
-
-.iconLogo{
-	color: #50E3C2;
-}
-
-.iconLogo{
-	color: #50E3C2;
 }
 
 .btn-default{
-	color: #50E3C2;
+	color: black;
+	font-weight: bold;
 	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .progress {
-	color: #50E3C2;
+	color: grey;
 	background-color: #50E3C2;
 }
 
 .onl_login .onl_socialButtons a:hover {
-    color: white;
+    color: black;
 	opacity:1; 
 }
 
@@ -109,9 +101,6 @@
 	padding: 3px 10px 2px;
 }
 
-.pre-scrollable{
-	max-height:500px;
-}
 
 #popuSocial{
 	background-color: #50E3C2;
@@ -126,25 +115,53 @@
 color: white;
 text-align: center;
 }
-
-#signForm{
-	background-image: url("../img/splash.jpg");
-	background-size: cover;
-}
 #sign{
 	color:black;
 	float: right;
 	width: 100%;
 	width: 600px;
 }
-
-#buttonCard{
-	width: 340px;
-	margin-bottom: 10px;
-	margin-top: 10px;
-}
 .icon-form{
 	width:20px;
 	color:#50E3C2;
 }
+#logo-button-profil{
+	width:20px;
+	 float:left;
+	 color:black;
+}
+.button-group{
+	padding-bottom: 15px;
 
+}
+#buttonCard{
+	height: 50px;
+	display: table-cell;
+	vertical-align: middle;
+	width: 275px;
+}
+.content-profil-page{
+	background-image: url("../img/icon-ivipulse.png");
+	-webkit-mask-image:-webkit-gradient(linear, right top, right bottom ,
+		from(rgba(0,0,0,1)), to(rgba(0,0,0,1)));
+	background-size: cover;
+}
+
+.maCarte{
+	margin-bottom: 10px;
+}
+#signForm{
+	margin-bottom: 10px;
+}
+.profil-tab{
+	text-align: center;
+}
+.titre-table-profil{
+	text-align: center;
+
+}
+.resultat-table-profil{
+	text-align: center;
+	color:grey;
+
+}

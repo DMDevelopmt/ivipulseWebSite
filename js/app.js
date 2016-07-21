@@ -48,8 +48,9 @@ app.config(['$routeProvider', function($routeProvider) {
 	.when('/helpSocial', {
 		templateUrl: 'partials/helpSocial.html'
 	})
-	.when('/test', {
-		templateUrl: 'partials/test.html'
+	.when('/profil', {
+		templateUrl: 'partials/profil.html',
+		controller: 'login_ctrl'
 	})
 	.when('/loginAside', {
 		templateUrl: 'templates/aside.login.html'
