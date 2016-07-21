@@ -4,8 +4,6 @@
     For the media queries use @screen-sm-min instead of 768px.
     For .onl_spanOr use @body-bg instead of white.
 */
-@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
-@import url(http://fonts.googleapis.com/css?family=Titillium+Web&subset=latin,latin-ext);
 @media (min-width: 768px) {
     .onl_row-sm-offset-3 div:first-child[class*="col-"] {
         margin-left: 25%;

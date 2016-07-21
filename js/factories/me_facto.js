@@ -270,7 +270,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
         });
         }
       else {
-        rejetct("User introuvable");
+        reject("User introuvable");
       }
     }),
 

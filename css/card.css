@@ -1,5 +1,4 @@
 .main-block{
-<<<<<<< Updated upstream
 	height: 360px;
 	width: 600px;
 }
@@ -14,47 +13,16 @@
 .avatar-image{
 	background-repeat: no-repeat;
 	height: 200px;width: 200px;
-=======
-}
-
-.main-card{
-	height: 252px;
-	width: 420px;
-	z-index: 1;
-}
-
-.avatar-block{
-	height: 140px;
-	width: 100%;
-	z-index: 2;
-}
-
-
-.avatar-image{
-	background-repeat: no-repeat;
-	height: 140px;
-	width: 140px;
->>>>>>> Stashed changes
 	background-size: cover;
 	background-repeat: no-repeat;
 	border-radius: 50%;
 	border: 1px solid white;
 	overflow: hidden;
-<<<<<<< Updated upstream
 }
-=======
-	z-index: 2;
-	position:relative;
-	top:10%
-
-}
-
->>>>>>> Stashed changes
 .user-avatar-infos{
 	height: 200px;
 	width: 100%;
 }
-<<<<<<< Updated upstream
 .profile-infos{
 	margin-left: 50px;
 }
@@ -64,46 +32,16 @@
 	vertical-align: middle;
 	font-size: 20pt;
 }
-=======
-
-.profile-infos{
-	margin-left: 50px;
-}
-
-.username{
-	height: 140px;
-	display: table-cell;
-	vertical-align: middle;
-	font-size: 16pt;
-	z-index: 2;
-	position: relative;
-}
-
-
->>>>>>> Stashed changes
 .full-infos{
 	height: 104px;
 	font-size: 14pt;
 	margin-left: 15px;
 	margin-top: 5px;
 }
-<<<<<<< Updated upstream
 .social-list{
 	margin-left: 30px;
 	margin-bottom: 0px;
 }
-=======
-
-
-
-.social-list{
-	position:relative;
-	left: 10%;
-    top: -100px;
-	z-index: 3;
-}
-
->>>>>>> Stashed changes
 .card-actions{
 	width: 30px;
 	margin-top: 30px;
