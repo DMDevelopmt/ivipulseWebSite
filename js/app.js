@@ -6,6 +6,7 @@ var app = angular.module("ivipulse", [
   'ngRoute',
   'ngCookies',
   'mgcrea.ngStrap',
+  'mgcrea.ngStrap.modal',
   'ngAnimate'
 ]);
 
