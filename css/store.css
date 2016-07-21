@@ -20,30 +20,30 @@
   width: 100%;
 }
 .sous-main{
-	width: 100%;
-	height: 110px;
-	padding-bottom: 5px;
-	text-overflow: ellipsis;
+  width: 100%;
+  height: 110px;
+  padding-bottom: 5px;
+  text-overflow: ellipsis;
     overflow: hidden;
 }
 .card-container{
   width: 100%;
-	padding-bottom: 5px;
+  padding-bottom: 5px;
 }
 .infos-text {
-	line-height: 1,5;
-	font-size: 12pt;
-	font-style: bold;
-	color : black;
+  line-height: 1,5;
+  font-size: 12pt;
+  font-style: bold;
+  color : black;
 }
 .infos-sup{
-	font-size: 11pt;
-	line-height: 1,5;
-	color: grey;
+  font-size: 11pt;
+  line-height: 1,5;
+  color: grey;
 }
 .contact-infos {
   text-align: left;
-	
+  
 }
 .contact-select {
   position: relative;
@@ -52,7 +52,7 @@
   width: 30px;
 }
 .background{
-	position: relative;
+  position: relative;
     width: 100%;
     box-shadow: none;
     z-index: -1;

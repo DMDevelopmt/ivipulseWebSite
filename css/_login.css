@@ -46,6 +46,9 @@
 	float: right;
 	width: 100%;
 	width: 400px;
+	background-image: url(../img/splash.jpg);
+	-webkit-mask-image:-webkit-gradient(linear, left top, left bottom, 
+		from(rgba(0,0,0,0.3)), to(rgba(0,0,0,1)));
 	
 }
 
