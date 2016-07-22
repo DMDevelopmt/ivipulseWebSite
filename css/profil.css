@@ -138,11 +138,6 @@ text-align: center;
 	vertical-align: middle;
 	width: 275px;
 }
-.content-profil-page{
-	-webkit-mask-image:-webkit-gradient(linear, right top, right bottom ,
-		from(rgba(0,0,0,1)), to(rgba(0,0,0,1)));
-	background-size: cover;
-}
 
 .maCarte{
 	margin-bottom: 10px;
