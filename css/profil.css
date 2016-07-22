@@ -139,9 +139,7 @@ text-align: center;
 	width: 275px;
 }
 .content-profil-page{
-	-webkit-mask-image:-webkit-gradient(linear, right top, right bottom ,
-		from(rgba(0,0,0,1)), to(rgba(0,0,0,1)));
-	background-size: cover;
+	
 }
 
 .maCarte{
@@ -161,4 +159,30 @@ text-align: center;
 	text-align: center;
 	color:grey;
 
+}
+
+
+example-progress {
+    display: block;
+    width: 100%;
+    position: relative;
+    border: 1px solid black;
+    height: 18px;
+}
+ 
+example-progress .progressBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: green;
+}
+ 
+example-progress .progressValue {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
 }
