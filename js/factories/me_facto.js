@@ -329,6 +329,43 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       else {
         reject("User introuvable");
       }
+    },
+    /**
+     * Cette fonction permet de créer ou modifier un dossier de cartes
+     * @param  {[String]} folder Ce paramètre contient le nom du dossier
+     * @param  {[tableau]} cards  Ce paramètre contient la liste des cartes
+     * @return {[promise]}        La fonction retourne une promesse contenant un booléen 
+     * vrai si la requête a été effectuée avec succès. 
+     */
+    copy_to_folder: function(folder, cards){
+
+      if ($rootScope.globals && $rootScope.globals.currentUser) {
+        var data = {
+          folder: folder,
+          cards: cards
+        };
+        var req = {
+          method : 'PUT',
+          url: ROOT_URL + "/users/me/copy_to_folder",
+              headers: {
+                token: $rootScope.globals.currentUser.token
+              },
+              data: data
+          };
+
+        return $q(function(resolve,reject){
+        $http(req)
+        .success(function(res){
+          resolve(res);
+        })
+        .error(function(err) {
+          reject(err);
+          });
+        });
+        }
+      else {
+        rejetct("User introuvable");
+      }
     }
 
   }
