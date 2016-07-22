@@ -197,12 +197,12 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
  
     },
 
-    /* 
-    Cette fonction permet de mettre un jour les attributs d'un utilisateur 
-    Elle retourne une promesse contenant le résultat de la requête 
-     */ 
-    
-
+    /**
+     * Cette fonction permet de mettre un jour les attributs d'un utilisateur.
+     * Elle met à jour le cookie utilisé sur le site.
+     * @param  {[user]} tmp_user [Utilisateur modifié]
+     * @return {[type]}          [description]
+     */
     update: function(tmp_user) {
     var req = { 
         method: 'PUT',
@@ -237,11 +237,10 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       });
     },
 
-    
-     /**
-  cette function permet de recuperer le nombre de carte que l'user a diffuse et reciproque
-  */
-
+    /**
+     * Cette promesse permet de récuperer le nombre de cartes partagées et réciproques 
+     * d'un utilisateur.
+     */
     get_cardsCount : $q(function(resolve,reject){
 
       if ($rootScope.globals && $rootScope.globals.currentUser) {
@@ -256,11 +255,9 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
           };
         $http(req)
         .success(function(res){
-          console.log(res);
           resolve(res);
         })
         .error(function(err) {
-          console.log("Erreur requete get_cardsShared", err);
           reject(err);
         });
         }
@@ -269,7 +266,11 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       }
     }),
 
-
+    /**
+     * Cette fonction permet d'effectuer l'achat des cartes passées en
+     * paramètre. Elle met a jour la collection de fonds de cartes de l'utilisateur.
+     * 
+     */
     purchase_card_buy : function(listFonds){
 
       if ($rootScope.globals && $rootScope.globals.currentUser) {
@@ -285,11 +286,9 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
          return $q(function(resolve,reject){
         $http(req)
         .success(function(res){
-          console.log("purchase_card success", res);
           resolve(res);
         })
         .error(function(err) {
-          console.log("Erreur requete purchase_card", err);
           reject(err);
           });
         });
@@ -299,7 +298,13 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       }
 
     },
-
+    
+    /**
+     * Cette fonction permet d'effectuer l'achat de crédits.
+     * @param  {[int]} value quantité de crédits achetés
+     * @return {[int]}  Retourne la quantité de crédits possédés par
+     * l'utilisateur.
+     */
     purchase_many_credits : function(value){
       if ($rootScope.globals && $rootScope.globals.currentUser){
         var data = {};
@@ -314,7 +319,6 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
         return $q(function(resolve,reject){
           $http(req)
           .success(function(res){
-            console.log(res.credits);
             resolve(res.credits);
           })
           .error(function(err){
@@ -329,7 +333,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
 
   }
 
-
+  //renvoi de la factory
   return me;
 });
 
