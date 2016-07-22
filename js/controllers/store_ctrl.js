@@ -2,28 +2,25 @@
 app.controller("store_ctrl", function ($scope, $routeParams, $alert, $sce, Cards) {
 	
 	console.log("StoreCtrl initialized");
-
+	//liste des contacts
 	$scope.cards = {};
-	$scope.card = {};
+	//contact sélectionné
+	$scope.card = $scope.$parent.cards[0] || {};
 
 	$scope.message = {};
-
-
-	var refreshCards = function(){
-		Cards.acceptedCards()
-		.then(function(res) {
-		$scope.cards = res;
-		$scope.card = $scope.cards[0];
-
-	});
-	};
-
-	refreshCards();
 	
-
+	/**
+	 * Cette fonction permet de définir le contact sélectionné
+	 * @param  card : contact sélectonné
+	 */
 	$scope.selectContact = function(card) {
 		$scope.card = card;
 	};
+
+	/**
+	 * Cette fonction permet de supprimer un contact
+	 * @param contact_id : Identifiant du contact à supprimer
+	 */
 
 	$scope.deleteContact = function(contact_id){
 		Cards.decline(contact_id)

@@ -1,14 +1,19 @@
 app.factory("Cards", function($http, $q, $rootScope, $location) {
 	
+
 	return {
 
+		/**
+		 * Cette fonction retourne la liste des cartes possédées par l'utilisateur
+		 * @return tableau contenant les cartes possédées
+		 */
 		acceptedCards: function (){
 			
 			return $q(function(resolve, reject) {
 				if($rootScope.globals.currentUser && $rootScope.globals.currentUser.token) {
 
 					var data = {};
-				    //$http.defaults.headers.token = $rootScope.globals.currentUser.token;
+				    
 				    var req = {
 				        method: 'GET',
 				        url: ROOT_URL + "/cards/accepted",
@@ -16,25 +21,26 @@ app.factory("Cards", function($http, $q, $rootScope, $location) {
 				        	token: $rootScope.globals.currentUser.token
 				        },
 				        data: data
-
 				    };
-				    console.log("$http.defaults.headers.token : ", $http.defaults.headers.token);
-					$http(req)
+				    $http(req)
 					.success(function(res){
-						console.log(res);
 						resolve(res);
 					})
 					.error(function(err) {
-						console.log("Erreur requete acceptedCards", err);
 						reject(err);
 					});
 				}
 				else {
-					reject("Cannot find currentUser");
+					reject("utilisateur non authentifié");
 				}
 			});
 		},
-
+		
+		/**
+		 * Cette fonction permet de retirer une carte
+		 * @param  cardId : Chaine de caract_res identifiant la carte à retirer
+		 * @return retourne l'objet card supprimé
+		 */
 		decline: function (cardId) {
 			return $q(function(resolve, reject){
 				if($rootScope.globals.currentUser && $rootScope.globals.currentUser.token){
@@ -49,11 +55,9 @@ app.factory("Cards", function($http, $q, $rootScope, $location) {
 
 					$http(req)
 					.success(function(card){
-						console.log("CardsFacto, decline, card declined");
 						resolve(card);
 					})
 					.error(function(err){
-						console.log("Erreur requete declinecard", err);
 						reject(err);
 					});
 				}

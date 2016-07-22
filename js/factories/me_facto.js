@@ -4,16 +4,14 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
   var user = {}; 
 
   /**
-     * Cette fonction permet de sauver l'authentification de l'utilisateur connecté
-     * sur le site.
-     * @param  {[type]} data [description]
-     * @return {[type]}      [description]
+     * Cette fonction permet de maintenir l'utilisateur authentifié sur le site.
+     * @param  Objet data Objet contenant les informations de login du user
+     * @return booléen : retourne vrai si la sauvegarde s'est bien effectuée
      */
   var saveToken = function (data) {
 
     if(data.token && data.me){
-      console.log("dans saveToken , valeur de _new_user : ", this.me._new_user);
-
+      //sauvegarde des données principales de l'utilisateur
               $rootScope.globals = {
                 currentUser: {
                   first_name: data.me.first_name,
@@ -23,14 +21,8 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
                   new_user: this.me._new_user
                 }
               };
-
-              window.localStorage.token = 
-                $http.defaults.headers.token = 
-                  this._token = data.token;
-
+              //conservation des données dans le cookie 'global'
               $cookies.putObject('globals', $rootScope.globals);
-
-              console.log("Cookie first_name: ", $rootScope.globals.currentUser.first_name)
 
               return true;
     }
@@ -40,8 +32,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
     }
   };
   
- 
-  //retour de la factory 
+  //déclaration et initialisation de la factory me
   me = { 
 
     is_authenticated: false,
@@ -103,12 +94,13 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
 
       return this;
     },
-    /* 
-    fonction login 
-    Cette fonction permet d'authentifier un utilisateur 
-    Elle retourne une promesse contenant le résultat de la requête 
- 
-     */ 
+
+    /**
+     * Cette fonction permet d'authentifier un utilisateur 
+     * @param  {[String]} email    : email de l'utilisateur
+     * @param  {[String]} password : password de l'utilisateur
+     * @return {[Promise]} retourne la promesse contenant l'objet user
+     */
     login: function (email, password) { 
       //déclaration de l'objet data, pour l'appel du service de login 
       var data = { 
@@ -150,10 +142,12 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       });
     },
 
-    /* 
-    Cette fonction permet d'inscrire un nouvel utilisateur 
-    Elle retourne une promesse contenant le résultat de la requête 
-     */ 
+    /**
+     * Cette fonction permet d'inscrire un utilisateur 
+     * @param  {[String]} email    : email de l'utilisateur
+     * @param  {[String]} password : password de l'utilisateur
+     * @return {[Promise]} retourne la promesse contenant l'objet user
+     */
     signin: function (email, password) { 
  
       //déclaration de l'objet data, pour l'appel du service d'inscription 
@@ -176,7 +170,6 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
           this.me._new_user = true;
 
           if(saveToken(res)){
-            console.log("me_facto : signin, user.template = ", res.me.template);
             
             defMe = this.me.init(res.me);
 
@@ -211,7 +204,6 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
     
 
     update: function(tmp_user) {
-    console.log("fonction update me.facto", tmp_user._id);
     var req = { 
         method: 'PUT',
         url: ROOT_URL + "/users/" + tmp_user._id, 
@@ -224,7 +216,13 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       return $q(function(resolve, reject){ 
        $http(req)
         .success(function(new_user) {
-          console.log("me updated", new_user);
+
+          //mise à jour des identifiants globaux
+          $rootScope.globals.currentUser.first_name = new_user.first_name;
+          $rootScope.globals.currentUser.last_name =  new_user.last_name;
+          $rootScope.globals.currentUser.email =  new_user.email;
+          $cookies.putObject('globals', $rootScope.globals);
+          
           if (new_user.birth_date) {
             new_user.birth_date = new Date(new_user.birth_date);
           }

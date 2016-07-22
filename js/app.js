@@ -25,9 +25,6 @@ app.config(['$routeProvider', function($routeProvider) {
 		templateUrl: 'partials/login.html',
 		controller: 'login_ctrl'
 	})
-	.when('/logged', {
-		templateUrl: 'partials/logged.html'
-	})
 	.when('/shop', {
 		templateUrl: 'partials/shop.html',
 		controller: 'shop_ctrl'
@@ -36,22 +33,13 @@ app.config(['$routeProvider', function($routeProvider) {
 		templateUrl: 'partials/home.html',
 		controller: 'login_ctrl'
 	})
-	.when('/personnaliserCarte',{
-		templateUrl:'partials/personnaliserCarte'
-	})
 	.when('/store',{
 		templateUrl:'partials/store',
 		controller: 'store_ctrl'
 	})
-	.when('/helpSocial', {
-		templateUrl: 'partials/helpSocial.html'
-	})
 	.when('/profil', {
 		templateUrl: 'partials/profil.html',
 		controller: 'login_ctrl'
-	})
-	.when('/loginAside', {
-		templateUrl: 'templates/aside.login.html'
 	})
 	.otherwise({
 		redirectTo: '/'
@@ -70,23 +58,29 @@ app.config(['$routeProvider', function($routeProvider) {
  */
 app.run(['$rootScope', '$location', '$cookies', '$http',
     function ($rootScope, $location, $cookies, $http) {
-        // keep user logged in after page refresh
+        
         console.log("Dans app.run()");
 
-        window.$rootScope = $rootScope;
-
+        //window.$rootScope = $rootScope;
+        //récupère le cookie 'globals' et le stocke 
+        //dans la variable globals du $rootScope
         $rootScope.globals = $cookies.getObject('globals') || {};
 
-        console.log("rootScope.globals : ", $rootScope.globals);
+        //si l'objet currentUser existe, on récupère son token et on l'insère 
+        //dans le header des requêtes http
         if ($rootScope.globals.currentUser) {
             $http.defaults.headers.token = $rootScope.globals.currentUser.token;
         }
-  
-        $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            // redirect to login page if not logged in
+  		//écoute des changements de route sur l'événement $locationChangeStart
+  		//du service $location d'angular
+        $rootScope.$on('$locationChangeStart', function () {
+            //si l'utilisateur n'est pas identifié sur le site et que l'adresse
+            //de destination n'est pas login, on le renvoie vers la page login
             if (!$rootScope.globals.currentUser && $location.path() !== '/login') {
                 $location.path('/login');
             }
+            //idem pour le cas où l'utilisateur n'a pas finalisé son incription
+            //on le redirige vers profil
             else if($rootScope.globals.currentUser && 
             		$rootScope.globals.currentUser.new_user &&
             		$location.path() !== '/profil' &&
