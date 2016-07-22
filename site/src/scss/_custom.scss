@@ -1,0 +1,36 @@
+@include font-face(Obcecada, obcecada-sans);
+@include font-face(LearningCurve, LearningCurve_OT);
+
+.svg-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  vertical-align: middle;
+  overflow: hidden;
+  > svg {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  svg {
+    max-width: 100%;
+  }
+}
+
+#intro .container {
+  overflow: hidden;
+}
+
+.features-ico {
+  i {
+    background: $grey_dark;
+  }
+
+  .dark {
+    background: $grey_dark;
+  }
+}

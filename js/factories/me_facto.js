@@ -327,6 +327,14 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       else {
         reject("User introuvable");
       }
+    },
+
+    function link($scope, $elem, attrs) {
+    function updateProgress() {
+        var percentValue = Math.round($scope.value / $scope.max * 100);
+        $scope.percentValue = Math.min(Math.max(percentValue, 0), 100);
+        $elem.children('.progressBar').stop(true, true).animate({ width: $scope.percentValue + '%' });
+      }
     }
 
   }

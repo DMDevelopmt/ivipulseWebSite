@@ -3,6 +3,8 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	
 	console.log("LoginCtrl initialized");
 
+	$scope.$watchCollection('[value, max]', updateProgress);
+
 	$scope.user = {};
 	$scope.card = {};
 	$scope.password_check = "";

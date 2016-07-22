@@ -1,0 +1,41 @@
+$main_color: #50E3C2;
+$main_color_dark: #43c9ab;
+$unselected_color: #BFF5E8;
+$back_btn_secondary: #D8D8D8;
+
+$social-selected: #50E3C2;
+$grey_color: #979797;
+$grey_color2: #efefef;
+$grey_buttons: #d8d8d8;
+$grey_border: #a49797;
+$red_color: #D0021B;
+$red_color_2: #C22024;
+$paddingGlobal: 16px;
+
+$grey_dark: #444444;
+
+@mixin font-face($font-family, $font-src:"", $font-weight: normal, $font-style: normal) {
+
+  $font-name: $font-family;
+  @if $font-src != "" {
+    $font-name: $font-src;
+  }
+
+  $font-url: '../fonts';
+  @font-face {
+    font: {
+      family: $font-family;
+      style: $font-style;
+      weight: $font-weight;
+    }
+
+    $font-path: $font-url + '/' + $font-name;
+
+    src: url("#{$font-path}.eot");
+    src: url("#{$font-path}.eot#iefix") format("embedded-opentype"),
+    url("#{$font-path}.woff2") format('woff2'),
+    url("#{$font-path}.woff") format("woff"),
+    url("#{$font-path}.ttf") format("truetype"),
+    url("#{$font-path}.svg##{$font-name}") format("svg");
+  }
+}
