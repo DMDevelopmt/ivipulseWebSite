@@ -53,12 +53,12 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 		//stocke l'objet user renvoyé par la factory dans le scope
 		$rootScope.user = user;
 		$scope.loggedIn = true;
-		$scope.err.message = null;
+		$scope.$parent.err.message = null;
       	//console.log("user_name : " + user.first_name);
-			$location.path('/profil');
+		$location.path('/profil');
 	})
 	.catch(function(err) {
-		$scope.err.message = err;
+		$scope.$parent.err.message = err;
 	});
 	
 	},
@@ -80,12 +80,12 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
   		.then(function(res) {
   			//stocke l'objet renvoyé par la factory dans le scope
   			$scope.user = res;
-  			$scope.err.message = null;
+  			$scope.$parent.err.message = null;
   			$location.path("/profil");
   		})
       //récupération du message d'erreur
   		.catch(function(err) {
-  			$scope.err.message = err;
+  			$scope.$parent.err.message = err;
   		});
 		}
 	};

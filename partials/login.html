@@ -33,6 +33,8 @@
 		           <input type="password" class="form-control champOnly" id="exampleInputPassword2" placeholder="Password" required ng-model="user.password">
 		           <input type="password" ng-show="state.mode=='inscription'" ng-model="password_check" class="form-control champOnly" placeholder="Password" required>
 		        </div>
+		        <div ng-if="err.message" style="color: red" align="center">{{err.message}}</div>
+		        <br>
 		        <div class="form-group">
 		           <button ng-show="state.mode =='connexion'" class="btn btn-block button-login champOnly" ng-click="email_login();$event.stopPropagation()">Login</button>
 		           <button ng-show="state.mode =='inscription'" class="btn btn-block button-login champOnly" ng-click="email_signin();$event.stopPropagation()">S'inscrire</button>
