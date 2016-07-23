@@ -109,6 +109,7 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 					//stocke l'objet tmp_user renvoyé par la factory dans le scope
 					$scope.$parent.user = res;
 					$scope.err.message = null;
+					$scope.success.message = null;
 
 					//fin de l'inscription
 					if($rootScope.globals.currentUser.new_user){
@@ -117,6 +118,8 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 			            //mise à jour du cookie contenant le userCurrent
 			            $cookies.putObject('globals', $rootScope.globals);
 			            $location.path("/shop");
+			            $scope.success.message = "Enregistrement effectué avec succès";
+
 					}
 					
 				})
