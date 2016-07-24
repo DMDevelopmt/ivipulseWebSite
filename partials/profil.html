@@ -36,13 +36,13 @@
 
 				                    <div class="row resultat-table-profil">
 					                    <div class="col-xs-4 col-sm-4 col-md-4">
-					                        <label>{{user.last_name}}</label>
+					                        <label>{{cards.length}}</label>
 				                        </div>
 				                        <div class="col-xs-4 col-sm-4 col-md-4">
-				                        	<label>{{user.last_name}}</label>
+				                        	<label>{{countShared}}</label>
 				                        </div>
 				                        <div class="col-xs-4 col-sm-4 col-md-4">
-				                        	<label>{{user.last_name}}</label>
+				                        	<label>{{countReciprocal}}</label>
 				                        </div>
 				                    </div>
 			                    </div>
@@ -93,7 +93,11 @@
 			
 				<form  id="signForm" name="signForm" ng-submit="update()" role="form" novalidate>
 					<legend id="titre">Profil</legend>
-		            
+			        <div class="form-group col-xs-12 col-sm-12 col-md-12">
+			            <div class="alert alert-success" role="alert" ng-if="success.message">
+									{{success.message}}
+			           	</div>
+			        </div>
 					<div class="form-group col-xs-6 col-sm-6 col-md-6">
 		             	<div class="input-group">
 		                    <span class="input-group-addon ">
@@ -111,9 +115,10 @@
 		                </div>
 					</div>
 					<div class="form-group col-xs-12 col-sm-12 col-md-12">
-			            <div ng-if="err.message" style="color: red" align="center">{{err.message}}</div>
+			            <div class="alert alert-danger" role="alert" ng-if="err.message">
+									{{err.message}}
+			           	</div>
 			        </div>
-					
 					<div class="form-group col-xs-6 col-sm-6 col-md-6">
 						<label id="titre">Importer votre avatar</label>
 					</div>	

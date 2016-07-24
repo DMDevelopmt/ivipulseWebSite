@@ -1,62 +1,39 @@
 
 app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
 
-    $scope.user = {};
+    //déclaration des variables
 	$scope.fondCards = {};
     $scope.listCards = {};
 	$scope.selectedIcon = true;
-	$scope.fondAAjoute = [];
+	$scope.caddieFonds = [];
     $scope.currentTemplate = {};
     $scope.achat = true;
     $scope.achatCredits = true;
     $scope.prix = null;
     $scope.avatar = {};
-    $scope.fondAAcheter = [];
+    $scope.fondsPossedes = [];
 
     $scope.filter = "all";
 
 
     $scope.categories = {
-    all: 'Tous métiers',
-    graphic: 'Design',
-    pro: 'Professionnel',
-    metal: 'Métal',
-    wood: 'Bois',
-    animaux: 'Nature',
-    cartoon: 'Cartoon',
-    netb: 'Noir et blanc',
-    bleu: 'Bleu',
-    marron: 'Marron',
-    rouge: 'Rouge'
+        all: 'Tous métiers',
+        graphic: 'Design',
+        pro: 'Professionnel',
+        metal: 'Métal',
+        wood: 'Bois',
+        animaux: 'Nature',
+        cartoon: 'Cartoon',
+        netb: 'Noir et blanc',
+        bleu: 'Bleu',
+        marron: 'Marron',
+        rouge: 'Rouge'
     };
 
-    var init = function() {
-
-        if($rootScope.globals.currentUser){
-            var req = {
-                method: 'GET',
-                url: ROOT_URL + "/users/me",
-                headers: {
-                    token: $rootScope.globals.currentUser.token
-                }
-            };
-
-            $http.defaults.headers.token = $rootScope.globals.currentUser.token;
-            $http(req)
-            .success(function(user) {
-                console.log("login_ctrl, user = " , $scope.user);
-                console.log("user.avatar : ", user.avatar);
-                $scope.user = user;
-                $scope.fondAAcheter = user.premium_cards;
-                
-            })
-        }       
-    };
-
-    init();
+    $scope.fondsPossedes = $scope.$parent.user.premium_cards;
 
     /**
-    retourne le choix de combobox
+    * Cette fonction retourne la liste des catégories à afficher dans la combobox
     */
     $scope.comboFilter = function(){
         switch($scope.filter){
@@ -66,40 +43,39 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
 
             default:
             $scope.listCards = $scope.fondCards[$scope.filter];
-
-            console.log($scope.listCards);
         }
     };
 
-    $scope.$watch("filter", function(new_value, old_value) {
-        $scope.comboFilter(new_value);
+    //Affectation d'un écouteur sur l'élément sélectionné dans la combobox
+    $scope.$watch("filter", function() {
+        $scope.comboFilter();
     });
 
 
     /**
-    retourne vrai si le nombre de fond de carte est superieur a 1;
+        Cette fonction retourne vrai si le nombre de fond de carte est superieur a 1;
     */
     $scope.textAjoute = function(){
-        return $scope.fondAAjoute.length > 1;
+        return $scope.caddieFonds.length > 1;
     };
 
     /**
-    retourne le fond est vrai ou faut 
+        Cette fonction retourne vrai si le fond est déjà présent dans la liste des fonds à ajouter 
     */
 	$scope.isAdded = function(fond){
-        return $scope.fondAAjoute.indexOf(fond) != -1;
+        return $scope.caddieFonds.indexOf(fond) != -1;
     };
 
 
     /**
-    envoie la liste de fond de carte existe dans le base de donnee
+    * Cette fonction envoie la liste de fond de carte existant dans le base de donnee
     */
     var shopListFonds = function(){
     	shop_facto.listFonds
     	.then(function(res) {
     		$scope.fondCards = res;
+            //
             $scope.listCards = _.chain($scope.fondCards).values().flatten().value();
-    		console.log($scope.fondCards);
          });
     };
 
@@ -109,32 +85,30 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
 
 
     /**
-    cette fonction permet de calculer le prix total en euro pour l'achat 
-    de carte choisie
+    * Cette fonction permet de calculer le prix total en euro des cartes choisies
     */
 
     $scope.calculPrix = function(){
-        console.log("currentUser ", $rootScope.globals.currentUser);
         getCardShared();
         $scope.achat = true;
 
-        if($scope.fondAAjoute.length == 1)
+        if($scope.caddieFonds.length == 1)
         {
             $scope.prix = 1.99;
         }
-        else if($scope.fondAAjoute.length > 5) {
-            $scope.prix = 1.99 * $scope.fondAAjoute.length * 0.8;
+        else if($scope.caddieFonds.length > 5) {
+            $scope.prix = 1.99 * $scope.caddieFonds.length * 0.8;
         }
         else {
-            $scope.prix = 1.99 * $scope.fondAAjoute.length * 0.9;
+            $scope.prix = 1.99 * $scope.caddieFonds.length * 0.9;
         }
 
-        console.log("prix : ", $scope.prix);
     };
 
 
     /**
-    retourne le nombre de cart a partagé et le nombre de cart est récipoque  */
+    * Cette fonction retourne le nombre de cartes à partager et le nombre de cartes récipoques
+    */
 
     var getCardShared = function(){
         me.get_cardsCount
@@ -146,67 +120,60 @@ app.controller('shop_ctrl', function ($scope, shop_facto,$http, $rootScope, me){
 
 
     /**
-    envoie la quantite de carte selectione
+        Cette fonction ajoute ou retire un fond du caddie
+        @template : fond sélectionné
     */
     $scope.ajouteFond = function(template){
-        console.log("template : " + template);
-    	console.log("fond present : " + $scope.isAdded(template));
-
+        
     	if(!$scope.isAdded(template)){
-    		$scope.fondAAjoute.push(template);
-            console.log("fond present if : " + $scope.isAdded(template));
+    		$scope.caddieFonds.push(template);
     	}
     	else{
-    		var indexOf = $scope.fondAAjoute.indexOf(template);
-    		$scope.fondAAjoute.splice(indexOf,1);
+    		var indexOf = $scope.caddieFonds.indexOf(template);
+    		$scope.caddieFonds.splice(indexOf,1);
     	}
-    	console.log("length :"+ $scope.fondAAjoute.length);
-    	console.log("index ajouteFond:" + indexOf);
     };
 
 
     /**
-
+    * Cette fonction permet de conserver le fond de carte sélectionné
+    * @template fond de carte choisi
     */
     $scope.setCurrentTemplate = function(template){
 
         $scope.currentTemplate = template;
     };
 
-
+    /**
+    * Cette fonction permet d'effectuer un achat de crédits
+    */
     $scope.orderAchatCredit = function(){
-
-        me.purchase_many_credits($scope.fondAAjoute.length)
-        .then(function(credits){
-            console.log("shop_ctrl, orderAchatCredit nouveaux credits:", credits);
-            $scope.user.credits = credits;
-        });
-        $scope.achatCredits = false;
+        if($scope.caddieFonds.length && $scope.caddieFonds.length > 0){
+            me.purchase_many_credits($scope.caddieFonds.length)
+            .then(function(credits){
+                $scope.$parent.user.credits = credits;
+            });
+            $scope.achatCredits = false;
+        }        
     };
 
-
+    /**
+    * Cette fonction permet d'effectuer l'achat de cartes
+    */
     $scope.buy_cards = function(){
-        if($scope.user.credits < $scope.fondAAjoute.length){
+        if($scope.$parent.user.credits < $scope.caddieFonds.length){
             $scope.err.message = " Credit insuffisant";
         }
         else{
-            me.purchase_card_buy($scope.fondAAjoute)
+            me.purchase_card_buy($scope.caddieFonds)
             .then(function(res){
-                $scope.fondAAcheter = res.premium_cards;
-                $scope.user.credits = res.credits;
+                $scope.fondsPossedes = res.premium_cards;
+                $scope.$parent.user.credits = res.credits;
             });
             $scope.achat = false;
         }
         
     }
 
-  /**  var compareCards = function($scope.fondAAjoute,$scope.fondAAcheter){
-        return matches.every(function(matched){
-            if ($scope.fondAAjoute === $scope.fondAAcheter){
-                return $scope.err.message = "carte deja acheter";
-                }
-            }
-    }
-    **/
 });
 

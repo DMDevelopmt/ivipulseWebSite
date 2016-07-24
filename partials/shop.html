@@ -99,9 +99,9 @@
                    </select>
                 </li>
                 <li>
-                    <a class="ajouterCarte" data-toggle="modal" data-target="#achatCarte" data-toggle="dropdown" role="button" ng-switch = "textAjoute()" ng-show="fondAAjoute.length > 0" ng-click="calculPrix()">
+                    <a class="ajouterCarte" data-toggle="modal" data-target="#achatCarte" data-toggle="dropdown" role="button" ng-switch = "textAjoute()" ng-show="caddieFonds.length > 0" ng-click="calculPrix()">
                         <div ng-switch-when = false>Ajouter cette carte</div> 
-                        <div ng-switch-when = true> Ajouter ces &nbsp{{fondAAjoute.length}}&nbsp cartes</div>
+                        <div ng-switch-when = true> Ajouter ces &nbsp{{caddieFonds.length}}&nbsp cartes</div>
                     </a>
                 </li>
             </ul>
@@ -151,7 +151,7 @@
                     <center>
                         <p class="achatTitle">Achat de cartes premium</p>
                         <div>
-                        <p class="achatCarte" ng-show="achat"> Vous avez choisit &nbsp{{fondAAjoute.length}}&nbsp carte(s), vous avez &nbsp {{user.credits}} &nbsp crédit(s)
+                        <p class="achatCarte" ng-show="achat"> Vous avez choisit &nbsp{{caddieFonds.length}}&nbsp carte(s), vous avez &nbsp {{user.credits}} &nbsp crédit(s)
                         </p>
                         <p class="achatCarte" ng-show="!achat"> Achat effectué, vous restez &nbsp {{user.credits}} &nbsp crédit(s)
                         </p>
@@ -164,7 +164,7 @@
                         </p> 
                         <h5 style="color:red">{{err.message}}</h5> 
 
-                        <p class="achatCarte" ng-show="achatCredits"> Vous avez choisit &nbsp{{fondAAjoute.length}} carte(s) =  &nbsp{{fondAAjoute.length}} credit(s) &nbsp &nbsp &nbsp 
+                        <p class="achatCarte" ng-show="achatCredits"> Vous avez choisit &nbsp{{caddieFonds.length}} carte(s) =  &nbsp{{caddieFonds.length}} credit(s) &nbsp &nbsp &nbsp 
                         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  {{prix | number:2}} €
                         </p>
                         <p class="achatCarte" ng-show="!achatCredits"> Achat effectué</p>

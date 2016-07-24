@@ -2,28 +2,47 @@
 app.controller("store_ctrl", function ($scope, $routeParams, $alert, $sce, Cards) {
 	
 	console.log("StoreCtrl initialized");
-
-	$scope.cards = {};
-	$scope.card = {};
+	//contact sélectionné
+	$scope.card = $scope.$parent.cards[0] || {};
 
 	$scope.message = {};
 
-
-	var refreshCards = function(){
-		Cards.acceptedCards()
-		.then(function(res) {
-		$scope.cards = res;
-		$scope.card = $scope.cards[0];
-
-	});
-	};
-
-	refreshCards();
+	$scope.selectedCards = [];
+	$scope.folder = "";
+	$scope.selectedFolder = [];
 	
-
+	/**
+	 * Cette fonction permet de définir le contact sélectionné
+	 * @param  card : contact sélectonné
+	 */
 	$scope.selectContact = function(card) {
 		$scope.card = card;
 	};
+
+	$scope.addCardToFolder = function(card){
+		if($scope.$parent.cards && $scope.selectedCards.indexOf(card) == -1 ){
+    		$scope.selectedCards.push(card);
+    	}
+    	else{
+    		var indexOf = $scope.selectedCards.indexOf(card);
+    		$scope.selectedCards.splice(indexOf,1);
+    	}
+    };
+
+    $scope.copy_to_folder = function(folder, selectedCards) {
+    	me.copy_to_folder(folder, selectedCards)
+    	.then(function(){
+    		$scope.message.copy_to_folder = "Dossier modifié avec succès";
+    	})
+    	.catch(function() {
+    		$scope.message.copy_to_folder = "Erreur modification du dossier";
+    	});
+    };
+
+	/**
+	 * Cette fonction permet de supprimer un contact
+	 * @param contact_id : Identifiant du contact à supprimer
+	 */
 
 	$scope.deleteContact = function(contact_id){
 		Cards.decline(contact_id)

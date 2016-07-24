@@ -4,16 +4,14 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
   var user = {}; 
 
   /**
-     * Cette fonction permet de sauver l'authentification de l'utilisateur connecté
-     * sur le site.
-     * @param  {[type]} data [description]
-     * @return {[type]}      [description]
+     * Cette fonction permet de maintenir l'utilisateur authentifié sur le site.
+     * @param  Objet data Objet contenant les informations de login du user
+     * @return booléen : retourne vrai si la sauvegarde s'est bien effectuée
      */
   var saveToken = function (data) {
 
     if(data.token && data.me){
-      console.log("dans saveToken , valeur de _new_user : ", this.me._new_user);
-
+      //sauvegarde des données principales de l'utilisateur
               $rootScope.globals = {
                 currentUser: {
                   first_name: data.me.first_name,
@@ -23,14 +21,8 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
                   new_user: this.me._new_user
                 }
               };
-
-              window.localStorage.token = 
-                $http.defaults.headers.token = 
-                  this._token = data.token;
-
+              //conservation des données dans le cookie 'global'
               $cookies.putObject('globals', $rootScope.globals);
-
-              console.log("Cookie first_name: ", $rootScope.globals.currentUser.first_name)
 
               return true;
     }
@@ -40,8 +32,7 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
     }
   };
   
- 
-  //retour de la factory 
+  //déclaration et initialisation de la factory me
   me = { 
 
     is_authenticated: false,
@@ -103,12 +94,13 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
 
       return this;
     },
-    /* 
-    fonction login 
-    Cette fonction permet d'authentifier un utilisateur 
-    Elle retourne une promesse contenant le résultat de la requête 
- 
-     */ 
+
+    /**
+     * Cette fonction permet d'authentifier un utilisateur 
+     * @param  {[String]} email    : email de l'utilisateur
+     * @param  {[String]} password : password de l'utilisateur
+     * @return {[Promise]} retourne la promesse contenant l'objet user
+     */
     login: function (email, password) { 
       //déclaration de l'objet data, pour l'appel du service de login 
       var data = { 
@@ -150,10 +142,12 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       });
     },
 
-    /* 
-    Cette fonction permet d'inscrire un nouvel utilisateur 
-    Elle retourne une promesse contenant le résultat de la requête 
-     */ 
+    /**
+     * Cette fonction permet d'inscrire un utilisateur 
+     * @param  {[String]} email    : email de l'utilisateur
+     * @param  {[String]} password : password de l'utilisateur
+     * @return {[Promise]} retourne la promesse contenant l'objet user
+     */
     signin: function (email, password) { 
  
       //déclaration de l'objet data, pour l'appel du service d'inscription 
@@ -176,7 +170,6 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
           this.me._new_user = true;
 
           if(saveToken(res)){
-            console.log("me_facto : signin, user.template = ", res.me.template);
             
             defMe = this.me.init(res.me);
 
@@ -204,14 +197,13 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
  
     },
 
-    /* 
-    Cette fonction permet de mettre un jour les attributs d'un utilisateur 
-    Elle retourne une promesse contenant le résultat de la requête 
-     */ 
-    
-
+    /**
+     * Cette fonction permet de mettre un jour les attributs d'un utilisateur.
+     * Elle met à jour le cookie utilisé sur le site.
+     * @param  {[user]} tmp_user [Utilisateur modifié]
+     * @return {[type]}          [description]
+     */
     update: function(tmp_user) {
-    console.log("fonction update me.facto", tmp_user._id);
     var req = { 
         method: 'PUT',
         url: ROOT_URL + "/users/" + tmp_user._id, 
@@ -224,7 +216,13 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       return $q(function(resolve, reject){ 
        $http(req)
         .success(function(new_user) {
-          console.log("me updated", new_user);
+
+          //mise à jour des identifiants globaux
+          $rootScope.globals.currentUser.first_name = new_user.first_name;
+          $rootScope.globals.currentUser.last_name =  new_user.last_name;
+          $rootScope.globals.currentUser.email =  new_user.email;
+          $cookies.putObject('globals', $rootScope.globals);
+          
           if (new_user.birth_date) {
             new_user.birth_date = new Date(new_user.birth_date);
           }
@@ -239,11 +237,10 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       });
     },
 
-    
-     /**
-  cette function permet de recuperer le nombre de carte que l'user a diffuse et reciproque
-  */
-
+    /**
+     * Cette promesse permet de récuperer le nombre de cartes partagées et réciproques 
+     * d'un utilisateur.
+     */
     get_cardsCount : $q(function(resolve,reject){
 
       if ($rootScope.globals && $rootScope.globals.currentUser) {
@@ -258,11 +255,9 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
           };
         $http(req)
         .success(function(res){
-          console.log(res);
           resolve(res);
         })
         .error(function(err) {
-          console.log("Erreur requete get_cardsShared", err);
           reject(err);
         });
         }
@@ -271,7 +266,11 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       }
     }),
 
-
+    /**
+     * Cette fonction permet d'effectuer l'achat des cartes passées en
+     * paramètre. Elle met a jour la collection de fonds de cartes de l'utilisateur.
+     * 
+     */
     purchase_card_buy : function(listFonds){
 
       if ($rootScope.globals && $rootScope.globals.currentUser) {
@@ -287,11 +286,9 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
          return $q(function(resolve,reject){
         $http(req)
         .success(function(res){
-          console.log("purchase_card success", res);
           resolve(res);
         })
         .error(function(err) {
-          console.log("Erreur requete purchase_card", err);
           reject(err);
           });
         });
@@ -301,7 +298,13 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       }
 
     },
-
+    
+    /**
+     * Cette fonction permet d'effectuer l'achat de crédits.
+     * @param  {[int]} value quantité de crédits achetés
+     * @return {[int]}  Retourne la quantité de crédits possédés par
+     * l'utilisateur.
+     */
     purchase_many_credits : function(value){
       if ($rootScope.globals && $rootScope.globals.currentUser){
         var data = {};
@@ -316,7 +319,6 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
         return $q(function(resolve,reject){
           $http(req)
           .success(function(res){
-            console.log(res.credits);
             resolve(res.credits);
           })
           .error(function(err){
@@ -327,11 +329,48 @@ app.factory('me', function($q, $http, $rootScope, $cookies){
       else {
         reject("User introuvable");
       }
+    },
+    /**
+     * Cette fonction permet de créer ou modifier un dossier de cartes
+     * @param  {[String]} folder Ce paramètre contient le nom du dossier
+     * @param  {[tableau]} cards  Ce paramètre contient la liste des cartes
+     * @return {[promise]}        La fonction retourne une promesse contenant un booléen 
+     * vrai si la requête a été effectuée avec succès. 
+     */
+    copy_to_folder: function(folder, cards){
+
+      if ($rootScope.globals && $rootScope.globals.currentUser) {
+        var data = {
+          folder: folder,
+          cards: cards
+        };
+        var req = {
+          method : 'PUT',
+          url: ROOT_URL + "/users/me/copy_to_folder",
+              headers: {
+                token: $rootScope.globals.currentUser.token
+              },
+              data: data
+          };
+
+        return $q(function(resolve,reject){
+        $http(req)
+        .success(function(res){
+          resolve(res);
+        })
+        .error(function(err) {
+          reject(err);
+          });
+        });
+        }
+      else {
+        rejetct("User introuvable");
+      }
     }
 
   }
 
-
+  //renvoi de la factory
   return me;
 });
 

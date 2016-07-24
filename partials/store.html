@@ -38,9 +38,12 @@
 					              </div>
 					            </div>
 					            <div class="row">
-					             	<div class="card-container" ng-repeat="card in cards | searchContactsFilter:contacts_filter"  ng-click="selectContact(card)">
+					             	<div class="card-container" ng-repeat="card in cards | searchContactsFilter:contacts_filter"  ng-click="selectContact(card)">	
+					             		<div class="card-button-select"><button  ng-click="addCardToFolder(card);$event.stopPropagation()">select</button></div>
+					             		
 
 						                <div class="sous-main card background background-search {{card._sender.template}}">
+						                
 						                
 						                  <div class="col-xs-3">
 						                    <div class="avatar-content">
@@ -83,6 +86,7 @@
 						<div class="contact-infos-bottom">
 							<div class="contact-profile-bottom">			
 							<div class="form-group col-xs-6 col-sm-6 col-md-6" ng-show="card._sender.last_name">
+									<pre>tableau {{selectedCards | json}}</pre>
 					             	<div class="input-group">
 					                    <span class="input-group-addon ">
 					                		<img class="icon-form" src="img/svg/icon-nom.svg"/>

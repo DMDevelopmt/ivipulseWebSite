@@ -1,19 +1,16 @@
-//création du contrôleur "login_ctrl"
-app.controller("main_ctrl", function ($scope, $rootScope, $location,  $aside,  Cards) {
+//création du contrôleur "main_ctrl"
+app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $aside,  Cards, me) {
 
 	console.log("MainCtrl initialized");
-
+	//déclaration et initialisation des variables
 	$scope.user = $rootScope.user || {};
 	$scope.err = {
 		message: ""
 	};
-	
 	$scope.state = {
 		mode: "connexion"
 	};
-
 	$scope.contacts_filter = "";
-
 	$scope.aside = {
 	  "title": "Title"
 	};
@@ -22,40 +19,63 @@ app.controller("main_ctrl", function ($scope, $rootScope, $location,  $aside,  C
 	};
 
 	$scope.cards = {};
+	$scope.countShared = {};
+    $scope.countReciprocal = {};
 
+
+	/**
+	 * Cette fonction permet d'initialiser la liste des contacts de l'utilisateur
+	 */
 	var refresh_cards = function() {
+		//appel de la factory Cards pour effectuer
+		// la requête fournissant les contacts
 		Cards.acceptedCards()
 		.then (function(cards){
 			$scope.cards = cards;
 		});
 	};
 
-	refresh_cards();
-		
 
-/*
-	$scope.ajouter = function(){
-		var fichier = document.getElementById('fichier').files[0],
-		var lecture = new FileReader();
-		lecture.onloadend = function(evenement){
-		var donnees = evenement.target.result;
-		//Traitez ici vos données binaires. Vous pouvez par exemple les envoyer à un autre niveau du framework avec $http ou $ressource
-		}
-		lecture.readAsBinaryString(fichier);
-		}*/
 
+	/**
+    * Cette fonction retourne le nombre de cartes à partager et le nombre de cartes réciproques
+    */
+
+    var getSharedCard = function(){
+        me.get_cardsCount
+        .then(function(res){
+            $scope.countShared = res.shared;
+            $scope.countReciprocal = res.reciprocal;
+        });
+    };
+
+	/**
+     * Cette fonction permet d'initialiser le scope du contrôleur
+     */
+    var init = function() {
+
+        if($rootScope.globals.currentUser){
+            var req = {
+                method: 'GET',
+                url: ROOT_URL + "/users/me",
+                headers: {
+                    token: $rootScope.globals.currentUser.token
+                }
+            };
+
+            $http.defaults.headers.token = $rootScope.globals.currentUser.token;
+            $http(req)
+            .success(function(user) {
+                $scope.user = user;
+                
+            })
+        }
+        //appel de la fonction
+		refresh_cards();
+
+		getSharedCard();
+
+    };
+
+    init();
 });
-
-/*// Show a basic aside from a controller
-  var myAside = $aside({title: 'My Title', content: 'My Content', show: true});
-
-  // Pre-fetch an external template populated with a custom scope
-  var myOtherAside = $aside({scope: $scope, template: 'aside/docs/aside.demo.tpl.html'});
-  // Show when some event occurs (use $promise property to ensure the template has been loaded)
-  myOtherAside.$promise.then(function() {
-    myOtherAside.show();
-  });*/
-/*
-$scope.searchContact = function(){
-
-};*/
