@@ -1,8 +1,9 @@
 //création du contrôleur "main_ctrl"
-app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $aside,  Cards, me) {
+app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $aside,  Cards, me, $cookies, $route, Search) {
 
 	console.log("MainCtrl initialized");
 	//déclaration et initialisation des variables
+
 	$scope.user = $rootScope.user || {};
 	$scope.err = {
 		message: ""
@@ -10,31 +11,49 @@ app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $as
 	$scope.state = {
 		mode: "connexion"
 	};
+
 	$scope.contacts_filter = "";
+	$scope.search_result = {};
+
 	$scope.aside = {
 	  "title": "Title"
 	};
-	$scope.asideLogin = {
-	  "title": "Title"
-	};
 
-	$scope.cards = {};
+	$scope.loggedIn = !!$rootScope.globals.currentUser;
+	$scope.user_card = {}; //objet carte représentant l'utilisateur
+
 	$scope.countShared = {};
-    $scope.countReciprocal = {};
+  $scope.countReciprocal = {};
+	$scope.countOwned = {};
+
+	//search
+	var search = function(q) {
+		search_for = q.trim();
+
+		if(search_for) {
+			Search.find(search_for)
+			.then(function (found_users) {
+				$scope.search_result = found_users;
+			});
+		}
+
+	};
+	$scope.$watch("contacts_filter", search);
 
 
 	/**
-	 * Cette fonction permet d'initialiser la liste des contacts de l'utilisateur
+	 * Cette fonction permet de se déconnecter
 	 */
-	var refresh_cards = function() {
-		//appel de la factory Cards pour effectuer
-		// la requête fournissant les contacts
-		Cards.acceptedCards()
-		.then (function(cards){
-			$scope.cards = cards;
-		});
+	$scope.logout = function () {
+		//efface les identifiants du scope et le cookie
+		$scope.loggedIn = false;
+		$scope.user = $rootScope.user =
+				$scope.user_card = {};
+		$rootScope.globals = {};
+		$cookies.remove('globals');
+		$http.defaults.headers.token = '';
+		$route.reload();
 	};
-
 
 
 	/**
@@ -44,38 +63,22 @@ app.controller("main_ctrl", function ($scope, $rootScope, $http, $location,  $as
     var getSharedCard = function(){
         me.get_cardsCount
         .then(function(res){
-            $scope.countShared = res.shared;
-            $scope.countReciprocal = res.reciprocal;
-        });
+					console.log("dans main_ctrl, getSharedCard : ", res);
+          $scope.countShared = res.shared;
+          $scope.countReciprocal = res.reciprocal;
+        })
+				.catch(function(err){
+					console.log("Dans main_ctrl, erreur getSharedCard : ", err);
+				});
     };
 
 	/**
-     * Cette fonction permet d'initialiser le scope du contrôleur
+     * Cette fonction permet d'initialiser le contrôleur
      */
     var init = function() {
-
-        if($rootScope.globals.currentUser){
-            var req = {
-                method: 'GET',
-                url: ROOT_URL + "/users/me",
-                headers: {
-                    token: $rootScope.globals.currentUser.token
-                }
-            };
-
-            $http.defaults.headers.token = $rootScope.globals.currentUser.token;
-            $http(req)
-            .success(function(user) {
-                $scope.user = user;
-                
-            })
-        }
-        //appel de la fonction
-		refresh_cards();
-
-		getSharedCard();
-
+			$scope.err.message = "";
+			//actualisation des compteurs.
+			getSharedCard();
     };
-
     init();
 });

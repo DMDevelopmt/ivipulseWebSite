@@ -1,23 +1,36 @@
 //création du contrôleur "login_ctrl"
-app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $cookies, me) {
-	
+app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $cookies, me, fileService) {
+
 	console.log("LoginCtrl initialized");
+	console.log("début LoginCtrl, scope.user : ", $scope.$parent.user);
 	//déclaration des variables du $scope
-	$scope.card = {};
-	$scope.card._sender = $scope.$parent.user;
+	//$scope.user = {};
+	//$scope.card = {};
 	$scope.password_check = "";
 
-	$scope.loggedIn = !!$rootScope.globals.currentUser;
+	$scope.success = {
+		message: ""
+	};
+
+  $scope.modal = {
+  "title": "Choisissez un fond de carte",
+  "content": "Liste des templates"
+	};
+
+
+	$scope.social_networks = ['Facebook', 'Twitter', 'LinkedIn', 'Snapchat',
+	'GitHub', 'Viadeo', 'Skype', 'Tumblr', 'Youtube', 'Pinterest',
+	'Instagram', 'Steam'];
 
 
 	/**
-	 * La méthode email_login permet à un utilisateur de 
-	 * se connecter via email. 
+	 * La méthode email_login permet à un utilisateur de
+	 * se connecter via email.
 	 */
-	
-	$scope.email_login = function () {
 
-		
+	$scope.email_login = function () {
+		console.log("Dans login_ctrl/login user = ", $scope.$parent.user);
+
 		if(!$scope.$parent.user.email || !$scope.$parent.user.password){
 			$scope.err.message = "Champs email et password obligatoires";
 		}
@@ -25,23 +38,22 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 			//appel de la fonction login de la factory "me"
 			me.login($scope.$parent.user.email, $scope.$parent.user.password)
 			//1er callback, s'exécute lorsque la méthode me.login
-			//a terminé son exécution
+			//a terminé et renvoie sa promise
 			.then(function(user) {
-				//stocke l'objet user renvoyé par la factory dans le scope
-				$rootScope.user = user;
-				$scope.loggedIn = true;
-				$scope.err.message = null;	
+				$scope.$parent.user = user;
+				$scope.$parent.loggedIn = true;
+				$scope.err.message = null;
 				$location.path('/profil');
 			})
 			.catch(function(err) {
 				$scope.err.message = err;
 			});
-			
+
 		}
 	};
-	
+
 	/**
-	 * La méthode email_signin permet à un utilisateur de 
+	 * La méthode email_signin permet à un utilisateur de
 	 * s'inscrire via email.
 	 */
 	$scope.email_signin = function () {
@@ -62,8 +74,8 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	  		//1er callback, s'exécute lorsque la méthode me.login
 	  		//a terminé son exécution
 	  		.then(function(res) {
-	  			//stocke l'objet renvoyé par la factory dans le scope
-	  			$scope.$parent.user = res;
+
+					init();
 	  			$scope.err.message = null;
 	  			$location.path("/profil");
 	  		})
@@ -73,19 +85,10 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	  		});
 			}
 		}
-		
+
 	};
 
-	/**
-	 * Cette fonction permet de se déconnecter
-	 */
-	$scope.logout = function () {
-		//efface les identifiants du scope et le cookie
-		$scope.loggedIn = false;
-		$rootScope.globals = {};
-		$cookies.remove('globals');
-		$http.defaults.headers.token = '';
-	};
+
 
 	/**
 	 * La méthode update permet de modifier les attributs de l'objet User
@@ -94,20 +97,32 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 	$scope.update= function(){
 
 		if($scope.$parent.user){
-			 
+
 			 if(!$scope.$parent.user.first_name || !$scope.$parent.user.last_name) {
 
 				$scope.err.message = "Champs Nom et Prénom obligatoires";
 			}
 
 			else {
-				//appel de la fonction update de la factory "me"
-				 me.update($scope.$parent.user)
-				 //1er callback, s'exécute lorsque la méthode me.update
-				//a terminé son exécution
-				 .then(function(res) {
-					//stocke l'objet tmp_user renvoyé par la factory dans le scope
-					$scope.$parent.user = res;
+
+				var encodedPicture;
+				fileService.encodeFile()
+				.then(function(fileB64){
+					if(fileB64){
+						encodedPicture = fileB64;
+						return me.post_picture(encodedPicture);
+					}
+				})
+				.then(function(avatar){
+					$scope.$parent.user.avatar = avatar;
+					//$scope.$parent.user.premium_cards = [];
+					//appel de la fonction update de la factory "me"
+					return me.update($scope.$parent.user);
+				})
+				.then(function(res) {
+
+					init();
+
 					$scope.err.message = null;
 					$scope.success.message = null;
 
@@ -121,10 +136,10 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 			            $scope.success.message = "Enregistrement effectué avec succès";
 
 					}
-					
+
 				})
 				.catch(function(err) {
-					$scope.err.message = "Les champs nom ou prénom sont absents";
+					$scope.err.message = err;
 				});
 			}
 		}
@@ -134,4 +149,44 @@ app.controller("login_ctrl", function ($scope, $http, $rootScope, $location, $co
 			$scope.err.message = "Problème interne";
 		}
 	};
+
+	$scope.addFile = function (){
+		var file = fileService.getFile();
+		$scope.imgUpload = file;
+	};
+
+  $scope.select_template = function(template) {
+    $scope.$parent.user_card._sender.template =
+    $scope.$parent.user.template = template;
+  };
+
+	var count_owned = function(cards) {
+		var compteur = 0;
+		for(i=0; i < cards.length; i++ ){
+			if(cards[i].accepted){
+				compteur++;
+			}
+		}
+		$scope.$parent.countOwned = compteur;
+	};
+
+	var init = function () {
+
+		if($scope.$parent.loggedIn){
+			me.me()
+      .then(function(user){
+				if(user){
+					$rootScope.user = $scope.$parent.user = user._data;
+					$scope.$parent.user_card._sender = $scope.$parent.user;
+
+					count_owned(user._data.cards);
+				}
+      })
+			.catch(function(err){
+				console.error('Dans login_ctrl/init erreur : ', err);
+			});
+		}
+	};
+
+	init();
 });
